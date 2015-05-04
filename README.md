@@ -1,4 +1,2 @@
-test_java_project
+Projects
 =================
-
-testing java projects
