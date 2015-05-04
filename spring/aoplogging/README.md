@@ -1,4 +1,6 @@
-aoplogging project shows how to setup and use aop logging in a java webapp.
+aoplogging Project
+=================
+This projects shows how to setup and use aop logging in a java webapp.
 
 To run the project:
 
