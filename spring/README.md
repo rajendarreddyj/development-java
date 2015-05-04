@@ -1,1 +1,3 @@
-This Directory will have various spring related projects.
+Spring Framework Example Projects
+=================
+This Directory will have various spring framework example projects.
