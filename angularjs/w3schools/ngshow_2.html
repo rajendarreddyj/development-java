@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+
+<body>
+    <div ng-app="myApp" ng-controller="personCtrl">
+
+        <button ng-click="toggle()">Toggle</button>
+        <!--
+        The ng-show directive can also be used to set the visibility of a part of an application.
+        The value ng-show="false" makes an HTML element invisible.
+        The value ng-show="true" makes the element visible.        
+        -->
+        <p ng-show="myVar">
+            First Name:
+            <input type="text" ng-model="firstName">
+            <br> Last Name:
+            <input type="text" ng-model="lastName">
+            <br>
+            <br> Full Name: {{firstName + " " + lastName}}
+        </p>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('personCtrl', function ($scope) {
+            $scope.firstName = "Rajendar",
+                $scope.lastName = "Jagapathi"
+            $scope.myVar = true;
+            $scope.toggle = function () {
+                $scope.myVar = !$scope.myVar;
+            }
+        });
+    </script>
+</body>
+
+</html>

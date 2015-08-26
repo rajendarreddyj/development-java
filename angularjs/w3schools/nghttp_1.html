@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+<!--
+$http is an AngularJS service for reading data from remote servers.    
+AngularJS $http is a core service for reading data from web servers.
+$http.get(url) is the function to use for reading server data.
+-->
+<body>
+    <div ng-app="myApp" ng-controller="customersCtrl">
+
+        <ul>
+            <li ng-repeat="x in names">
+                {{ x.Name + ', ' + x.Country }}
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('customersCtrl', function ($scope, $http) {
+            $http.get("test.json")
+                .success(function (response) {
+                    $scope.names = response.records;
+                });
+        });
+    </script>
+<!--
+The AngularJS application is defined by ng-app. The application runs inside a <div>.
+The ng-controller directive names the controller object.
+The customersCtrl function is a standard JavaScript object constructor.
+AngularJS will invoke customersCtrl with a $scope and $http object.
+$scope is the application object (the owner of application variables and functions).
+$http is an XMLHttpRequest object for requesting external data.
+$http.get() reads JSON data from test.json.
+If success, the controller creates a property (names) in the scope, with JSON data from the server.
+-->
+</body>
+
+</html>

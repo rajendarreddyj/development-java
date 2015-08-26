@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+
+<body>
+    <!--AngularJS directives are HTML attributes with an ng prefix.-->
+    <div ng-app="myApp" ng-controller="formCtrl">
+        <!--The novalidate attribute is new in HTML5. It disables any default browser validation.-->
+        <form novalidate>
+            First Name:
+            <br>
+            <input type="text" ng-model="user.firstName">
+            <br> Last Name:
+            <br>
+            <input type="text" ng-model="user.lastName">
+            <br>
+            <br>
+            <button ng-click="reset()">RESET</button>
+        </form>
+        <p>form = {{user}}</p>
+        <p>master = {{master}}</p>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('formCtrl', function ($scope) {
+            $scope.master = {
+                firstName: "Rajendar",
+                lastName: "Jagapathi"
+            };
+            $scope.reset = function () {
+                $scope.user = angular.copy($scope.master);
+            };
+            $scope.reset();
+        });
+    </script>
+    <!--
+    The ng-app directive defines the AngularJS application.
+    The ng-controller directive defines the application controller.
+    The ng-model directive binds two input elements to the user object in the model.
+    The formCtrl function sets initial values to the master object, and defines the reset() method.
+    The reset() method sets the user object equal to the master object.
+    The ng-click directive invokes the reset() method, only if the button is clicked.
+    The novalidate attribute is not needed for this application, but normally you will use it in AngularJS forms, to override standard HTML5 validation.
+    -->
+</body>
+
+</html>

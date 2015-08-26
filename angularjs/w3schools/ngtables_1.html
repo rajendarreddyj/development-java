@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+
+<body>
+    <div ng-app="myApp" ng-controller="customersCtrl">
+        <!--The ng-repeat directive is perfect for displaying tables.Displaying tables with angular is very simple-->
+        <table>
+            <tr ng-repeat="x in names">
+                <td>{{ x.Name }}</td>
+                <td>{{ x.Country }}</td>
+            </tr>
+        </table>
+        <p>To sort the table, add an orderBy filter</p>
+        <table>
+            <tr ng-repeat="x in names | orderBy : 'Country'">
+                <td>{{ x.Name }}</td>
+                <td>{{ x.Country }}</td>
+            </tr>
+        </table>
+        <p>To display uppercase, add an uppercase filter</p>
+        <table>
+            <tr ng-repeat="x in names">
+                <td>{{ x.Name }}</td>
+                <td>{{ x.Country | uppercase }}</td>
+            </tr>
+        </table>
+        <p>To display the table index, add a <td> with $index</p>
+        <table>
+            <tr ng-repeat="x in names">
+                <td>{{ $index + 1 }}</td>
+                <td>{{ x.Name }}</td>
+                <td>{{ x.Country }}</td>
+            </tr>
+        </table>
+        <p>Using $even and $odd</p>
+        <table>
+            <tr ng-repeat="x in names">
+                <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.Name }}</td>
+                <td ng-if="$even" style="background-color:#ffffff">{{ x.Name }}</td>
+                <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.Country }}</td>
+                <td ng-if="$even" style="background-color:#ffffff">{{ x.Country }}</td>
+            </tr>
+        </table>
+    </div>
+    <!--To make it nice, add some CSS to the page-->
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        
+        table tr:nth-child(odd) {
+            background-color: #f1f1f1;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('customersCtrl', function ($scope, $http) {
+            $http.get("test.json")
+                .success(function (response) {
+                    $scope.names = response.records;
+                });
+        });
+    </script>
+
+</body>
+
+</html>

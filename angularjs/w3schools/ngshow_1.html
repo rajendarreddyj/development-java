@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+
+<body ng-app="">
+    <!--The ng-show directive shows or hides an HTML element.-->
+    <div>
+        <p ng-show="true">I am visible.</p>
+        <p ng-show="false">I am not visible.</p>
+
+    </div>
+    <!--
+The ng-show directive shows (or hides) an HTML element based on the value of ng-show.
+You can use any expression that evaluates to true or false    
+-->
+    <div ng-init="hour=13">
+        <p ng-show="hour > 12">I am visible.</p>
+    </div>
+<!--The ng-hide directive hides or shows an HTML element.-->
+    <div>
+        <p ng-hide="true">I am not visible.</p>
+        <p ng-hide="false">I am visible.</p>
+    </div>
+</body>
+
+</html>
