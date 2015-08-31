@@ -1,0 +1,2 @@
+Browser
+Simple Browser Standalone.
