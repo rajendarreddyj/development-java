@@ -1,0 +1,39 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version = '1.0'
+jar {
+	baseName = 'spring_data_mongodb'
+    version =  '1.0'
+    manifest {
+        attributes 'Implementation-Title': 'spring_data_mongodb',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-data-rest")
+   	compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    testCompile("junit:junit")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
