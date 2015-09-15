@@ -1,9 +1,7 @@
 <resources>
-    <string name="app_name">Android Books</string>
+    <string name="app_name">Android_helloworld</string>
 
     <string name="hi_android">Hello Android, We are having fun!</string>
+    <string name="textview">Hello Android, We are having fun!</string>
     <string name="action_settings">Settings</string>
-    <string name="textview">Search For Books!</string>
-    <string name="button">Search</string>
-    <string name="hint">Title and/or Author</string>
 </resources>
