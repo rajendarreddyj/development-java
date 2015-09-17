@@ -1,0 +1,10 @@
+{
+  "name": "03_FileIO",
+  "version": "0.0.0",
+  "description": "03_FileIO",
+  "main": "app.js",
+  "author": {
+    "name": "rajendarreddyj",
+    "email": ""
+  }
+}

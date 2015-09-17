@@ -1,3 +1,3 @@
 node programs
 -------------
-Install node 
+Install latest nodejs from http://nodejs.org/

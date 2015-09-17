@@ -1,0 +1,10 @@
+{
+  "name": "02_helloworld_http",
+  "version": "0.0.0",
+  "description": "02_helloworld_http",
+  "main": "app.js",
+  "author": {
+    "name": "rajendarreddy jagapathi",
+    "email": ""
+  }
+}
