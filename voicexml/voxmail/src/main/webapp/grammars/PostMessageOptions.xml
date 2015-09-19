@@ -1,0 +1,10 @@
+<?xml version= "1.0"?>
+<grammar xmlns="http://www.w3.org/2001/06/grammar" xml:lang="en-US" root = "POST_MESSAGE_OPTIONS" mode="dtmf">
+<rule id="POST_MESSAGE_OPTIONS" scope="public">
+    <one-of>
+          <item> dtmf-1 <tag> <![CDATA[<choice "saved">]]>  </tag> </item>
+          <item> dtmf-2 <tag> <![CDATA[<choice "greeting">]]>  </tag> </item>
+          <item> dtmf-3 <tag> <![CDATA[<choice "done">]]>  </tag> </item>
+    </one-of>
+</rule>
+</grammar>

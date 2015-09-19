@@ -1,0 +1,9 @@
+<?xml version= "1.0"?>
+<grammar xmlns="http://www.w3.org/2001/06/grammar" xml:lang="en-US" root = "GREETING_CONFIRM" mode="dtmf">
+<rule id="GREETING_CONFIRM" scope="public">
+    <one-of>
+          <item> dtmf-1 <tag> <![CDATA[<confirm "messages">]]>  </tag> </item>
+          <item> dtmf-2 <tag> <![CDATA[<confirm "done">]]>  </tag> </item>
+    </one-of>
+</rule>
+</grammar>

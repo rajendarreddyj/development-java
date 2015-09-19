@@ -1,0 +1,29 @@
+.heading
+   {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: medium; color: #0099CC;
+      font-style: italic;
+      font-weight: bold
+   }
+
+.heading2
+   {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: small;
+      color: #333399
+   }
+
+.plaintext
+   {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: x-small;
+      color: #000000
+   }
+
+.error
+   {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: small;
+      color: #FF0000;
+      font-style: italic
+   }

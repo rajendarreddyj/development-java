@@ -1,0 +1,10 @@
+<?xml version= "1.0"?>
+<grammar xmlns="http://www.w3.org/2001/06/grammar" xml:lang="en-US" root = "FIRSTTIMEOPTIONS" mode="dtmf">
+<rule id="FIRSTTIMEOPTIONS" scope="public">
+    <one-of>
+          <item> dtmf-1 <tag> <![CDATA[<choice "review">]]>  </tag> </item>
+          <item> dtmf-2 <tag> <![CDATA[<choice "rerecord">]]>  </tag> </item>
+          <item> dtmf-3 <tag> <![CDATA[<choice "standard">]]>  </tag> </item>
+    </one-of>
+</rule>
+</grammar>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans />
+  <global-exceptions />
+  <global-forwards >
+      <forward name="error" path="/html/error.jsp" />
+
+  </global-forwards>
+  <action-mappings >
+    <action path="/play" forward="/vxml/playMessage.jsp"/>
+    <action path="/voxmail" type="org.voxmail.struts.action.VoxmailAction" >
+      <forward name="voxmail" path="/vxml/voxmail.jsp" />
+    </action>
+    
+     <action path="/mainMenu" type="org.voxmail.struts.action.MainMenuAction" >
+      <forward name="messages" path="/vxml/messages.jsp" />
+      <forward name="firstTime" path="/firstTime.do" />
+    </action>
+    
+    <action path="/updateMessage" type="org.voxmail.struts.action.UpdateMessageAction" >
+      <forward name="updateMessage" path="/vxml/updateMessage.jsp" />
+    </action>
+    
+    <action path="/leaveMessage" type="org.voxmail.struts.action.LeaveMessageAction" >
+      <forward name="leaveMessage" path="/vxml/leaveMessage.jsp" />
+      <forward name="save" path="/vxml/goodbye.jsp" />
+      <forward name="saveandtransfer" path="/vxml/redirect.jsp" />
+    </action>
+    
+    <action path="/firstVisit" type="org.voxmail.struts.action.FirstVisitAction" >
+      <forward name="confirm" path="/vxml/greetingGoodbye.jsp" />
+    </action>
+    
+    <action path="/greeting" type="org.voxmail.struts.action.GreetingAction" >
+      <forward name="confirm" path="/vxml/greetingConfirm.jsp" />
+      <forward name="greeting" path="/vxml/greeting.jsp" />
+    </action>
+    
+    <action path="/login" type="org.voxmail.struts.action.LoginAction" >
+      <forward name="login" path="/vxml/login.jsp" />
+      <forward name="invalidLogin" path="/vxml/login.jsp?result=invalid" />
+      <forward name="firstVisit" path="/vxml/firstVisit.jsp" />
+      <forward name="mainMenu" path="/mainMenu.do" />
+      
+    </action>
+    
+    <action path="/main" type="org.voxmail.struts.action.LeaveMessageAction" >
+      <forward name="leaveMessage" path="/vxml/leaveMessage.jsp" />
+    </action>
+    
+    <action path="/inbox" type="org.voxmail.struts.action.InboxAction" >
+      <forward name="login" path="/html/login.jsp" />
+      <forward name="loginFailed" path="/html/login.jsp?event=login-failed" />
+      <forward name="unauthorized" path="/html/login.jsp?event=unauthorized-access" />
+      <forward name="logout" path="/html/login.jsp?event=logout" />
+      
+      <forward name="inbox" path="/html/admin/inbox.jsp" />
+      <forward name="end" path="/html/end.jsp" />
+      <forward name="pin" path="/html/admin/pin.jsp" />
+      <forward name="pinInvalid" path="/html/admin/pin.jsp?error=invalid" />
+      <forward name="menu" path="/html/admin/menu.jsp" />
+      <forward name="record" path="/html/admin/record.jsp" />
+      <forward name="greeting" path="/html/admin/greeting.jsp" />
+    </action>
+    
+    <action path="/provision" type="org.voxmail.struts.action.ProvisionAction" >
+      <forward name="provision" path="/html/admin/provision.jsp" />
+    </action>
+    
+    <action path="/test" type="org.voxmail.struts.action.TestAction" >
+      <forward name="testPage" path="/jsp/test/test.jsp" />
+    </action>
+
+  </action-mappings>
+  <message-resources parameter="org.voxmail.struts.ApplicationResources" />
+</struts-config>

@@ -1,0 +1,13 @@
+<?xml version= "1.0"?>
+<grammar xmlns="http://www.w3.org/2001/06/grammar" xml:lang="en-US" root = "MESSAGE_OPTIONS" mode="dtmf">
+<rule id="MESSAGE_OPTIONS" scope="public">
+    <one-of>
+          <item> dtmf-7 <tag> <![CDATA[<choice "delete">]]>  </tag> </item>
+          <item> dtmf-8 <tag> <![CDATA[<choice "repeat">]]>  </tag> </item>
+          <item> dtmf-9 <tag> <![CDATA[<choice "save">]]>  </tag> </item>
+          <item> dtmf-0 <tag> <![CDATA[<choice "options">]]>  </tag> </item>
+          <item> dtmf-5 <tag> <![CDATA[<choice "info">]]>  </tag> </item>
+          <item> dtmf-6 <tag> <![CDATA[<choice "skip">]]>  </tag> </item>
+    </one-of>
+</rule>
+</grammar>

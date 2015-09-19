@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 2.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="org.voxmail.model.Mailbox"
+        table="MAILBOX"
+    >
+        
+        <id
+            name="mailboxId"
+            type="java.lang.String"
+        >
+            <column
+                name="MAILBOXID" 
+                index="token_number_index"
+            />
+            <generator class="uuid.hex">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Prize.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+        
+        <property
+            name="contactId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CONTACTID"
+        />
+        
+        <property
+            name="firstName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="FIRSTNAME"
+        />
+        <property
+            name="lastName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="LASTNAME"
+        />
+        <property
+            name="entityName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ENTITYNAME"
+        />
+        <property
+            name="phoneNumber"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PHONENUMBER"
+        />
+        <property
+            name="pin"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PIN"
+        />
+        <property
+            name="email"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="EMAIL"
+        />
+        <property
+            name="mailUrl"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="MAILURL"
+        />
+        <property
+            name="recordedName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RECORDEDNAME"
+        />
+        <property
+            name="recordedGreeting"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RECORDEDGREETING"
+        />
+        <property
+            name="firstTime"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="ISFIRSTTIME"
+        />
+        <property
+            name="active"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="ISACTIVE"
+        />
+        <property
+            name="greetingType"
+            type="integer"
+            update="true"
+            insert="true"
+            column="GREETINGTYPE"
+        />
+        <property
+            name="mailboxType"
+            type="integer"
+            update="true"
+            insert="true"
+            column="MAILBOXTYPE"
+        />
+        
+        <property
+            name="imapUsername"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="IMAPUSERNAME"
+        />
+        <property
+            name="imapPassword"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="IMAPPASSWORD"
+        />
+        
+        
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Mailbox.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+    
+</hibernate-mapping>

@@ -1,0 +1,10 @@
+<?xml version= "1.0"?>
+<grammar xmlns="http://www.w3.org/2001/06/grammar" xml:lang="en-US" root = "CONFIRMDTMF" mode="dtmf">
+<rule id="CONFIRMDTMF" scope="public">
+    <one-of>
+          <item> dtmf-1 <tag> <![CDATA[<confirm "review">]]>  </tag> </item>
+          <item> dtmf-2 <tag> <![CDATA[<confirm "rerecord">]]>  </tag> </item>
+          <item> dtmf-3 <tag> <![CDATA[<confirm "cancel">]]>  </tag> </item>
+    </one-of>
+</rule>
+</grammar>
