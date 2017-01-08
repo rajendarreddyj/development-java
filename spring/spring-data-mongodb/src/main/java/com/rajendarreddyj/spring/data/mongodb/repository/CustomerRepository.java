@@ -15,7 +15,8 @@ import com.rajendarreddyj.spring.data.mongodb.model.Customer;
 @RepositoryRestResource(collectionResourceRel = "customer", path = "customer")
 public interface CustomerRepository extends MongoRepository<Customer, String> {
 
-    public Customer findByFirstName(@Param("firstName")String firstName);
-    public List<Customer> findByLastName(@Param("lastName")String lastName);
+    public Customer findByFirstName(@Param("firstName") String firstName);
+
+    public List<Customer> findByLastName(@Param("lastName") String lastName);
 
 }

@@ -9,20 +9,20 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
 
-	private static ApplicationContext ctx;
+    private static ApplicationContext ctx;
 
-	public static void main(String[] args) {
-		String[] str = {"META-INF/spring/context-config.xml", "META-INF/spring/job-config.xml"};
-		ctx = new ClassPathXmlApplicationContext(str);
-		Job job = (Job) ctx.getBean("dbToXml");
-		JobLauncher jobLauncher = (JobLauncher) ctx.getBean("jobLauncher");
-		try{
-			JobExecution execution = jobLauncher.run(job, new JobParameters());
-			System.out.println("Job Execution Status: "+ execution.getStatus());
-		}catch(Exception e){
-		  e.printStackTrace();	
-		}
+    public static void main(final String[] args) {
+        String[] str = { "META-INF/spring/context-config.xml", "META-INF/spring/job-config.xml" };
+        ctx = new ClassPathXmlApplicationContext(str);
+        Job job = (Job) ctx.getBean("dbToXml");
+        JobLauncher jobLauncher = (JobLauncher) ctx.getBean("jobLauncher");
+        try {
+            JobExecution execution = jobLauncher.run(job, new JobParameters());
+            System.out.println("Job Execution Status: " + execution.getStatus());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	}
+    }
 
 }

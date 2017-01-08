@@ -15,42 +15,42 @@ import com.rajendarreddyj.springbatchlistener.model.User;
  */
 public class WriteListener implements ItemWriteListener<User> {
 
-	private String INSERT_QUERY = "insert into user_stats(firstName,lastName,city,id) values (?,?,?,?)";
-	private DataSource dataSource;
-	
-	public DataSource getDataSource() {
-		return dataSource;
-	}
+    private String INSERT_QUERY = "insert into user_stats(firstName,lastName,city,id) values (?,?,?,?)";
+    private DataSource dataSource;
 
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;		
-	}
-	
-	@Override
-	public void afterWrite(List<? extends User> items) {
-		System.out.println("Feeding the stats table");
-		int result = 0;
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
-		
-		for(User user: items){
-			Object[] params = {user.getFirstName(),user.getLastName(),user.getCity(),user.getId()};	
-			result += jdbcTemplate.update(INSERT_QUERY, params);
-			
-		}	
-		System.out.println("Number of rows inserted: "+ result);	
-		
-	}
+    public DataSource getDataSource() {
+        return this.dataSource;
+    }
 
-	@Override
-	public void beforeWrite(List<? extends User> items) {
-		System.out.println("Going to write following items: "+ items.toString());
-		
-	}
+    public void setDataSource(final DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
-	@Override
-	public void onWriteError(Exception arg0, List<? extends User> arg1) {
-		System.out.println("Error occurred when writing items!");
-		
-	}
+    @Override
+    public void afterWrite(final List<? extends User> items) {
+        System.out.println("Feeding the stats table");
+        int result = 0;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(this.getDataSource());
+
+        for (User user : items) {
+            Object[] params = { user.getFirstName(), user.getLastName(), user.getCity(), user.getId() };
+            result += jdbcTemplate.update(this.INSERT_QUERY, params);
+
+        }
+        System.out.println("Number of rows inserted: " + result);
+
+    }
+
+    @Override
+    public void beforeWrite(final List<? extends User> items) {
+        System.out.println("Going to write following items: " + items.toString());
+
+    }
+
+    @Override
+    public void onWriteError(final Exception arg0, final List<? extends User> arg1) {
+        System.out.println("Error occurred when writing items!");
+
+    }
 
 }

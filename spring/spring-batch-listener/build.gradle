@@ -1,0 +1,15 @@
+description = "spring batch Listener"
+
+dependencies {
+    compile("org.springframework:spring-context:${springFrameworkVersion}")
+    compile("org.springframework:spring-aop:${springFrameworkVersion}")
+    compile("org.springframework:spring-beans:${springFrameworkVersion}")
+    compile("org.springframework:spring-core:${springFrameworkVersion}")
+    compile("org.springframework:spring-tx:${springFrameworkVersion}")
+    compile("org.springframework:spring-context-support:${springFrameworkVersion}")
+    compile("org.springframework:spring-jdbc:${springFrameworkVersion}")
+    compile("org.springframework:spring-oxm:${springFrameworkVersion}")
+    compile("org.springframework.batch:spring-batch-core:${springBatchVersion}")
+    compile("commons-dbcp:commons-dbcp:${commonsdbcpVersion}")
+    compile("hsqldb:hsqldb:${hsqldbVersion}")
+}

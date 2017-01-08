@@ -1,0 +1,27 @@
+apply plugin: "war"
+apply plugin: "com.bmuschko.tomcat"
+
+description = "aoplogging Spring Webapp"
+buildscript {
+    dependencies {
+        classpath "com.bmuschko:gradle-tomcat-plugin:${tomcatPluginVersion}"
+    }
+}
+
+dependencies {
+    compile("org.slf4j:slf4j-api:${slf4jVersion}")
+    compile("org.slf4j:jcl-over-slf4j:${slf4jVersion}")
+    compile("org.slf4j:jul-to-slf4j:${slf4jVersion}")
+    compile("org.slf4j:log4j-over-slf4j:${slf4jVersion}")
+    compile("ch.qos.logback:logback-classic:${logbackVersion}")
+    compile("org.aspectj:aspectjrt:${aspectjVersion}")
+    compile("org.aspectj:aspectjweaver:${aspectjVersion}")
+    compile("org.springframework:spring-web:${springFrameworkVersion}") {
+	exclude(module: "commons-logging")
+    }
+    providedCompile("javax.servlet:javax.servlet-api:${javaxServletVersion}")
+    
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+}
