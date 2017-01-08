@@ -16,10 +16,10 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 version = '1.0'
 jar {
-	baseName = 'spring_data_mongodb'
+	baseName = 'spring-data-mongodb'
     version =  '1.0'
     manifest {
-        attributes 'Implementation-Title': 'spring_data_mongodb',
+        attributes 'Implementation-Title': 'spring-data-mongodb',
                    'Implementation-Version': version
     }
 }
