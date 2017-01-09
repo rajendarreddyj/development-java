@@ -5,6 +5,7 @@ This projects shows how to setup and use aop logging in a java webapp.
 To run the project:
 
 $ gradle TomcatRun
+
 Fire up this url in your browser: http://localhost:8080/spring-aop-logging/
 
 You should see something like the following in your console each time you refresh the web page:
