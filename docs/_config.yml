@@ -2,7 +2,7 @@ title: development-java
 description: Java/Spring/Hibernate Projects
 google_analytics: 
 show_downloads: true
-theme: jekyll-theme-midnight
+theme: jekyll-theme-slate
 
 gems:
   - jekyll-mentions
