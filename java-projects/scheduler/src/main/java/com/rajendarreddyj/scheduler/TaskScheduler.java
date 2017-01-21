@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.TimerTask;
 
@@ -23,16 +24,22 @@ import com.rajendarreddyj.scheduler.bean.ServerVariables;
  */
 public class TaskScheduler extends TimerTask {
 
-    private final String USER_AGENT = "Mozilla/5.0";
-
     private String filePath;
     private String fileExtension;
+    private String archiveFileExtension;
     private String webServiceUrl;
 
-    public TaskScheduler(String filePath, String fileExtension, String webServiceUrl) {
+    /**
+     * @param filePath
+     * @param fileExtension
+     * @param archiveFileExtension
+     * @param webServiceUrl
+     */
+    public TaskScheduler(final String filePath, final String fileExtension, final String archiveFileExtension, final String webServiceUrl) {
         super();
         this.filePath = filePath;
         this.fileExtension = fileExtension;
+        this.archiveFileExtension = archiveFileExtension;
         this.webServiceUrl = webServiceUrl;
     }
 
@@ -41,78 +48,121 @@ public class TaskScheduler extends TimerTask {
      */
     @Override
     public void run() {
+        System.out.println("Scheduler started @ " + new Date());
         // Read File
-        File[] listOfFiles = this.finder(filePath, fileExtension);
+        File[] listOfFiles = this.finder(this.filePath, this.fileExtension);
 
         for (File file : listOfFiles) {
-            List<ServerVariables> serverVariablesList = readFile(file);
-            for(ServerVariables serverVariables:serverVariablesList) {
+            List<ServerVariables> serverVariablesList = this.readFile(file);
+            System.out.println("Call WS");
+            System.out.println(serverVariablesList.toString());
+            try {
+                // WS Call
+                this.sendPost(this.webServiceUrl, serverVariablesList);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            this.renameFile(file);
+
+        }
+    }
+
+    // HTTP POST request
+    /**
+     * @param url
+     * @param serverVariablesList
+     * @throws Exception
+     */
+    private void sendPost(final String url, final List<ServerVariables> serverVariablesList) {
+        int retry = 3;
+        for (ServerVariables serverVariables : serverVariablesList) {
+            for (int i = 0; i < retry; i++) {
+                System.out.println("Trying " + i);
                 try {
-                    sendPost(webServiceUrl, serverVariables);
-                } catch (Exception e) {
+                    URL obj = new URL(url);
+                    HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+
+                    // add reuqest header
+                    con.setRequestMethod("POST");
+                    con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+                    String urlParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
+
+                    // Send post request
+                    con.setDoOutput(true);
+                    DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+                    wr.writeBytes(urlParameters);
+                    wr.flush();
+                    wr.close();
+
+                    int responseCode;
+                    responseCode = con.getResponseCode();
+
+                    if (responseCode == 200) {
+                        break;
+                    }
+                    System.out.println("\nSending 'POST' request to URL : " + url);
+                    System.out.println("Post parameters : " + urlParameters);
+                    System.out.println("Response Code : " + responseCode);
+
+                    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    String inputLine;
+                    StringBuffer response = new StringBuffer();
+
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+                    in.close();
+                    System.out.println(response.toString());
+                } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+                // print result
+
             }
 
         }
+
     }
 
- // HTTP POST request
-    private void sendPost(String url, ServerVariables serverVariables) throws Exception {
-
-        URL obj = new URL(url);
-        HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
-
-        //add reuqest header
-        con.setRequestMethod("POST");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-
-        String urlParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
-
-        // Send post request
-        con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(urlParameters);
-        wr.flush();
-        wr.close();
-
-        int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'POST' request to URL : " + url);
-        System.out.println("Post parameters : " + urlParameters);
-        System.out.println("Response Code : " + responseCode);
-
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+    /**
+     * @param file
+     */
+    private void renameFile(final File file) {
+        File file2 = new File(file.getAbsoluteFile() + this.archiveFileExtension);
+        boolean success = file.renameTo(file2);
+        if (success) {
+            System.out.println("File Renamed");
         }
-        in.close();
-
-        //print result
-        System.out.println(response.toString());
-
     }
 
-    private File[] finder(String dirName, String extension) {
+    /**
+     * @param dirName
+     * @param extension
+     * @return
+     */
+    private File[] finder(final String dirName, final String extension) {
         File dir = new File(dirName);
 
         return dir.listFiles(new FilenameFilter() {
-            public boolean accept(File dir, String filename) {
+            @Override
+            public boolean accept(final File dir, final String filename) {
                 return filename.endsWith(extension);
             }
         });
 
     }
 
-    private List<ServerVariables> readFile(File file) {
+    /**
+     * @param file
+     * @return
+     */
+    private List<ServerVariables> readFile(final File file) {
         BufferedReader br = null;
         String line = "";
-        String lineSplitBy = "|";
+        String lineSplitBy = "\\|";
         List<ServerVariables> serverVariablesList = new ArrayList<>();
         try {
 
