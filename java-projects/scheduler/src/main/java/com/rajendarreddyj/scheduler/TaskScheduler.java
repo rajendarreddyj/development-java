@@ -77,6 +77,7 @@ public class TaskScheduler extends TimerTask {
     private void sendPost(final String url, final List<ServerVariables> serverVariablesList) {
         int retry = 3;
         for (ServerVariables serverVariables : serverVariablesList) {
+            // Retry 3 times for Failure for Each Record Insertion
             for (int i = 0; i < retry; i++) {
                 System.out.println("Trying " + i);
                 try {
