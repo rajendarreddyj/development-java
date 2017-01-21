@@ -14,110 +14,135 @@ public class ServerVariables {
     private String serverName;
     private String serverPort;
     private String serverSoftware;
+
     /**
      * @return the httpReferer
      */
     public String getHttpReferer() {
-        return httpReferer;
+        return this.httpReferer;
     }
+
     /**
-     * @param httpReferer the httpReferer to set
+     * @param httpReferer
+     *            the httpReferer to set
      */
-    public void setHttpReferer(String httpReferer) {
+    public void setHttpReferer(final String httpReferer) {
         this.httpReferer = httpReferer;
     }
+
     /**
      * @return the httpUserAgent
      */
     public String getHttpUserAgent() {
-        return httpUserAgent;
+        return this.httpUserAgent;
     }
+
     /**
-     * @param httpUserAgent the httpUserAgent to set
+     * @param httpUserAgent
+     *            the httpUserAgent to set
      */
-    public void setHttpUserAgent(String httpUserAgent) {
+    public void setHttpUserAgent(final String httpUserAgent) {
         this.httpUserAgent = httpUserAgent;
     }
+
     /**
      * @return the remoteAddress
      */
     public String getRemoteAddress() {
-        return remoteAddress;
+        return this.remoteAddress;
     }
+
     /**
-     * @param remoteAddress the remoteAddress to set
+     * @param remoteAddress
+     *            the remoteAddress to set
      */
-    public void setRemoteAddress(String remoteAddress) {
+    public void setRemoteAddress(final String remoteAddress) {
         this.remoteAddress = remoteAddress;
     }
+
     /**
      * @return the remoteHost
      */
     public String getRemoteHost() {
-        return remoteHost;
+        return this.remoteHost;
     }
+
     /**
-     * @param remoteHost the remoteHost to set
+     * @param remoteHost
+     *            the remoteHost to set
      */
-    public void setRemoteHost(String remoteHost) {
+    public void setRemoteHost(final String remoteHost) {
         this.remoteHost = remoteHost;
     }
+
     /**
      * @return the requestMethod
      */
     public String getRequestMethod() {
-        return requestMethod;
+        return this.requestMethod;
     }
+
     /**
-     * @param requestMethod the requestMethod to set
+     * @param requestMethod
+     *            the requestMethod to set
      */
-    public void setRequestMethod(String requestMethod) {
+    public void setRequestMethod(final String requestMethod) {
         this.requestMethod = requestMethod;
     }
+
     /**
      * @return the serverName
      */
     public String getServerName() {
-        return serverName;
+        return this.serverName;
     }
+
     /**
-     * @param serverName the serverName to set
+     * @param serverName
+     *            the serverName to set
      */
-    public void setServerName(String serverName) {
+    public void setServerName(final String serverName) {
         this.serverName = serverName;
     }
+
     /**
      * @return the serverPort
      */
     public String getServerPort() {
-        return serverPort;
+        return this.serverPort;
     }
+
     /**
-     * @param serverPort the serverPort to set
+     * @param serverPort
+     *            the serverPort to set
      */
-    public void setServerPort(String serverPort) {
+    public void setServerPort(final String serverPort) {
         this.serverPort = serverPort;
     }
+
     /**
      * @return the serverSoftware
      */
     public String getServerSoftware() {
-        return serverSoftware;
+        return this.serverSoftware;
     }
+
     /**
-     * @param serverSoftware the serverSoftware to set
+     * @param serverSoftware
+     *            the serverSoftware to set
      */
-    public void setServerSoftware(String serverSoftware) {
+    public void setServerSoftware(final String serverSoftware) {
         this.serverSoftware = serverSoftware;
     }
+
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
-        return "ServerVariables [httpReferer=" + httpReferer + ", httpUserAgent=" + httpUserAgent + ", remoteAddress=" + remoteAddress + ", remoteHost="
-                + remoteHost + ", requestMethod=" + requestMethod + ", serverName=" + serverName + ", serverPort=" + serverPort + ", serverSoftware="
-                + serverSoftware + "]";
+        return "ServerVariables [httpReferer=" + this.httpReferer + ", httpUserAgent=" + this.httpUserAgent + ", remoteAddress=" + this.remoteAddress
+                + ", remoteHost=" + this.remoteHost + ", requestMethod=" + this.requestMethod + ", serverName=" + this.serverName + ", serverPort="
+                + this.serverPort + ", serverSoftware=" + this.serverSoftware + "]";
     }
-    
+
 }
