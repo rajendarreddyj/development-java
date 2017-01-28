@@ -1,7 +1,10 @@
 package com.rajendarreddyj.rivrclient;
-import static com.nuecho.rivr.voicexml.turn.input.VoiceXmlEvent.*;
-import static com.nuecho.rivr.voicexml.turn.output.OutputTurns.*;
-import static com.nuecho.rivr.voicexml.util.json.JsonUtils.*;
+
+import static com.nuecho.rivr.voicexml.turn.input.VoiceXmlEvent.CONNECTION_DISCONNECT_HANGUP;
+import static com.nuecho.rivr.voicexml.turn.input.VoiceXmlEvent.ERROR;
+import static com.nuecho.rivr.voicexml.turn.input.VoiceXmlEvent.hasEvent;
+import static com.nuecho.rivr.voicexml.turn.output.OutputTurns.interaction;
+import static com.nuecho.rivr.voicexml.util.json.JsonUtils.wrap;
 
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonValue;
@@ -23,15 +26,15 @@ import com.nuecho.rivr.voicexml.util.ResultUtils;
 import com.nuecho.rivr.voicexml.util.json.JsonUtils;
 
 public class HelloWorldDialogue implements VoiceXmlDialogue {
-	private static final String CAUSE_PROPERTY = "cause";
+    private static final String CAUSE_PROPERTY = "cause";
     private final Logger mDialogueLog = LoggerFactory.getLogger("hello-world");
-	@Override
-	public VoiceXmlLastTurn run(VoiceXmlFirstTurn firstTurn,
-			VoiceXmlDialogueContext context) throws Exception {
-		// The dialogue termination cause. "Normal" by default.
+
+    @Override
+    public VoiceXmlLastTurn run(final VoiceXmlFirstTurn firstTurn, final VoiceXmlDialogueContext context) throws Exception {
+        // The dialogue termination cause. "Normal" by default.
         JsonValue cause = wrap("Normal");
 
-        mDialogueLog.info("Starting dialogue");
+        this.mDialogueLog.info("Starting dialogue");
         try {
             // Play a prompt
             Interaction turn = interaction("hello").addPrompt(new SpeechSynthesis("Hello World!")).build();
@@ -48,10 +51,10 @@ public class HelloWorldDialogue implements VoiceXmlDialogue {
             Thread.currentThread().interrupt();
             cause = wrap("Interrupted");
         } catch (Exception exception) {
-            mDialogueLog.error("Error during dialogue execution", exception);
+            this.mDialogueLog.error("Error during dialogue execution", exception);
             cause = ResultUtils.toJson(exception);
         }
-        mDialogueLog.info("Ending dialogue");
+        this.mDialogueLog.info("Ending dialogue");
 
         // Build the JSON result returned to the calling application/context.
         JsonObjectBuilder resultObjectBuilder = JsonUtils.createObjectBuilder();
@@ -59,6 +62,6 @@ public class HelloWorldDialogue implements VoiceXmlDialogue {
         VariableList variables = VariableList.create(resultObjectBuilder.build());
 
         return new Exit("result", variables);
-	}
+    }
 
 }

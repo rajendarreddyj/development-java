@@ -20,14 +20,13 @@ import com.rajendarreddyj.scheduler.bean.ServerVariables;
 
 /**
  * @author rajendarreddy
- *
  */
 public class TaskScheduler extends TimerTask {
 
-    private String filePath;
-    private String fileExtension;
-    private String archiveFileExtension;
-    private String webServiceUrl;
+    private final String filePath;
+    private final String fileExtension;
+    private final String archiveFileExtension;
+    private final String webServiceUrl;
     private String tempFilePath;
     private long filePointer;
 
@@ -59,7 +58,7 @@ public class TaskScheduler extends TimerTask {
                 // this.readFile(file);
                 this.readFileWithPointer(file);
                 this.renameFile(file);
-                this.deleteTempFile(tempFilePath);
+                this.deleteTempFile(this.tempFilePath);
 
             }
         } else {
@@ -140,12 +139,7 @@ public class TaskScheduler extends TimerTask {
     private File[] finder(final String dirName, final String extension) {
         File dir = new File(dirName);
 
-        return dir.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(final File dir, final String filename) {
-                return filename.endsWith(extension);
-            }
-        });
+        return dir.listFiles((FilenameFilter) (dir1, filename) -> filename.endsWith(extension));
 
     }
 
@@ -153,7 +147,7 @@ public class TaskScheduler extends TimerTask {
      * @param file
      * @return
      */
-    private void readFile(final File file) {
+    public void readFile(final File file) {
         BufferedReader br = null;
         String line = "";
         String lineSplitBy = "\\|";

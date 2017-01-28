@@ -16,38 +16,33 @@ import com.nuecho.rivr.voicexml.util.json.JsonUtils;
 
 /**
  * @author rajendarreddy
- *
  */
 public class DialogueTests {
-	private VoiceXmlTestDialogueChannel mDialogueChannel;
+    private VoiceXmlTestDialogueChannel mDialogueChannel;
 
-	@Before
-	public void init() {
-		mDialogueChannel = new VoiceXmlTestDialogueChannel("Dialog Tests",
-				Duration.seconds(5));
-	}
+    @Before
+    public void init() {
+        this.mDialogueChannel = new VoiceXmlTestDialogueChannel("Dialog Tests", Duration.seconds(5));
+    }
 
-	@Test
-	public void test() {
-		mDialogueChannel.dumpLogs();
-		startDialogue(new VoiceXmlFirstTurn());
+    @Test
+    public void test() {
+        this.mDialogueChannel.dumpLogs();
+        this.startDialogue(new VoiceXmlFirstTurn());
 
-		mDialogueChannel.processValue(JsonUtils.createObjectBuilder()
-				.add("clid", "5145551234").add("dnis", "5551234").build());
+        this.mDialogueChannel.processValue(JsonUtils.createObjectBuilder().add("clid", "5145551234").add("dnis", "5551234").build());
 
-	}
+    }
 
-	private Step<VoiceXmlOutputTurn, VoiceXmlLastTurn> startDialogue(
-			VoiceXmlFirstTurn firstTurn) {
-		HelloWorldDialogue dialogue = new HelloWorldDialogue();
-		VoiceXmlDialogueContext context = new VoiceXmlDialogueContext(
-				mDialogueChannel, LoggerFactory.getLogger(getClass()), "x",
-				"contextPath", "servletPath");
-		return mDialogueChannel.startDialogue(dialogue, firstTurn, context);
-	}
+    private Step<VoiceXmlOutputTurn, VoiceXmlLastTurn> startDialogue(final VoiceXmlFirstTurn firstTurn) {
+        HelloWorldDialogue dialogue = new HelloWorldDialogue();
+        VoiceXmlDialogueContext context = new VoiceXmlDialogueContext(this.mDialogueChannel, LoggerFactory.getLogger(this.getClass()), "x", "contextPath",
+                "servletPath");
+        return this.mDialogueChannel.startDialogue(dialogue, firstTurn, context);
+    }
 
-	@After
-	public void terminate() {
-		mDialogueChannel.dispose();
-	}
+    @After
+    public void terminate() {
+        this.mDialogueChannel.dispose();
+    }
 }

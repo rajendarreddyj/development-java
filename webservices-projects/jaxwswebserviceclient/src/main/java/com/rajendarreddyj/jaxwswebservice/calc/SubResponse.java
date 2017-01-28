@@ -6,11 +6,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for subResponse complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for subResponse complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="subResponse">
@@ -23,13 +23,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "subResponse", propOrder = {
-    "_return"
-})
+@XmlType(name = "subResponse", propOrder = { "_return" })
 public class SubResponse {
 
     @XmlElement(name = "return")
@@ -37,17 +33,15 @@ public class SubResponse {
 
     /**
      * Gets the value of the return property.
-     * 
      */
     public int getReturn() {
-        return _return;
+        return this._return;
     }
 
     /**
      * Sets the value of the return property.
-     * 
      */
-    public void setReturn(int value) {
+    public void setReturn(final int value) {
         this._return = value;
     }
 

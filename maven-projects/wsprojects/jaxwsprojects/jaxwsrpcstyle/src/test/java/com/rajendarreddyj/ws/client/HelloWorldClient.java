@@ -8,20 +8,20 @@ import javax.xml.ws.Service;
 import com.rajendarreddyj.ws.HelloWorld;
 
 public class HelloWorldClient {
-	public static void main(String[] args) throws Exception {
+    public static void main(final String[] args) throws Exception {
 
-		URL url = new URL("http://localhost:9999/ws/hello?wsdl");
+        URL url = new URL("http://localhost:9999/ws/hello?wsdl");
 
-		// 1st argument service URI, refer to wsdl document above
-		// 2nd argument is service name, refer to wsdl document above
-		QName qname = new QName("http://impl.ws.rajendarreddyj.com/", "HelloWorldImplService");
+        // 1st argument service URI, refer to wsdl document above
+        // 2nd argument is service name, refer to wsdl document above
+        QName qname = new QName("http://impl.ws.rajendarreddyj.com/", "HelloWorldImplService");
 
-		Service service = Service.create(url, qname);
+        Service service = Service.create(url, qname);
 
-		HelloWorld hello = service.getPort(HelloWorld.class);
+        HelloWorld hello = service.getPort(HelloWorld.class);
 
-		System.out.println(hello.getHelloWorldAsString("rajendarreddyj"));
+        System.out.println(hello.getHelloWorldAsString("rajendarreddyj"));
 
-	}
+    }
 
 }

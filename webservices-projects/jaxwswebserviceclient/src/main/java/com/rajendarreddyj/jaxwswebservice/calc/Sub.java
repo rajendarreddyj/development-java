@@ -5,11 +5,11 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for sub complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for sub complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="sub">
@@ -23,14 +23,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "sub", propOrder = {
-    "arg0",
-    "arg1"
-})
+@XmlType(name = "sub", propOrder = { "arg0", "arg1" })
 public class Sub {
 
     protected int arg0;
@@ -38,33 +33,29 @@ public class Sub {
 
     /**
      * Gets the value of the arg0 property.
-     * 
      */
     public int getArg0() {
-        return arg0;
+        return this.arg0;
     }
 
     /**
      * Sets the value of the arg0 property.
-     * 
      */
-    public void setArg0(int value) {
+    public void setArg0(final int value) {
         this.arg0 = value;
     }
 
     /**
      * Gets the value of the arg1 property.
-     * 
      */
     public int getArg1() {
-        return arg1;
+        return this.arg1;
     }
 
     /**
      * Sets the value of the arg1 property.
-     * 
      */
-    public void setArg1(int value) {
+    public void setArg1(final int value) {
         this.arg1 = value;
     }
 

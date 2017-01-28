@@ -8,7 +8,6 @@ import java.util.TimerTask;
 
 /**
  * @author rajendarreddy
- *
  */
 public class ReadFile {
 

@@ -1,6 +1,5 @@
 package org.voxmail.struts;
 
-import org.voxmail.Voxmail;
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -9,39 +8,43 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+
+import org.voxmail.Voxmail;
 import org.voxmail.VoxmailException;
 
 public class VoxmailHibernateManagement implements Filter {
 
-    public void init(FilterConfig filterConfig) throws ServletException {
-    	try {
-    		Voxmail.getInstance().setBasePath(filterConfig.getServletContext().getRealPath("/"));
-			Voxmail.getInstance().init();
-		} catch (VoxmailException e) {
-			e.printStackTrace();
-			throw new ServletException("Voxmail Initialization Failed.",e);
-		}
+    @Override
+    public void init(final FilterConfig filterConfig) throws ServletException {
+        try {
+            Voxmail.getInstance().setBasePath(filterConfig.getServletContext().getRealPath("/"));
+            Voxmail.getInstance().init();
+        } catch (VoxmailException e) {
+            e.printStackTrace();
+            throw new ServletException("Voxmail Initialization Failed.", e);
+        }
     }
 
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-        throws IOException, ServletException {
+    @Override
+    public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain) throws IOException, ServletException {
         try {
             chain.doFilter(request, response);
         } finally {
             try {
-            	Voxmail.getInstance().releaseSession();
+                Voxmail.getInstance().releaseSession();
             } catch (VoxmailException e) {
-                throw new ServletException("Unable to cleanup session.",e);
+                throw new ServletException("Unable to cleanup session.", e);
             }
         }
     }
 
+    @Override
     public void destroy() {
-    	try {
-    		Voxmail.getInstance().destroy();
-		} catch (VoxmailException e) {
-			e.printStackTrace();
-		}
+        try {
+            Voxmail.getInstance().destroy();
+        } catch (VoxmailException e) {
+            e.printStackTrace();
+        }
     }
 
 }

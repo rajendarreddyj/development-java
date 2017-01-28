@@ -1,28 +1,14 @@
 /*
- * The contents of this file are subject to the Mozilla Public
- * License Version 1.1 (the "License"); you may not use this file
- * except in compliance with the License. You may obtain a copy of
- * the License at http://www.mozilla.org/MPL/
- *
- * Software distributed under the License is distributed on an "AS
- * IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or
- * implied. See the License for the specific language governing
- * rights and limitations under the License.
- *
- * The Original Code is vox-mail.
- *
- * The Initial Developer of the Original Code is Voxeo Corporation.
- * Portions created by Voxeo are Copyright (C) 2000-2007.
- * All rights reserved.
- * 
- * Contributor(s):
- * ICOA Inc. <info@icoa.com> (http://icoa.com)
+ * The contents of this file are subject to the Mozilla Public License Version 1.1 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the License at http://www.mozilla.org/MPL/
+ * Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either
+ * express or implied. See the License for the specific language governing rights and limitations under the License. The
+ * Original Code is vox-mail. The Initial Developer of the Original Code is Voxeo Corporation. Portions created by Voxeo
+ * are Copyright (C) 2000-2007. All rights reserved. Contributor(s): ICOA Inc. <info@icoa.com> (http://icoa.com)
  */
 
 /*
- * MessageWrapper.java
- *
- * Created on January 16, 2007, 3:09 PM
+ * MessageWrapper.java Created on January 16, 2007, 3:09 PM
  */
 
 package org.voxmail.model;
@@ -30,487 +16,357 @@ package org.voxmail.model;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 import javax.mail.Flags;
 import javax.mail.Message;
 
 /**
  * @author James
  */
-public class MessageWrapper implements Comparable {
-    
+public class MessageWrapper implements Comparable<MessageWrapper> {
+
     /** Creates a new instance of MessageWrapper */
-    public MessageWrapper(Message message) {
-        
+    public MessageWrapper(final Message message) {
+
         this.message = message;
         this.init();
     }
-    
+
     public static final int MESSAGE_STATUS_NEW = 0;
     public static final int MESSAGE_STATUS_SKIPPED = 1;
     public static final int MESSAGE_STATUS_SAVED = 2;
     public static final int MESSAGE_STATUS_DELETED = 3;
-    
+
     public static final int PLAY_FIRST_MESSAGE = 0;
     public static final int PLAY_FIRST_NEW_MESSAGE = 1;
     public static final int PLAY_NEXT_MESSAGE = 2;
     public static final int PLAY_FIRST_SKIPPED = 3;
-    
+
     private Message message = null;
     private int status = 0;
-    
-    public int getMessageNumber()
-    {
-        return message.getMessageNumber();
+
+    public int getMessageNumber() {
+        return this.message.getMessageNumber();
     }
 
-    public int getStatus()
-    {
-        return status;
+    public int getStatus() {
+        return this.status;
     }
-    
-    public String getAudioFileName(String messagePath)
-    {
+
+    public String getAudioFileName(final String messagePath) {
         String messageFilename = "";
-        String fileLocation="";
+        String fileLocation = "";
         try {
-            messageFilename = message.getHeader("X-Message-Path")[0];
-            if (messageFilename == null || messageFilename.equals(""))
-            {
+            messageFilename = this.message.getHeader("X-Message-Path")[0];
+            if ((messageFilename == null) || messageFilename.equals("")) {
                 return "";
             }
-                
-            //change \ to /
+
+            // change \ to /
             messageFilename = messageFilename.replace('\\', '/');
             messageFilename = messageFilename.substring(messageFilename.lastIndexOf("/") + 1);
             fileLocation = messagePath + "/" + messageFilename;
 
         } catch (Exception e) {
-            //e.printStackTrace();
+            // e.printStackTrace();
         }
         System.out.println("getAudioFileName: " + fileLocation);
         return fileLocation;
     }
-    
-    public String getCallerIdText()
-    {
+
+    public String getCallerIdText() {
         String callerID = "Unkown";
-        try
-        {
-             callerID = message.getHeader("X-Caller-Id")[0];
-        }
-        catch (Exception e)
-        {
-            //e.printStackTrace();
+        try {
+            callerID = this.message.getHeader("X-Caller-Id")[0];
+        } catch (Exception e) {
+            // e.printStackTrace();
         }
         return callerID;
     }
-    
-    public Date getReceivedDate()
-    {
+
+    public Date getReceivedDate() {
         Date received = new Date();
-        try
-        {
-            received = message.getReceivedDate();
-        }
-        catch (Exception e)
-        {
+        try {
+            received = this.message.getReceivedDate();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return received;
     }
-    
-    public String getDatetimeText()
-    {
+
+    public String getDatetimeText() {
         String datetime = "";
-        try
-        {
-            Date date = message.getReceivedDate();
-            datetime = MessageWrapper.getMonthDayText(date) + " at " + 
-                    MessageWrapper.getTimeText(date);
-        }
-        catch (Exception e)
-        {
+        try {
+            Date date = this.message.getReceivedDate();
+            datetime = MessageWrapper.getMonthDayText(date) + " at " + MessageWrapper.getTimeText(date);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return datetime;
     }
-    
-    public String getAtTimeText()
-    {
+
+    public String getAtTimeText() {
         Date date = this.getReceivedDate();
         String text = "at" + MessageWrapper.getTimeText(date);
         return text;
     }
-    
-    public static String getTimeText(Date date)
-    {
+
+    public static String getTimeText(final Date date) {
         String strDate = null;
         try {
             strDate = new SimpleDateFormat("h m a").format(date);
-            if (strDate.endsWith("PM"))
-            {
-                strDate = strDate.substring(0,strDate.length()-2) + "P M.";
+            if (strDate.endsWith("PM")) {
+                strDate = strDate.substring(0, strDate.length() - 2) + "P M.";
+            } else {
+                strDate = strDate.substring(0, strDate.length() - 2) + "A M.";
             }
-            else
-            {
-                strDate = strDate.substring(0,strDate.length()-2) + "A M.";
-            }
-        } catch (Exception e) { }
-        
+        } catch (Exception e) {
+        }
+
         return strDate;
     }
-    public static String getMonthDayText(Date date)
-    {
+
+    public static String getMonthDayText(final Date date) {
         String strDate = null;
         try {
             strDate = new SimpleDateFormat("MMMMMMMMMM d ").format(date);
-            
-        } catch (Exception e) { }
-        
+
+        } catch (Exception e) {
+        }
+
         return strDate;
     }
-    
-    public String getMonthDayText()
-    {
+
+    public String getMonthDayText() {
         Date date = this.getReceivedDate();
         return MessageWrapper.getMonthDayText(date);
     }
-    
-    public String getMonth()
-    {
+
+    public String getMonth() {
         Date date = this.getReceivedDate();
         String strDate = "";
         try {
             strDate = new SimpleDateFormat("MMMMMMMMMM").format(date);
-            
-        } catch (Exception e) { }
-        
+
+        } catch (Exception e) {
+        }
+
         return strDate;
     }
-    
-    public String getOrdinalDay()
-    {
+
+    public String getOrdinalDay() {
         Date date = this.getReceivedDate();
         String strDate = "";
         int day = 0;
         try {
             strDate = new SimpleDateFormat("d").format(date);
             day = Integer.parseInt(strDate);
-            
-        } catch (Exception e) { }
-        
-        if (day == 1)
-        {
+
+        } catch (Exception e) {
+        }
+
+        if (day == 1) {
             return "First";
-        }
-        else if (day ==2)
-        {
+        } else if (day == 2) {
             return "Second";
-        }
-        else if (day==3)
-        {
+        } else if (day == 3) {
             return "Third";
-        }
-        else if (day==4)
-        {
+        } else if (day == 4) {
             return "Fourth";
-        }
-        else if (day==5)
-        {
+        } else if (day == 5) {
             return "Fifth";
-        }
-        else if (day==6)
-        {
+        } else if (day == 6) {
             return "Sixth";
-        }
-        else if (day==7)
-        {
+        } else if (day == 7) {
             return "Seventh";
-        }
-        else if (day==8)
-        {
+        } else if (day == 8) {
             return "Eighth";
-        }
-        else if (day==9)
-        {
+        } else if (day == 9) {
             return "Ninth";
-        }
-        else if (day==10)
-        {
+        } else if (day == 10) {
             return "Tenth";
-        }
-        else if (day==11)
-        {
+        } else if (day == 11) {
             return "Eleventh";
-        }
-        else if (day==12)
-        {
+        } else if (day == 12) {
             return "Twelfth";
-        }
-        else if (day==13)
-        {
+        } else if (day == 13) {
             return "Thirteenth";
-        }
-        else if (day==14)
-        {
+        } else if (day == 14) {
             return "Fourteenth";
-        }
-        else if (day==15)
-        {
+        } else if (day == 15) {
             return "Fifteenth";
-        }
-        else if (day==16)
-        {
+        } else if (day == 16) {
             return "Sixteenth";
-        }
-        else if (day==17)
-        {
+        } else if (day == 17) {
             return "Seventeenth";
-        }
-        else if (day==18)
-        {
+        } else if (day == 18) {
             return "Eighteenth";
-        }
-        else if (day==19)
-        {
+        } else if (day == 19) {
             return "Nineteenth";
-        }
-        else if (day==20)
-        {
+        } else if (day == 20) {
             return "Twentieth";
-        }
-        else if (day==21)
-        {
+        } else if (day == 21) {
             return "TwentyFirst";
-        }
-        else if (day==22)
-        {
+        } else if (day == 22) {
             return "TwentySecond";
-        }
-        else if (day==23)
-        {
+        } else if (day == 23) {
             return "TwentyThird";
-        }
-        else if (day==24)
-        {
+        } else if (day == 24) {
             return "TwentyFourth";
-        }
-        else if (day==25)
-        {
+        } else if (day == 25) {
             return "TwentyFifth";
-        }
-        else if (day==26)
-        {
+        } else if (day == 26) {
             return "TwentySixth";
-        }
-        else if (day==27)
-        {
+        } else if (day == 27) {
             return "TwentySeventh";
-        }
-        else if (day==28)
-        {
+        } else if (day == 28) {
             return "TwentyEighth";
-        }
-        else if (day==29)
-        {
+        } else if (day == 29) {
             return "TwentyNinth";
-        }
-        else if (day==30)
-        {
+        } else if (day == 30) {
             return "Thirtieth";
-        }
-        else if (day==31)
-        {
+        } else if (day == 31) {
             return "ThirtyFirst";
         }
-            
-        
+
         return strDate;
     }
-    
-    
-    public String getMessageDateText()
-    {
+
+    public String getMessageDateText() {
         String dateText = "";
         Date date = new Date();
-        try
-        {
-            date = message.getReceivedDate();
+        try {
+            date = this.message.getReceivedDate();
             dateText = MessageWrapper.getTimeText(date);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
-//        if (MessageWrapper.isToday(date))
-//        {
-//            dateText = " today at ";
-//            dateText = dateText + MessageWrapper.getTimeText(date);
-//        }
-//        else if (MessageWrapper.isYesterday(date))
-//        {
-//            dateText= " yesterday at ";
-//            dateText = dateText + MessageWrapper.getTimeText(date);
-//        }
-//        else
-//        {
-//            dateText = " on ";
-//            dateText = dateText + MessageWrapper.getMonthDayText(date);
-//        }
+
+        // if (MessageWrapper.isToday(date))
+        // {
+        // dateText = " today at ";
+        // dateText = dateText + MessageWrapper.getTimeText(date);
+        // }
+        // else if (MessageWrapper.isYesterday(date))
+        // {
+        // dateText= " yesterday at ";
+        // dateText = dateText + MessageWrapper.getTimeText(date);
+        // }
+        // else
+        // {
+        // dateText = " on ";
+        // dateText = dateText + MessageWrapper.getMonthDayText(date);
+        // }
         return dateText;
     }
-    
-    public static boolean isToday(Date date)
-    {
+
+    public static boolean isToday(final Date date) {
         Calendar today = Calendar.getInstance();
         Calendar msgDate = Calendar.getInstance();
         msgDate.setTime(date);
-        
-        if (today.get(Calendar.DAY_OF_YEAR) == msgDate.get(Calendar.DAY_OF_YEAR) &&
-                today.get(Calendar.YEAR) == msgDate.get(Calendar.YEAR))
-        {
+
+        if ((today.get(Calendar.DAY_OF_YEAR) == msgDate.get(Calendar.DAY_OF_YEAR)) && (today.get(Calendar.YEAR) == msgDate.get(Calendar.YEAR))) {
             return true;
         }
-        
+
         return false;
     }
-    
-    public boolean isToday()
-    {
+
+    public boolean isToday() {
         Date date = this.getReceivedDate();
         return MessageWrapper.isToday(date);
     }
-    
-    public boolean isYesterday()
-    {
+
+    public boolean isYesterday() {
         Date date = this.getReceivedDate();
         return MessageWrapper.isYesterday(date);
     }
-    
-    public static boolean isYesterday(Date date)
-    {
+
+    public static boolean isYesterday(final Date date) {
         Calendar yesterday = Calendar.getInstance();
-        yesterday.add(Calendar.DAY_OF_YEAR,-1);
-        
+        yesterday.add(Calendar.DAY_OF_YEAR, -1);
+
         Calendar msgDate = Calendar.getInstance();
         msgDate.setTime(date);
-        
-        if (yesterday.get(Calendar.DAY_OF_YEAR) == msgDate.get(Calendar.DAY_OF_YEAR) &&
-                yesterday.get(Calendar.YEAR) == msgDate.get(Calendar.YEAR))
-        {
+
+        if ((yesterday.get(Calendar.DAY_OF_YEAR) == msgDate.get(Calendar.DAY_OF_YEAR)) && (yesterday.get(Calendar.YEAR) == msgDate.get(Calendar.YEAR))) {
             return true;
         }
-        
+
         return false;
     }
-    
-   
-    
-    public static int getStartMessageType(boolean playedNew, boolean playedSkipped, MessageWrapper mw, boolean hasSkippedMessages)
-    {
-        if (mw.getStatus() == MessageWrapper.MESSAGE_STATUS_NEW)
-        {
-            if (playedNew == false)
-            {
-                if (hasSkippedMessages)
-                {
+
+    public static int getStartMessageType(final boolean playedNew, final boolean playedSkipped, final MessageWrapper mw, final boolean hasSkippedMessages) {
+        if (mw.getStatus() == MessageWrapper.MESSAGE_STATUS_NEW) {
+            if (playedNew == false) {
+                if (hasSkippedMessages) {
                     return PLAY_FIRST_NEW_MESSAGE;
-                }
-                else
-                {
+                } else {
                     return PLAY_FIRST_MESSAGE;
                 }
-            }
-            else 
-            {
+            } else {
                 return PLAY_NEXT_MESSAGE;
             }
-        }
-        else if (mw.getStatus() == MessageWrapper.MESSAGE_STATUS_SKIPPED)
-        {
-            if (playedSkipped == false)
-            {
+        } else if (mw.getStatus() == MessageWrapper.MESSAGE_STATUS_SKIPPED) {
+            if (playedSkipped == false) {
                 return PLAY_FIRST_SKIPPED;
-            }
-            else
-            {
+            } else {
                 return PLAY_NEXT_MESSAGE;
             }
-        }
-        else if (mw.getStatus() == MessageWrapper.MESSAGE_STATUS_SAVED)
-        {
-            if (playedNew == false)
-            {
+        } else if (mw.getStatus() == MessageWrapper.MESSAGE_STATUS_SAVED) {
+            if (playedNew == false) {
                 return PLAY_FIRST_MESSAGE;
-            }
-            else
-            {
+            } else {
                 return PLAY_NEXT_MESSAGE;
             }
-        }
-        else
-        {
+        } else {
             return 1;
         }
     }
-    
-    private void init()
-    {
-        try
-        {
-            Flags flags = message.getFlags();
-            String[] userFlags = flags.getUserFlags();
-            
-            if (message.isSet(Flags.Flag.FLAGGED))
-            {
-                System.out.println("Msg: " + message.getMessageNumber() + ", FLAGGED flag, setting to skipped");
-                status = MessageWrapper.MESSAGE_STATUS_SKIPPED;
+
+    private void init() {
+        try {
+            Flags flags = this.message.getFlags();
+            flags.getUserFlags();
+
+            if (this.message.isSet(Flags.Flag.FLAGGED)) {
+                System.out.println("Msg: " + this.message.getMessageNumber() + ", FLAGGED flag, setting to skipped");
+                this.status = MessageWrapper.MESSAGE_STATUS_SKIPPED;
+            } else if (this.message.isSet(Flags.Flag.SEEN)) {
+                System.out.println("Msg: " + this.message.getMessageNumber() + ", SEEN flag, setting to saved");
+                this.status = MessageWrapper.MESSAGE_STATUS_SAVED;
+            } else if (this.message.isSet(Flags.Flag.DELETED)) {
+                System.out.println("Msg: " + this.message.getMessageNumber() + ", DELETED flag, setting to deleted");
+                this.status = MessageWrapper.MESSAGE_STATUS_DELETED;
             }
-            else if (message.isSet(Flags.Flag.SEEN))
-            {
-               System.out.println("Msg: " + message.getMessageNumber() + ", SEEN flag, setting to saved");
-               status = MessageWrapper.MESSAGE_STATUS_SAVED;
+
+            else {
+                System.out.println("Msg: " + this.message.getMessageNumber() + ", No flags, setting to new");
+                this.status = MessageWrapper.MESSAGE_STATUS_NEW;
             }
-            else if (message.isSet(Flags.Flag.DELETED))
-            {
-                System.out.println("Msg: " + message.getMessageNumber() + ", DELETED flag, setting to deleted");
-                status = MessageWrapper.MESSAGE_STATUS_DELETED;
-            }
-            
-            else
-            {
-                System.out.println("Msg: " + message.getMessageNumber() + ", No flags, setting to new");
-                status = MessageWrapper.MESSAGE_STATUS_NEW;
-            }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    public int compareTo(Object ob) throws ClassCastException // Order by Date
+
+    @Override
+    public int compareTo(final MessageWrapper ob) throws ClassCastException // Order by Date
     {
-        MessageWrapper temp = (MessageWrapper)ob; 
+        MessageWrapper temp = ob;
         Date date1 = null, date2 = null;
 
-        try 
-        {
+        try {
             date1 = this.getReceivedDate();
             date2 = temp.getReceivedDate();
-        }
-        catch(Exception e) 
-        { 
-            e.printStackTrace(); 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        if ((date1!=null)&&(date2!=null) )
+        if ((date1 != null) && (date2 != null)) {
             return date2.compareTo(date1);
-        else
+        } else {
             return 0;
+        }
     }
 
-    
-    
 }

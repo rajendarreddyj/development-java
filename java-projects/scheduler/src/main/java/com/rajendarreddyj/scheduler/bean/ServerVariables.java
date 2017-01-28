@@ -2,7 +2,6 @@ package com.rajendarreddyj.scheduler.bean;
 
 /**
  * @author rajendarreddy
- *
  */
 public class ServerVariables {
 
