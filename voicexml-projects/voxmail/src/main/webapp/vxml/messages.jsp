@@ -255,12 +255,14 @@ if (skippedMessageCount > 0 && folder.equals("new")) {
     saved messages. To change your greeting, press 1. Or, if you're done, press 2.
   </audio> <%}%> <%}%> </prompt> <filled> <log expr="'******************************'" /> <log
     expr=" '***** SELECTED VALUE = ' + choice$.interpretation.choice + '*****'"
-  /> <log expr="'******************************'" /> <if cond="choice=='saved'"> <assign name="cmd" expr="'saved'" />
-  <submit next="mainMenu.do" namelist="cmd" method="post" /> <elseif cond="choice =='greeting'" /> <assign name="cmd"
-    expr="'changeGreeting'"
+  /> <log expr="'******************************'" /> <if cond="choice=='saved'"> <assign name="cmd"
+    expr="'saved'"
+  /> <submit next="mainMenu.do" namelist="cmd" method="post" /> <elseif cond="choice =='greeting'" /> <assign
+    name="cmd" expr="'changeGreeting'"
   /> <submit next="greeting.do" namelist=" cmd " method="post" /> <elseif cond="choice =='done'" /> <prompt>
   <audio expr="audioDir + 'Goodbye.wav'"> Goodbye!
-  </audio> </prompt> <disconnect /> <else /> <prompt> <audio expr="audioDir + 'SaveOptions2.wav'"> Should not get here.
+  </audio> </prompt> <disconnect /> <else /> <prompt> <audio expr="audioDir + 'SaveOptions2.wav'"> Should not get
+    here.
   </audio> </prompt> </if> </filled> </field>
 </form>
 <form id="NoMessages">

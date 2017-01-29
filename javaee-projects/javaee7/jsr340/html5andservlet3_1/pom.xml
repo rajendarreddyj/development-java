@@ -10,4 +10,11 @@
   <packaging>war</packaging>
   <name>Html5 and Servlet 3.1</name>
   <description>Upload File Using Servlet 3.1, Non Blocking IO</description>
+  <dependencies>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
 </project>

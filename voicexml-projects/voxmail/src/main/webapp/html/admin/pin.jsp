@@ -73,8 +73,8 @@ java.util.StringTokenizer
             <td width="500"><input type="text" name="pin" value="<%=mailbox.getPin()%>" maxlength="4"></td>
           </tr>
           <tr>
-            <td colspan=2><br>
-            <br> The IMAP values below are only used if you are using IMAP as your mail store.</td>
+            <td colspan=2><br> <br> The IMAP values below are only used if you are using IMAP as your
+              mail store.</td>
           </tr>
           <tr>
             <td>IMAP Username</td>

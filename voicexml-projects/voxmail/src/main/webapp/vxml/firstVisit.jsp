@@ -79,8 +79,8 @@ System.out.println("firstVisit.jsp mailboxId: " + mailbox.getMailboxId());
     expr="audioDir + 'HeresStandardGreetingWithName.wav'"
   > Here's the standard greeting with your name.
   </audio> <break time="1000" /> <audio expr="audioDir + 'ReachedVoicemail.wav'"> You've reached the voicemail for
-  </audio> <value expr="recording" /> <audio expr="audioDir + 'LeaveMessageAfterTone.wav'"> Please leave a message after
-    the tone. When you're done, you can hang up or press pound for more options.
+  </audio> <value expr="recording" /> <audio expr="audioDir + 'LeaveMessageAfterTone.wav'"> Please leave a message
+    after the tone. When you're done, you can hang up or press pound for more options.
   </audio> <break time="1000" /> </prompt> <goto next="#ConfirmNameGreeting" /> <elseif cond="confirm =='rerecord'" /> <clear
     namelist="recording RecordedName confirm ConfirmRecordedName"
   /> <prompt> <audio expr="audioDir + 'RecordNamePlease.wav'"> Please record your name after the tone.
@@ -123,8 +123,9 @@ System.out.println("firstVisit.jsp mailboxId: " + mailbox.getMailboxId());
   </audio> </prompt> <filled> <if cond="confirm=='review'"> <assign name="greetingType" expr="'name'" /> <submit
     next="firstVisit.do" namelist="recording cmd greetingType mailboxId" method="post" enctype="multipart/form-data"
     fetchhint="safe"
-  /> <elseif cond="confirm =='rerecord'" /> <goto next="#RecordName" /> <else /> <assign name="playIntro" expr="false" />
-  <goto next="#FirstTimeIntro" /> </if> </filled> </field>
+  /> <elseif cond="confirm =='rerecord'" /> <goto next="#RecordName" /> <else /> <assign name="playIntro"
+    expr="false"
+  /> <goto next="#FirstTimeIntro" /> </if> </filled> </field>
 </form>
 <form id="ConfirmCustomGreeting">
   <field name="confirm"> <grammar src="grammars/ConfirmCustom.xml" type="application/grammar-xml" /> <prompt>

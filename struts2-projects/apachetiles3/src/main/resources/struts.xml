@@ -1,0 +1,18 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+  <constant name="struts.devMode" value="true" />
+  <constant name="struts.ui.theme" value="simple" />
+  <constant name="struts.serve.static" value="false" />
+  <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+  <constant name="struts.custom.i18n.resources" value="/i18n/error-messages, /i18n/webmessages, /i18n/common-messages, /i18n/labels, /env" />
+  <package namespace="/blogs" name="blogs" extends="tiles-default">
+    <result-types>
+      <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+    </result-types>
+    <action name="home" method="getHome" class="com.rajendarreddyj.struts2.tiles3.web.action.HomeAction">
+      <result name="success" type="tiles">home</result>
+    </action>
+  </package>
+</struts>

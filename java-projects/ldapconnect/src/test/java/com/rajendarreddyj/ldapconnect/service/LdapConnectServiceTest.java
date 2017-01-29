@@ -8,6 +8,8 @@ import javax.naming.directory.SearchResult;
 import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 
+import org.junit.Ignore;
+
 import com.rajendarreddyj.ldapconnect.service.impl.LdapConnectServiceImpl;
 
 import junit.framework.Test;
@@ -17,6 +19,7 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
+@Ignore
 public class LdapConnectServiceTest extends TestCase {
     /**
      * Create the test case

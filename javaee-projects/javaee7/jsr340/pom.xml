@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>jsr340</artifactId>
   <packaging>pom</packaging>
-  <name>Java EE Projects</name>
-  <description>Java EE Projects</description>
+  <name>Jsr 340 Projects</name>
+  <description>Jsr 340 Projects</description>
   <parent>
     <groupId>com.rajendarreddyj</groupId>
     <artifactId>javaee7</artifactId>

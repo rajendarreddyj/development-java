@@ -41,8 +41,8 @@ String userPromptLocation = request.getContextPath() + "/content/";
   Let's try that once more.
 </audio> </prompt> <reprompt /> </nomatch> <nomatch count="3"> <prompt> <audio expr="audioDir + 'ErrorTrouble.wav'">
   Sorry, i'm having trouble understanding. Please try your voicemail again later.
-</audio> </prompt> <disconnect /> </nomatch> <!-- *** SETUP PROPERTY SETTINGS *** --> <!-- speed up DTMF return time--> <property name="inputmodes"
-  value="'dtmf'"
+</audio> </prompt> <disconnect /> </nomatch> <!-- *** SETUP PROPERTY SETTINGS *** --> <!-- speed up DTMF return time--> <property
+  name="inputmodes" value="'dtmf'"
 /> <property name="interdigittimeout" value="2s" /> <!-- defines which built in utterences are allowed  --> <!-- note that unless we have defined help events, then the nuance default will be executed -->
 <!-- that is Bad --> <property name="universals" value="help" /> <!-- allows a bit more room for grammar matches --> <property
   name="confidencelevel" value="0.4"

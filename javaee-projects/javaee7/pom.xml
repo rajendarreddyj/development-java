@@ -8,23 +8,7 @@
   </parent>
   <artifactId>javaee7</artifactId>
   <packaging>pom</packaging>
-  <properties>
-    <javaee.version>7.0</javaee.version>
-    <java.servlet.version>3.1.0</java.servlet.version>
-  </properties>
   <modules>
     <module>jsr340</module>
   </modules>
-  <dependencies>
-    <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>${javaee.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>${java.servlet.version}</version>
-    </dependency>
-  </dependencies>
 </project>

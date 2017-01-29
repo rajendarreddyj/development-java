@@ -77,8 +77,6 @@ else
               </form>
             </td>
           </tr>
-        </table> <br>
-      <br>
-      <br>
+        </table> <br> <br> <br>
 </body>
 </html>
