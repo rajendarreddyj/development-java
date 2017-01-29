@@ -11,9 +11,38 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.war.plugin.version>3.0.0</maven.war.plugin.version>
+    <tomee.version>1.7.4</tomee.version>
+    <jetty.version>9.4.1.v20170120</jetty.version>
   </properties>
   <modules>
-    <module>jsr340_javaservlets</module>
     <module>samplelog4j2</module>
+    <module>javaee7</module>
   </modules>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>${maven.war.plugin.version}</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.openejb.maven</groupId>
+        <artifactId>tomee-maven-plugin</artifactId>
+        <version>${tomee.version}</version>
+        <configuration>
+          <tomeeVersion>${tomee.version}</tomeeVersion>
+          <tomeeClassifier>plus</tomeeClassifier>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>${jetty.version}</version>
+      </plugin>
+    </plugins>
+  </build>
 </project>

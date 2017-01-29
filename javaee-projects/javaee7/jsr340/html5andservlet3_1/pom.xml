@@ -1,0 +1,12 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.rajendarreddyj</groupId>
+    <artifactId>jsr340</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>html5andservlet3_1</artifactId>
+  <packaging>war</packaging>
+  <name>Html5 and Servlet 3.1</name>
+  <description>Upload File Using Servlet 3.1, Non Blocking IO</description>
+</project>
