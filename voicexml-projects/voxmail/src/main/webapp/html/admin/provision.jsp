@@ -18,4 +18,7 @@
  * Contributor(s):
  * ICOA Inc. <info@icoa.com> (http://icoa.com)
  *--%>
- <html><body>success</body></html>
+<html>
+<body>success
+</body>
+</html>

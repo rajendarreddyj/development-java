@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.rajendarreddyj</groupId>
-    <artifactId>wsprojects</artifactId>
+    <artifactId>webservices-projects</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
   <artifactId>jaxwsprojects</artifactId>
@@ -13,5 +13,7 @@
   <packaging>pom</packaging>
   <modules>
     <module>jaxwsrpcstyle</module>
+    <module>jaxwswebservice</module>
+    <module>jaxwswebserviceclient</module>
   </modules>
 </project>

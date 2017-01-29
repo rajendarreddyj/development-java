@@ -6,7 +6,7 @@
     <artifactId>development-java</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>javaee-projects</artifactId>
+  <artifactId>struts2-projects</artifactId>
   <packaging>pom</packaging>
   <name>Java EE Projects</name>
   <description>Java EE Projects</description>
@@ -19,8 +19,8 @@
     <jetty.version>9.4.1.v20170120</jetty.version>
   </properties>
   <modules>
-    <module>samplelog4j2</module>
-    <module>javaee7</module>
+    <module>apacheTiles3</module>
+    <module>strutsbasic</module>
   </modules>
   <build>
     <plugins>

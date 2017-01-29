@@ -18,7 +18,8 @@
  * Contributor(s):
  * ICOA Inc. <info@icoa.com> (http://icoa.com)
  *--%>
-<%@page import="org.voxmail.model.*" %><%
+<%@page import="org.voxmail.model.*"%>
+<%
 
 //this file is used for security on all platforms.
 //it also provides access to the contact object for the files it's included with
@@ -31,4 +32,5 @@ if (mailbox != null) {
 }
 
 if (mailboxId == null || mailboxId.equals("")) {
-%><jsp:forward page="/vxml/login.jsp" /><%}%>
+%><jsp:forward page="/vxml/login.jsp" />
+<%}%>

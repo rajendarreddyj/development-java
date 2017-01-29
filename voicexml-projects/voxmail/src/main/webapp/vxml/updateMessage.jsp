@@ -18,6 +18,5 @@
  * Contributor(s):
  * ICOA Inc. <info@icoa.com> (http://icoa.com)
  *--%>
-
-<?xml version="1.0" ?> 
+<?xml version="1.0" ?>
 <xml></xml>

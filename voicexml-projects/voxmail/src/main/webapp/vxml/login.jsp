@@ -28,67 +28,32 @@
 %>
 <%@ include file="/vxml/imports.jsp"%>
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.0" application="<%=request.getContextPath()%>/vxml/approot.jsp">
-    
-    <var name="cmd" />
-    <var name="phone" /> 
-<%
+<vxml version="2.0" application="<%=request.getContextPath()%>/vxml/approot.jsp"> <var name="cmd" /> <var
+  name="phone"
+/> <%
 if ("invalid".equals(request.getParameter("result"))) {
 %>
 <form id="error">
-    <block>
-        <prompt>
-            <audio expr="audioDir + 'InvalidLogin.wav'">
-                I'm sorry, but that was an invalid login.  
-                
-            </audio>
-        </prompt>
-        <clear namelist="pin"/>
-        <%if (doPhoneNumber) {%>
-        <goto next="#collectPhoneNumber"/>
-        <%} else{%>
-        <goto next="#login"/>
-        <%}%>
-    </block>
+  <block> <prompt> <audio expr="audioDir + 'InvalidLogin.wav'"> I'm sorry, but that was an
+    invalid login.
+  </audio> </prompt> <clear namelist="pin" /> <%if (doPhoneNumber) {%> <goto next="#collectPhoneNumber" /> <%} else{%> <goto next="#login" />
+  <%}%> </block>
 </form>
-<% } %>
-
-<%if (doPhoneNumber) {%>
+<% } %> <%if (doPhoneNumber) {%>
 <form id="collectPhoneNumber">
-   
-    <field name="phoneNumber" type="digits?length=10">
-        <prompt bargein="true" timeout="5s">
-            <audio expr="audioDir + 'GetPhoneNumber.wav'">
-                Please enter your 10 digit phone number.
-            </audio>
-        </prompt>
-        <filled>
-            <assign name="phone" expr="phoneNumber" />
-            <goto next="#login"/>
-        </filled>
-        <noinput count="1"> 
-          <reprompt/>
-        </noinput>
-         <noinput count="2"> 
-          <reprompt/>
-        </noinput>
-    </field>
+  <field name="phoneNumber" type="digits?length=10"> <prompt bargein="true" timeout="5s"> <audio
+    expr="audioDir + 'GetPhoneNumber.wav'"
+  > Please enter your 10 digit phone number.
+  </audio> </prompt> <filled> <assign name="phone" expr="phoneNumber" /> <goto next="#login" /> </filled> <noinput count="1">
+  <reprompt /> </noinput> <noinput count="2"> <reprompt /> </noinput> </field>
 </form>
 <% } %>
-
 <form id="login">
-    
-    <field name="pin" type="digits?length=4">
-        <prompt bargein="true" timeout="5s">
-            <audio expr="audioDir + 'GetPin.wav'">
-                Now enter your 4 digit pin.
-            </audio>
-        </prompt>
-        <filled>
-            <assign name="cmd" expr="'login'" />
-            <submit next="login.do" namelist="cmd pin phone" method="post" />
-        </filled>
-    </field>
+  <field name="pin" type="digits?length=4"> <prompt bargein="true" timeout="5s"> <audio
+    expr="audioDir + 'GetPin.wav'"
+  > Now enter your 4 digit pin.
+  </audio> </prompt> <filled> <assign name="cmd" expr="'login'" /> <submit next="login.do" namelist="cmd pin phone"
+    method="post"
+  /> </filled> </field>
 </form>
-
 </vxml>

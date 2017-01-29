@@ -20,17 +20,12 @@
  *--%>
 <%@ include file="/vxml/imports.jsp"%>
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.0" application="<%=request.getContextPath()%>/vxml/approot.jsp">
-<%
+<vxml version="2.0" application="<%=request.getContextPath()%>/vxml/approot.jsp"> <%
     String redirectURL = (String) request.getAttribute("redirect");
     System.out.println("redirect.jsp Redirecting to : " + redirectURL);
     //response.sendRedirect(redirectURL);
 %>
 <form id="TransferAA">
-    <block>
-        <goto next="<%= redirectURL%>" />
-    </block>
+  <block> <goto next="<%= redirectURL%>" /> </block>
 </form>
-
 </vxml>
-        

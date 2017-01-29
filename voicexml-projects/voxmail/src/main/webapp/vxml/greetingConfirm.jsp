@@ -25,30 +25,12 @@ String type = (String) request.getAttribute("confirm");
 %>
 <?xml version="1.0" encoding="UTF-8"?>
 <vxml version="2.0" application="<%=request.getContextPath()%>/vxml/approot.jsp">
-    
-    <form id="GreetingConfirm">
-        <field name="confirm" >
-            <grammar src="grammars/GreetingConfirm.xml" type="application/grammar-xml"/> 
-            <prompt>
-                <audio expr="audioDir + 'GreetingChanged.wav'">
-                    Your greeting has been changed.  
-                    To go back to your messages, press 1.  
-                    Or, if you're done, press 2.
-                </audio>
-            </prompt>
-            <filled> 
-                <if cond="confirm=='messages'"> 
-                    <submit next="mainMenu.do" namelist="" method="post" />
-                    
-                <else/> 
-                    <prompt>
-                        <audio expr="audioDir + 'Goodbye.wav'">
-                            Goodbye
-                        </audio>
-                    </prompt>
-                    <disconnect/>
-                </if> 
-            </filled>
-        </field>
-    </form>
+<form id="GreetingConfirm">
+  <field name="confirm"> <grammar src="grammars/GreetingConfirm.xml" type="application/grammar-xml" /> <prompt>
+  <audio expr="audioDir + 'GreetingChanged.wav'"> Your greeting has been changed. To go back to your messages,
+    press 1. Or, if you're done, press 2.
+  </audio> </prompt> <filled> <if cond="confirm=='messages'"> <submit next="mainMenu.do" namelist="" method="post" /> <else />
+  <prompt> <audio expr="audioDir + 'Goodbye.wav'"> Goodbye
+  </audio> </prompt> <disconnect /> </if> </filled> </field>
+</form>
 </vxml>

@@ -24,18 +24,9 @@ System.out.println("goodbye.jsp called");
 %>
 <?xml version="1.0" encoding="UTF-8"?>
 <vxml version="2.0" application="<%=request.getContextPath()%>/vxml/approot.jsp">
-    
 <form id="end">
-    <block name="Goodbye">
-        <prompt>
-            <audio expr="audioDir + 'MessageSaved.wav'">
-                Message Saved. 
-            </audio>
-            <audio expr="audioDir + 'Goodbye.wav'">
-                Goodbye
-            </audio>
-        </prompt>
-        <disconnect/>
-    </block>
+  <block name="Goodbye"> <prompt> <audio expr="audioDir + 'MessageSaved.wav'"> Message Saved.
+  </audio> <audio expr="audioDir + 'Goodbye.wav'"> Goodbye
+  </audio> </prompt> <disconnect /> </block>
 </form>
 </vxml>

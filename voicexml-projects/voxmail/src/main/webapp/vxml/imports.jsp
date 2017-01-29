@@ -18,13 +18,12 @@
  * Contributor(s):
  * ICOA Inc. <info@icoa.com> (http://icoa.com)
  *--%>
-<%@ page import="java.util.*" %>
-<%@ page import="java.net.*" %>
-
-<%@ page import="org.voxmail.*" %>
-<%@ page import="org.voxmail.dao.*" %>
-<%@ page import="org.voxmail.mail.*" %>
-<%@ page import="org.voxmail.model.*" %>
-<%@ page import="org.voxmail.struts.*" %>
-<%@ page import="org.voxmail.utils.*" %>
-<%@ page import="org.voxmail.struts.action.*" %>
+<%@ page import="java.util.*"%>
+<%@ page import="java.net.*"%>
+<%@ page import="org.voxmail.*"%>
+<%@ page import="org.voxmail.dao.*"%>
+<%@ page import="org.voxmail.mail.*"%>
+<%@ page import="org.voxmail.model.*"%>
+<%@ page import="org.voxmail.struts.*"%>
+<%@ page import="org.voxmail.utils.*"%>
+<%@ page import="org.voxmail.struts.action.*"%>

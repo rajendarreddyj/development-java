@@ -21,59 +21,64 @@
 <%@page contentType="text/html"%>
 <html>
 <head>
-    <title>Inbox</title>
+<title>Inbox</title>
 <style type="text/css">
 body {
-    background: #ffffff;
-    font-family: verdana, helvetica, sans-serif;
-    font-size: 10px;
-    color: #000000;
+  background: #ffffff;
+  font-family: verdana, helvetica, sans-serif;
+  font-size: 10px;
+  color: #000000;
 }
+
 a {
-    color: #336699;
-    text-decoration: none;
+  color: #336699;
+  text-decoration: none;
 }
+
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
+
 table {
-    width: 100%;    
+  width: 100%;
 }
+
 td {
-    text-align: left;
-    vertical-align: middle;
-    font-family: verdana, helvetica, sans-serif;
-    border-bottom: 1px dashed #cccccc;
-    font-size: 10px;
-    color: #000000;
-    padding-bottom: 5px;
-    padding-top: 5px;
+  text-align: left;
+  vertical-align: middle;
+  font-family: verdana, helvetica, sans-serif;
+  border-bottom: 1px dashed #cccccc;
+  font-size: 10px;
+  color: #000000;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
+
 th {
-    vertical-align: middle;
-    text-align: left;
-    border-bottom: 1px solid #cccccc;
-    border-top: 1px solid #cccccc;
-    font-family: verdana, helvetica, sans-serif;
-    font-size: 11px;
-    font-weight: bold;
-    color: #000000;
-    padding-bottom: 5px;
-    padding-top: 5px;
+  vertical-align: middle;
+  text-align: left;
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+  font-family: verdana, helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  color: #000000;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
-hr
-{
-    color: #cccccc;
-    background-color: #cccccc; 
-    height: 1px;
-    border-style: none;
+
+hr {
+  color: #cccccc;
+  background-color: #cccccc;
+  height: 1px;
+  border-style: none;
 }
-h1
-{
-    FONT-WEIGHT: bold;
-    FONT-SIZE: 16pt;
-    COLOR: #666666;
-    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
+
+h1 {
+  FONT-WEIGHT: bold;
+  FONT-SIZE: 16pt;
+  COLOR: #666666;
+  FONT-FAMILY: verdana, arial, helvetica, sans-serif;
 }
 </style>
 </head>

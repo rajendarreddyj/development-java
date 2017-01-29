@@ -25,25 +25,13 @@ String type = (String) request.getAttribute("confirm");
 %>
 <?xml version="1.0" encoding="UTF-8"?>
 <vxml version="2.0" application="<%=request.getContextPath()%>/vxml/approot.jsp">
-    
 <form id="end">
-    <block name="Goodbye">
-        <prompt>
-            <% if (type.equals("standardConfirm")) {%>
-            <audio expr="audioDir + 'SelectedStandardGreeting.wav'">
-                OK, you've selected the standard greeting, and you're all set.
-                Just so you know, you can return to voicemail to change your
-                greeting at any time.  Goodbye!
-            </audio>
-            <%} else {%>
-            <audio expr="audioDir + 'SetupGreetingSaved.wav'">
-                OK, your greeting is saved, and you're all set.  Just so you know,
-                you can return to voicemail to change your greeting at any time.
-                Goodbye!
-            </audio>
-            <%}%>
-        </prompt>
-        <disconnect/>
-    </block>
+  <block name="Goodbye"> <prompt> <% if (type.equals("standardConfirm")) {%> <audio
+    expr="audioDir + 'SelectedStandardGreeting.wav'"
+  > OK, you've selected the standard greeting, and you're all set. Just so you know, you can return to voicemail to
+    change your greeting at any time. Goodbye!
+  </audio> <%} else {%> <audio expr="audioDir + 'SetupGreetingSaved.wav'"> OK, your greeting is saved, and you're all set.
+    Just so you know, you can return to voicemail to change your greeting at any time. Goodbye!
+  </audio> <%}%> </prompt> <disconnect /> </block>
 </form>
 </vxml>

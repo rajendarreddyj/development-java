@@ -1,12 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.rajendarreddyj</groupId>
-    <artifactId>development-java</artifactId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
-  <artifactId>javaee-projects</artifactId>
+  <groupId>com.rajendarreddyj</groupId>
+  <artifactId>development-java</artifactId>
+  <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Java EE Projects</name>
   <description>Java EE Projects</description>
@@ -18,10 +15,6 @@
     <tomee.version>1.7.4</tomee.version>
     <jetty.version>9.4.1.v20170120</jetty.version>
   </properties>
-  <modules>
-    <module>samplelog4j2</module>
-    <module>javaee7</module>
-  </modules>
   <build>
     <plugins>
       <plugin>
@@ -48,4 +41,12 @@
       </plugin>
     </plugins>
   </build>
+  <modules>
+    <module>javaee-projects</module>
+    <module>hibernate-projects</module>
+    <module>webservices-projects</module>
+    <module>struts2-projects</module>
+    <module>voicexml-projects</module>
+    <module>java-projects</module>
+  </modules>
 </project>

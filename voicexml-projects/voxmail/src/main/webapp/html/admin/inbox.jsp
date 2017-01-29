@@ -19,7 +19,8 @@
  * ICOA Inc. <info@icoa.com> (http://icoa.com)
  *--%>
 <%@include file="/security.jsp"%>
-<%@page import="
+<%@page
+  import="
 javax.mail.*,
 javax.mail.internet.*,
 org.voxmail.mail.MailConnection,
@@ -59,25 +60,23 @@ if (!"saved".equals(folder) && !"deleted".equals(folder)) {
 %>
 <jsp:include page="_header.jsp" flush="true" />
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
-    <tr>
-        <td align="left" style="text-align: left; border: none">
-            <a href="<%=request.getContextPath()%>/inbox.do?cmd=_getmail&platform=html&folder=inbox">inbox (<%=String.valueOf(newCount)%>)</a>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="<%=request.getContextPath()%>/inbox.do?cmd=_getmail&platform=html&folder=saved">saved (<%=String.valueOf(savedCount)%>)</a>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="<%=request.getContextPath()%>/inbox.do?cmd=_getmail&platform=html&folder=deleted">trash (<%=String.valueOf(deletedCount)%>)</a>
-        </td>
-        <td align="right" style="text-align: right; border: none">
-            <a href="<%=request.getContextPath()%>/inbox.do?cmd=_refresh&platform=html&folder=inbox">check for new mail</a>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="<%=request.getContextPath()%>/inbox.do?cmd=_emptytrash&platform=html&folder=inbox">empty trash</a>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="<%=request.getContextPath()%>/inbox.do?cmd=_pin">setup</a>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="<%=request.getContextPath()%>/inbox.do?cmd=doLogout">log out</a>
-            
-        </td>
-    </tr>
+  <tr>
+    <td align="left" style="text-align: left; border: none"><a
+      href="<%=request.getContextPath()%>/inbox.do?cmd=_getmail&platform=html&folder=inbox"
+    >inbox (<%=String.valueOf(newCount)%>)
+    </a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="<%=request.getContextPath()%>/inbox.do?cmd=_getmail&platform=html&folder=saved">saved
+        (<%=String.valueOf(savedCount)%>)
+    </a> &nbsp;&nbsp;|&nbsp;&nbsp; <a
+      href="<%=request.getContextPath()%>/inbox.do?cmd=_getmail&platform=html&folder=deleted"
+    >trash (<%=String.valueOf(deletedCount)%>)
+    </a></td>
+    <td align="right" style="text-align: right; border: none"><a
+      href="<%=request.getContextPath()%>/inbox.do?cmd=_refresh&platform=html&folder=inbox"
+    >check for new mail</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a
+      href="<%=request.getContextPath()%>/inbox.do?cmd=_emptytrash&platform=html&folder=inbox"
+    >empty trash</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="<%=request.getContextPath()%>/inbox.do?cmd=_pin">setup</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp; <a href="<%=request.getContextPath()%>/inbox.do?cmd=doLogout">log out</a></td>
+  </tr>
 </table>
 <br>
 <h1><%=mailbox.getFirstName() + " " + mailbox.getLastName()%>&nbsp;::&nbsp;<%=folder%></h1>
@@ -102,13 +101,13 @@ if (mail == null) {
     int totalMessageCount = messages.length;
     int countDisplayed = 0;
     %>
-    <table border="0" cellpadding="0" cellspacing="0">
-    <tr>
-        <th>date</th>
-        <th>message</th>
-        <th>move to...</th>
-    </tr>
-    <%
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <th>date</th>
+    <th>message</th>
+    <th>move to...</th>
+  </tr>
+  <%
     if (totalMessageCount > 0) {
         //FLAG BITS:  1=recent, 2=seen, 4=deleted
         int folderFlagBit = 1; //default
@@ -139,18 +138,23 @@ if (mail == null) {
                     out.println("DATEERROR=" + e.getMessage());
                 }
                 %>
-                <tr>
-                    <td><%=strDate%></td>
-                    <td><a href="<%=request.getContextPath()%>/inbox.do?cmd=_getmsg&msgindex=<%=i+1%>&platform=html&folder=<%=folder%>" target="_blank"><%=message.getSubject()%></a></td>
-                    <td><a href="<%=request.getContextPath()%>/play.do?msgindex=<%=i+1%>" target="_blank"><%=message.getSubject()%> 2</a></td>
-                    
-                    <td>
-                        <a href="<%=request.getContextPath()%>/inbox.do?cmd=_movemsg&msgindex=<%=i+1%>&platform=html&folder=<%=folder%>&newfolder=inbox">inbox</a>
-                        &nbsp;<a href="<%=request.getContextPath()%>/inbox.do?cmd=_movemsg&msgindex=<%=i+1%>&platform=html&folder=<%=folder%>&newfolder=saved">saved</a>
-                        &nbsp;<a href="<%=request.getContextPath()%>/inbox.do?cmd=_movemsg&msgindex=<%=i+1%>&platform=html&folder=<%=folder%>&newfolder=deleted">deleted</a>
-                    </td>
-                </tr>
-                <%
+  <tr>
+    <td><%=strDate%></td>
+    <td><a
+      href="<%=request.getContextPath()%>/inbox.do?cmd=_getmsg&msgindex=<%=i+1%>&platform=html&folder=<%=folder%>"
+      target="_blank"
+    ><%=message.getSubject()%></a></td>
+    <td><a href="<%=request.getContextPath()%>/play.do?msgindex=<%=i+1%>" target="_blank"><%=message.getSubject()%>
+        2</a></td>
+    <td><a
+      href="<%=request.getContextPath()%>/inbox.do?cmd=_movemsg&msgindex=<%=i+1%>&platform=html&folder=<%=folder%>&newfolder=inbox"
+    >inbox</a> &nbsp;<a
+      href="<%=request.getContextPath()%>/inbox.do?cmd=_movemsg&msgindex=<%=i+1%>&platform=html&folder=<%=folder%>&newfolder=saved"
+    >saved</a> &nbsp;<a
+      href="<%=request.getContextPath()%>/inbox.do?cmd=_movemsg&msgindex=<%=i+1%>&platform=html&folder=<%=folder%>&newfolder=deleted"
+    >deleted</a></td>
+  </tr>
+  <%
                 ++countDisplayed;
             }
         }
@@ -159,4 +163,4 @@ if (mail == null) {
     out.println("<br><br><div align=\"left\">MESSAGE COUNT: " + countDisplayed + "</div>");
 }
 %>
-<jsp:include page="_footer.jsp" flush="true" />
+  <jsp:include page="_footer.jsp" flush="true" />
