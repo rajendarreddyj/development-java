@@ -11,7 +11,7 @@
   <name>Java EE Projects</name>
   <description>Java EE Projects</description>
   <modules>
-    <module>samplelog4j2</module>
     <module>javaee7</module>
+    <module>samplelog4j2</module>
   </modules>
 </project>

@@ -1,19 +1,27 @@
 development-java
 =================
-This Directory will have example projects related to spring framework, hibernate, Core Java and Java EE.
+This repository will have example projects related to spring framework, hibernate, Core Java and Java EE.
+
+This mojo performs byte code analysis to determine missing or unused dependencies. This goal is meant to be launched from the command line. It will fork the build and execute test-compile so there are class files to analyze. If you want to bind analyze in your pom, use the dependency:analyze-only mojo instead.
+
+`mvn dependency:analyze`
 
 Below for just detecting projects that override the dependencyManagement directly. Set ignoreDirect to false to detect these otherwise normal conditions.
 
 `mvn dependency:analyze-dep-mgt`
 
- Displays all dependencies that have newer versions available.
+This mojo is used to view the dependency hierarchy of the project currently being built. It will output the resolved tree of dependencies that the Maven build process actually uses.
+
+`mvn dependency:tree`
+
+This mojo displays all dependencies that have newer versions available.
  
 `mvn versions:display-dependency-updates`
 
-Displays all plugins that have newer versions available.
+This mojo displays all plugins that have newer versions available.
 
 `mvn versions:display-plugin-updates`
 
-Displays properties that are linked to artifact versions and have updates available.
+This mojo displays properties that are linked to artifact versions and have updates available.
 
 `mvn versions:display-property-updates`

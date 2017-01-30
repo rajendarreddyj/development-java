@@ -11,6 +11,7 @@
   <name>Java Projects</name>
   <description>Java Projects</description>
   <modules>
+    <module>basics</module>
     <module>browser</module>
     <module>java8basics</module>
     <module>ldapconnect</module>
