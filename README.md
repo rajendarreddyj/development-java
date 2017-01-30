@@ -1,4 +1,4 @@
-development-java
+development-java    [![Build Status](https://travis-ci.org/rajendarreddyj/development-java.svg?branch=master)](https://travis-ci.org/rajendarreddyj/development-java)
 =================
 This repository will have example projects related to spring framework, hibernate, Core Java and Java EE.
 
