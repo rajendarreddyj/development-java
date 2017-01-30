@@ -3,5 +3,5 @@ sudo: false
 jdk:
   - oraclejdk8
 script: 
-  ./mvnw clean install
-  ./spring-gradle-projects/gradlew build
+  - ./mvnw clean install
+  - ./spring-gradle-projects/gradlew build
