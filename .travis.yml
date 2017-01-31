@@ -2,6 +2,6 @@ language: java
 sudo: false
 jdk:
   - oraclejdk8
-script: 
+script:
   - ./mvnw clean install
-  - ./spring-gradle-projects/gradlew build
+  - cd spring-gradle-projects && ./gradlew build
