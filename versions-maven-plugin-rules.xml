@@ -40,6 +40,11 @@
         <ignoreVersion type="regex">(?i).*-b(?:-?\d+)?</ignoreVersion>
       </ignoreVersions>
     </rule>
+    <rule groupId="javax.json">
+      <ignoreVersions>
+        <ignoreVersion type="regex">(?i).*-M(?:-?\d+)?</ignoreVersion>
+      </ignoreVersions>
+    </rule>
     <rule groupId="javax.servlet">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*-b(?:-?\d+)?</ignoreVersion>
@@ -49,6 +54,11 @@
     <rule groupId="org.apache.struts">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*BETA(?:-?\d+)?</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+    <rule groupId="org.javassist">
+      <ignoreVersions>
+        <ignoreVersion type="regex">(?i).*-CR(?:-?\d+)?</ignoreVersion>
       </ignoreVersions>
     </rule>
     <rule groupId="org.freemarker">
@@ -78,6 +88,11 @@
     <rule groupId="org.mockito">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*beta(?:-?\d+)?</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+    <rule groupId="org.postgresql">
+      <ignoreVersions>
+        <ignoreVersion type="regex">(?i).*jre(?:-?\d+)?</ignoreVersion>
       </ignoreVersions>
     </rule>
   </rules>

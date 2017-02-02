@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+@SuppressWarnings("deprecation")
 public class RMIClient2 extends JFrame implements ActionListener {
     /**
      * 

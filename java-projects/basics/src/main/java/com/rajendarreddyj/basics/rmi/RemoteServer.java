@@ -7,6 +7,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import com.rajendarreddyj.basics.swing.rmiclient.Send;
 
+@SuppressWarnings("deprecation")
 public class RemoteServer extends UnicastRemoteObject implements Send {
     /**
      * 

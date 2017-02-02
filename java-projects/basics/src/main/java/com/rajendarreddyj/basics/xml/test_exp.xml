@@ -1,0 +1,15 @@
+﻿<ex:EXPRESSION xmlns:ex="http://www.test.com/expression" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.test.com/expression xmlexpr/expression.xsd">
+  <ex:EQUAL>
+    <ex:IDENT>x</ex:IDENT>
+    <ex:TIMES>
+      <ex:INT>3</ex:INT>
+      <ex:PAREN>
+        <ex:PLUS>
+          <ex:INT>4</ex:INT>
+          <ex:INT>5</ex:INT>
+        </ex:PLUS>
+      </ex:PAREN>
+    </ex:TIMES>
+  </ex:EQUAL>
+</ex:EXPRESSION>
