@@ -141,13 +141,6 @@
   <prerequisites>
     <maven>3.2.5</maven>
   </prerequisites>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
   <!-- All dependencies defined within 'dependencyManagement' to avoid having to specify versions within child modules. -->
   <dependencyManagement>
     <dependencies>
@@ -166,6 +159,11 @@
       <dependency>
         <groupId>javax.mail</groupId>
         <artifactId>javax.mail-api</artifactId>
+        <version>${javax.mail.api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.mail</groupId>
+        <artifactId>javax.mail</artifactId>
         <version>${javax.mail.api.version}</version>
       </dependency>
       <dependency>
