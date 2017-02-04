@@ -51,6 +51,11 @@
         <ignoreVersion type="regex">(?i).*alpha(?:-?\d+)?</ignoreVersion>
       </ignoreVersions>
     </rule>
+    <rule groupId="javax.validation">
+      <ignoreVersions>
+        <ignoreVersion type="regex">(?i).*Alpha(?:-?\d+)?</ignoreVersion>
+      </ignoreVersions>
+    </rule>
     <rule groupId="org.apache.struts">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*BETA(?:-?\d+)?</ignoreVersion>
