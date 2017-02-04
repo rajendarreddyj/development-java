@@ -87,6 +87,7 @@
     <taglibs.version>1.2.5</taglibs.version>
     <rivr.voicexml.version>1.0.7</rivr.voicexml.version>
     <org.glassfish.javax.json.version>1.0.4</org.glassfish.javax.json.version>
+    <quartz.version>2.2.1</quartz.version>
     <!-- Testing Dependencies -->
     <!-- JUNIT Version -->
     <junit.version>4.12</junit.version>
@@ -865,6 +866,16 @@
           </exclusion>
         </exclusions>
       </dependency>
+      <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz</artifactId>
+        <version>${quartz.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz-jobs</artifactId>
+        <version>${quartz.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <build>
@@ -1152,5 +1163,6 @@
     <module>struts2-projects</module>
     <module>voicexml-projects</module>
     <module>webservices-projects</module>
+    <module>quartz-projects</module>
   </modules>
 </project>
