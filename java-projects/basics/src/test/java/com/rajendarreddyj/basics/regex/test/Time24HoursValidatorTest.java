@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.Time24HoursValidator;
 
 public class Time24HoursValidatorTest {
-
     private Time24HoursValidator time24HoursValidator;
 
     @BeforeClass

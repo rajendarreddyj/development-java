@@ -9,7 +9,6 @@ import com.rajendarreddyj.basics.pattern.observable.rps.gui.RockPaperScissorsGui
  *
  */
 public class RockPaperScissorsMain {
-
     /**
      * @param args
      */
@@ -21,5 +20,4 @@ public class RockPaperScissorsMain {
             e.printStackTrace();
         }
     }
-
 }

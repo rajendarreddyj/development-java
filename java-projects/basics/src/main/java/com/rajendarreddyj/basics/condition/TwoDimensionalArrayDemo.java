@@ -8,7 +8,6 @@ public class TwoDimensionalArrayDemo {
                 marks[i][j] = (int) (Math.random() * 100);
             }
         }
-
         // Iterating through arrays to display marks
         for (int i = 0; i < marks.length; i++) {
             for (int j = 0; j < marks[i].length; j++) {

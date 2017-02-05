@@ -9,9 +9,7 @@ import java.io.IOException;
  * BufferedReader.
  */
 public class BufferedReaderExample1 {
-
     public static void main(final String[] args) {
-
         BufferedReader br = null;
         try {
             String sCurrentLine;

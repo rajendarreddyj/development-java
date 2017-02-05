@@ -44,14 +44,12 @@ import java.sql.SQLException;
  * is hits error, and make both insert and update statements rollback together.
  */
 public class JDBCTransactionExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
     private static final String DB_PASSWORD = "rajendar";
 
     public static void main(final String[] argv) throws SQLException {
-
         Connection dbConnection = null;
         PreparedStatement preparedStatementInsert = null;
         PreparedStatement preparedStatementUpdate = null;
@@ -91,7 +89,6 @@ public class JDBCTransactionExample {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);
@@ -108,7 +105,6 @@ public class JDBCTransactionExample {
     }
 
     private static java.sql.Timestamp getCurrentTimeStamp() {
-
         java.util.Date today = new java.util.Date();
         return new java.sql.Timestamp(today.getTime());
     }

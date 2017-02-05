@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.DateValidator;
 
 public class DateValidatorTest {
-
     private DateValidator dateValidator;
 
     @BeforeClass

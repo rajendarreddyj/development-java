@@ -26,7 +26,6 @@ public class ImageFactory {
     public static Image loadImage(final String filename, final DrawingPanel panel) {
         Toolkit tk = Toolkit.getDefaultToolkit();
         Image img = tk.getImage(filename);
-
         // have to use media tracker to wait for image to actually load
         MediaTracker mt = new MediaTracker(panel);
         mt.addImage(img, 1);
@@ -34,7 +33,6 @@ public class ImageFactory {
             mt.waitForAll();
         } catch (InterruptedException e) {
         }
-
         return img;
     }
 }

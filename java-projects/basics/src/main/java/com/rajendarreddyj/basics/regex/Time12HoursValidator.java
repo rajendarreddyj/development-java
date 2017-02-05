@@ -17,10 +17,8 @@ import java.util.regex.Pattern;
  * The 12-hour clock format is start from 0-12, then a semi colon (:) and follow by 00-59 , and end with am or pm.
  */
 public class Time12HoursValidator {
-
     private Pattern pattern;
     private Matcher matcher;
-
     private static final String TIME12HOURS_PATTERN = "(1[012]|[1-9]):[0-5][0-9](\\s)?(?i)(am|pm)";
 
     public Time12HoursValidator() {

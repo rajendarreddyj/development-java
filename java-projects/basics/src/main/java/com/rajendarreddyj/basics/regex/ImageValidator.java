@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
  * come out different file extension checking that suit your need.
  */
 public class ImageValidator {
-
     private Pattern pattern;
     private Matcher matcher;
     private static final String IMAGE_PATTERN = "([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)";
@@ -32,9 +31,7 @@ public class ImageValidator {
      * @return true valid image, false invalid image
      */
     public boolean validate(final String image) {
-
         this.matcher = this.pattern.matcher(image);
         return this.matcher.matches();
-
     }
 }

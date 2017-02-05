@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.UsernameValidator;
 
 public class UsernameValidatorTest {
-
     private UsernameValidator usernameValidator;
 
     @BeforeClass
@@ -29,23 +28,19 @@ public class UsernameValidatorTest {
 
     @Test(dataProvider = "ValidUsernameProvider")
     public void ValidUsernameTest(final String[] Username) {
-
         for (String temp : Username) {
             boolean valid = this.usernameValidator.validate(temp);
             System.out.println("Username is valid : " + temp + " , " + valid);
             Assert.assertEquals(true, valid);
         }
-
     }
 
     @Test(dataProvider = "InvalidUsernameProvider", dependsOnMethods = "ValidUsernameTest")
     public void InValidUsernameTest(final String[] Username) {
-
         for (String temp : Username) {
             boolean valid = this.usernameValidator.validate(temp);
             System.out.println("username is valid : " + temp + " , " + valid);
             Assert.assertEquals(false, valid);
         }
-
     }
 }

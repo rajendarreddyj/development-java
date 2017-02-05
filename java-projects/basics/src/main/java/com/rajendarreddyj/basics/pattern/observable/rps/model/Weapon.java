@@ -9,7 +9,6 @@ import java.util.Random;
  */
 public enum Weapon {
     ROCK, SCISSORS, PAPER;
-
     /**
      * Returns a randomly chosen weapon from the three choices.
      * 

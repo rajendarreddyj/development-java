@@ -19,14 +19,12 @@ import java.sql.SQLException;
  * Insert statement, it’s apply for Update and Delete statement as well.
  */
 public class JDBCBatchUpdateExample2 {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
     private static final String DB_PASSWORD = "rajendar";
 
     public static void main(final String[] argv) {
-
         try {
             batchInsertRecordsIntoTable();
         } catch (SQLException e) {
@@ -35,11 +33,9 @@ public class JDBCBatchUpdateExample2 {
     }
 
     private static void batchInsertRecordsIntoTable() throws SQLException {
-
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
         String insertTableSQL = "INSERT INTO DBUSER1" + "(USER_ID, USERNAME, CREATED_BY, CREATED_DATE) VALUES" + "(?,?,?,?)";
-
         try {
             dbConnection = getDBConnection();
             preparedStatement = dbConnection.prepareStatement(insertTableSQL);
@@ -76,7 +72,6 @@ public class JDBCBatchUpdateExample2 {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);
@@ -93,7 +88,6 @@ public class JDBCBatchUpdateExample2 {
     }
 
     private static java.sql.Timestamp getCurrentTimeStamp() {
-
         java.util.Date today = new java.util.Date();
         return new java.sql.Timestamp(today.getTime());
     }

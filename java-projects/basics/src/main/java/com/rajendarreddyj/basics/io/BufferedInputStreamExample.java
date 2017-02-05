@@ -12,10 +12,8 @@ import java.io.IOException;
  * characters. It’s advised to use BufferedReader.
  */
 public class BufferedInputStreamExample {
-
     @SuppressWarnings("deprecation")
     public static void main(final String[] args) {
-
         File file = new File("javaio-appendfile.txt");
         FileInputStream fis = null;
         BufferedInputStream bis = null;

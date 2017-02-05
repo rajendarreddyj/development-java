@@ -20,22 +20,17 @@ public class TestYahooMail {
         props.put("mail.smtp.password", pass);
         props.put("mail.smtp.port", "465");
         props.put("mail.smtp.auth", "true");
-
         String[] to = { "test@gmail.com" };
-
         Session session = Session.getDefaultInstance(props, null);
         MimeMessage message = new MimeMessage(session);
         try {
             message.setFrom(new InternetAddress(from));
-
             InternetAddress[] toAddress = new InternetAddress[to.length];
-
             // To get the array of addresses
             for (int i = 0; i < to.length; i++) {
                 toAddress[i] = new InternetAddress(to[i]);
             }
             System.out.println(Message.RecipientType.TO);
-
             for (int i = 0; i < toAddress.length; i++) {
                 message.addRecipient(Message.RecipientType.TO, toAddress[i]);
             }

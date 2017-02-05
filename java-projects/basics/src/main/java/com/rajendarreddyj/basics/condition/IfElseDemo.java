@@ -10,6 +10,5 @@ public class IfElseDemo {
         } else {
             System.out.println("x is not greater than 5 and 3");
         }
-
     }
 }

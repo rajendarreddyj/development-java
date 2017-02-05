@@ -93,7 +93,6 @@ public class ParserFactory {
     private static void initParser(final DOMParser parser, final boolean validate) {
         // parser.setErrorHandler(new DefaultHandler());
         parser.setErrorHandler(new LocalErrorHandler());
-
         if (validate) {
             setFeature(parser, VALIDATION_FEATURE, "VALIDATION_FEATURE");
             setFeature(parser, VALIDATION_SCHEMA_FEATURE, "VALIDATION_SCHEMA_FEATURE");
@@ -111,5 +110,4 @@ public class ParserFactory {
         initParser(parser, validate);
         return parser;
     } // newParser
-
 }

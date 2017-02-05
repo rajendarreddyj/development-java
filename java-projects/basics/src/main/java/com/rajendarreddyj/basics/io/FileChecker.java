@@ -9,7 +9,6 @@ import java.io.FilenameFilter;
  * with “.txt” extension in folder “/apps“, and then delete it.
  */
 public class FileChecker {
-
     private static final String FILE_DIR = ".";
     private static final String FILE_TEXT_EXT = ".txt";
 
@@ -36,7 +35,6 @@ public class FileChecker {
 
     // inner class, generic extension filter
     public class GenericExtFilter implements FilenameFilter {
-
         private String ext;
 
         public GenericExtFilter(final String ext) {

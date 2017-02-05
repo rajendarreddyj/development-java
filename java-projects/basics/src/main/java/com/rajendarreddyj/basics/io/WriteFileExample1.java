@@ -10,11 +10,9 @@ import java.io.IOException;
  */
 public class WriteFileExample1 {
     public static void main(final String[] args) {
-
         FileOutputStream fop = null;
         File file;
         String content = "This is the text content1";
-
         try {
             file = new File("newfile1.txt");
             fop = new FileOutputStream(file);

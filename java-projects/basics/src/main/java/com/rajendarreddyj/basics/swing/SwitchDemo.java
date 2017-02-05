@@ -52,6 +52,5 @@ public class SwitchDemo {
             System.out.println("The number you have entered does not match with any month");
             break;
         }
-
     }
 }

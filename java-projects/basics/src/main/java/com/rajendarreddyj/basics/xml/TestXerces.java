@@ -23,7 +23,6 @@ import org.xml.sax.SAXParseException;
  * 
  */
 public class TestXerces {
-
     private void usage() {
         String name = this.getClass().getName();
         System.out.println("usage: " + name + "<XML fileName>");
@@ -81,7 +80,6 @@ public class TestXerces {
         if (args.length == 1) {
             String xmlFileName = args[0];
             System.out.println("Validating XML file " + xmlFileName);
-
             byte[] xmlBytes = this.fileToBytes(xmlFileName);
             Document doc = this.bytesToDocument(xmlFileName, xmlBytes, true);
             if (doc != null) {

@@ -107,7 +107,6 @@ public class Game extends Observable implements Serializable {
             this.wins++;
         }
         this.history.add(this.weapon1 + " vs. " + this.weapon2);
-
         this.setChanged();
         this.notifyObservers();
     }

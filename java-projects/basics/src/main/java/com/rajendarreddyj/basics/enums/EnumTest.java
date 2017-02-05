@@ -11,7 +11,6 @@ import java.util.Iterator;
  * 
  */
 public class EnumTest {
-
     static class Fruit extends TypeSafeEnum {
         public Fruit(final String name) {
             super(name, Fruit.class);

@@ -15,9 +15,7 @@ import java.sql.SQLException;
  * DriverManager.getConnection( "jdbc:oracle:thin:@localhost:1521:test","username","password"); connection.close();
  */
 public class JDBCConnectivity {
-
     public static void main(final String[] argv) {
-
         System.out.println("-------- Oracle JDBC Connection Testing ------");
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");

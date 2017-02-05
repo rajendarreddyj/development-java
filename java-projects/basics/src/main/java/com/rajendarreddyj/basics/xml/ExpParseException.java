@@ -9,7 +9,6 @@ package com.rajendarreddyj.basics.xml;
  * 
  */
 public class ExpParseException extends Exception {
-
     /**
      * 
      */
@@ -29,5 +28,4 @@ public class ExpParseException extends Exception {
     public ExpParseException(final String message, final Throwable cause) {
         super(message, cause);
     }
-
 }

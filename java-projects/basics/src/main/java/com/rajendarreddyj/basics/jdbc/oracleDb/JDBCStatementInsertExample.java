@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
  */
 
 public class JDBCStatementInsertExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -35,7 +34,6 @@ public class JDBCStatementInsertExample {
         Statement statement = null;
         String insertTableSQL = "INSERT INTO DBUSER" + "(USER_ID, USERNAME, CREATED_BY, CREATED_DATE) " + "VALUES" + "(1,'rajendar','system', " + "to_date('"
                 + getCurrentTimeStamp() + "', 'yyyy/mm/dd hh24:mi:ss'))";
-
         try {
             dbConnection = getDBConnection();
             statement = dbConnection.createStatement();
@@ -56,7 +54,6 @@ public class JDBCStatementInsertExample {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);

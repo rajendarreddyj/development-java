@@ -59,7 +59,6 @@ public class ImageView extends View {
         }
         this.move1.setIcon(this.getIcon(file1));
         this.move2.setIcon(this.getIcon(file2));
-
         // highlight the winner
         int winner = this.getGame().winner();
         this.move1.setBackground(null);

@@ -68,14 +68,12 @@ public class ParseExpToXML {
     */
     private String documentToString(final Document doc) {
         StringWriter writer = new StringWriter();
-
         OutputFormat out = new OutputFormat();
         out.setOmitXMLDeclaration(true);
         out.setIndenting(true);
         out.setIndent(4);
         out.setLineSeparator(System.getProperty("line.separator"));
         out.setLineWidth(Integer.MAX_VALUE);
-
         XMLSerializer serializer = new XMLSerializer(writer, out);
         try {
             Element rootElement = doc.getDocumentElement();
@@ -121,7 +119,6 @@ public class ParseExpToXML {
         } else {
             errMsg = msg;
         }
-
         if (errMsg != null) {
             throw new ExpParseException(errMsg);
         }
@@ -244,5 +241,4 @@ public class ParseExpToXML {
         String xml = this.documentToString(this.mDoc);
         return xml;
     } // parse
-
 }

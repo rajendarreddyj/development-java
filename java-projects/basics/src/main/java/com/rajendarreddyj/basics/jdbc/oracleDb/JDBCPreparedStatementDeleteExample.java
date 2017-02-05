@@ -16,14 +16,12 @@ import java.sql.SQLException;
  * preparedStatement.executeUpdate();
  */
 public class JDBCPreparedStatementDeleteExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
     private static final String DB_PASSWORD = "rajendar";
 
     public static void main(final String[] argv) {
-
         try {
             deleteRecordFromTable();
         } catch (SQLException e) {
@@ -32,11 +30,9 @@ public class JDBCPreparedStatementDeleteExample {
     }
 
     private static void deleteRecordFromTable() throws SQLException {
-
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
         String deleteSQL = "DELETE DBUSER1 WHERE USER_ID = ?";
-
         try {
             dbConnection = getDBConnection();
             preparedStatement = dbConnection.prepareStatement(deleteSQL);
@@ -57,7 +53,6 @@ public class JDBCPreparedStatementDeleteExample {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);

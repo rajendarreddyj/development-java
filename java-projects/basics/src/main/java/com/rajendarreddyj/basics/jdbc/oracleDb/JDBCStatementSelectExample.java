@@ -17,14 +17,12 @@ import java.sql.Statement;
  * String username = rs.getString("USERNAME"); }
  */
 public class JDBCStatementSelectExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
     private static final String DB_PASSWORD = "rajendar";
 
     public static void main(final String[] args) {
-
         try {
             selectRecordsFromDbUserTable();
         } catch (SQLException e) {
@@ -33,11 +31,9 @@ public class JDBCStatementSelectExample {
     }
 
     private static void selectRecordsFromDbUserTable() throws SQLException {
-
         Connection dbConnection = null;
         Statement statement = null;
         String selectTableSQL = "SELECT USER_ID, USERNAME from DBUSER";
-
         try {
             dbConnection = getDBConnection();
             statement = dbConnection.createStatement();
@@ -56,7 +52,6 @@ public class JDBCStatementSelectExample {
             if (statement != null) {
                 statement.close();
             }
-
             if (dbConnection != null) {
                 dbConnection.close();
             }
@@ -64,7 +59,6 @@ public class JDBCStatementSelectExample {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);

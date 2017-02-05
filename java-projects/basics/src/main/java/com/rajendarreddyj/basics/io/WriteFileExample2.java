@@ -7,12 +7,9 @@ import java.io.IOException;
 /* An updated JDK7 example, using new “try resource close” method to handle file easily. */
 public class WriteFileExample2 {
     public static void main(final String[] args) {
-
         File file = new File("newfile2.txt");
         String content = "This is the text content2";
-
         try (FileOutputStream fop = new FileOutputStream(file)) {
-
             // if file doesn't exists, then create it
             if (!file.exists()) {
                 file.createNewFile();

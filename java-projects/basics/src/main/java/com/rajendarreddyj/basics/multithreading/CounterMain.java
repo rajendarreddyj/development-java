@@ -12,7 +12,6 @@ import java.util.List;
  *
  */
 public class CounterMain {
-
     private static final int NUM_THREADS = 400;
     private static final int MUTATIONS_PER_THREAD = 100;
 
@@ -24,14 +23,12 @@ public class CounterMain {
             t.start();
             threads.add(t);
         }
-
         while (anyThreadAlive(threads)) {
             try {
                 Thread.sleep(50);
             } catch (InterruptedException ie) {
             }
         }
-
         System.out.println("After " + NUM_THREADS + " each performed " + MUTATIONS_PER_THREAD + " mutations:");
         System.out.println("Counter's value is " + counter.value());
     }

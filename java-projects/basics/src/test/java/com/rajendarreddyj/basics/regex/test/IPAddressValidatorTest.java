@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.IPAddressValidator;
 
 public class IPAddressValidatorTest {
-
     private IPAddressValidator ipAddressValidator;
 
     @BeforeClass

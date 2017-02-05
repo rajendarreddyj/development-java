@@ -8,7 +8,6 @@ package com.rajendarreddyj.basics.multithreading;
  *
  */
 public class Counter {
-
     private int c;
 
     public Counter() {

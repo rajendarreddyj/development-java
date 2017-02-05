@@ -5,7 +5,6 @@ package com.rajendarreddyj.basics.enums;
  *
  *
  */
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -34,7 +33,6 @@ public abstract class TypeSafeEnum {
     } // class enumInfo
 
     private static ArrayList<EnumInfo> infoVec = new ArrayList<>();
-
     private String mName;
     private int mValue;
 
@@ -88,5 +86,4 @@ public abstract class TypeSafeEnum {
         }
         return foundElem;
     } // findInfo
-
 }

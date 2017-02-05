@@ -14,7 +14,6 @@ import com.rajendarreddyj.basics.enums.TokenType;
  * 
  */
 public class TestScanner {
-
     private void test(final String argv[]) {
         if (argv.length == 1) {
             String expr = argv[0];

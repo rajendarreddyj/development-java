@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.HexValidator;
 
 public class HexValidatorTest {
-
     private HexValidator hexValidator;
 
     @BeforeClass
@@ -28,23 +27,19 @@ public class HexValidatorTest {
 
     @Test(dataProvider = "ValidHexProvider")
     public void ValidHexTest(final String[] hex) {
-
         for (String temp : hex) {
             boolean valid = this.hexValidator.validate(temp);
             System.out.println("Hex is valid : " + temp + " , " + valid);
             Assert.assertEquals(true, valid);
         }
-
     }
 
     @Test(dataProvider = "InvalidHexProvider", dependsOnMethods = "ValidHexTest")
     public void InValidHexTest(final String[] hex) {
-
         for (String temp : hex) {
             boolean valid = this.hexValidator.validate(temp);
             System.out.println("Hex is valid : " + temp + " , " + valid);
             Assert.assertEquals(false, valid);
         }
-
     }
 }

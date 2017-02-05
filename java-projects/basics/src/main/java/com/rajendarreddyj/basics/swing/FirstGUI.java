@@ -28,28 +28,23 @@ public class FirstGUI {
         this.button = new JButton("Click here to get a 4.0");
         this.button.setBackground(Color.RED);
         this.button.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-
         this.button2 = new JButton("Click here to get a 0.0");
         this.button2.setBackground(Color.YELLOW);
-
         // attach event listener to handle mouse clicks
         MyAwesomeListener listener = new MyAwesomeListener();
         this.button.addActionListener(listener);
         this.button2.addActionListener(listener);
-
         // create overall window (frame) and put buttons in it
         this.frame = new JFrame("First GUI");
         this.frame.setLocation(300, 100);
         this.frame.setSize(400, 300);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         // layout manager decides how to position/size the components in the frame
         this.frame.setLayout(new BorderLayout());
         this.frame.add(this.button, BorderLayout.NORTH);
         this.frame.add(this.button2, BorderLayout.SOUTH);
         this.frame.add(new Button("WEST"), BorderLayout.WEST);
         this.frame.add(new Button("EAST"), BorderLayout.EAST);
-
         this.frame.setVisible(true);
     }
 

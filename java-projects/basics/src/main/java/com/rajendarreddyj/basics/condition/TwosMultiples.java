@@ -17,11 +17,9 @@ public class TwosMultiples {
                 j++;// Incrementing to try with next number
             }
         }
-
         // For loop to iterate through the array using for each
         for (int i : twosMultiples) {
             System.out.println(i);
         }
-
     }
 }

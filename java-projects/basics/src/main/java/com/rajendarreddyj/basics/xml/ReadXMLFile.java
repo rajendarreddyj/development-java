@@ -22,33 +22,24 @@ import org.w3c.dom.NodeList;
  * contains a lot of data. Please consider SAX parser as solution for it, SAX is faster than DOM and use less memory.
  */
 public class ReadXMLFile {
-
     public static void main(final String argv[]) {
-
         try {
-
             File fXmlFile = new File("/home/rajendarreddy/test/file.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
             doc.getDocumentElement().normalize();
-
             System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             NodeList nList = doc.getElementsByTagName("staff");
             System.out.println("-----------------------");
-
             for (int temp = 0; temp < nList.getLength(); temp++) {
-
                 Node nNode = nList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
                     Element eElement = (Element) nNode;
-
                     System.out.println("First Name : " + getTagValue("firstname", eElement));
                     System.out.println("Last Name : " + getTagValue("lastname", eElement));
                     System.out.println("Nick Name : " + getTagValue("nickname", eElement));
                     System.out.println("Salary : " + getTagValue("salary", eElement));
-
                 }
             }
         } catch (Exception e) {
@@ -58,10 +49,7 @@ public class ReadXMLFile {
 
     private static String getTagValue(final String sTag, final Element eElement) {
         NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
-
         Node nValue = nlList.item(0);
-
         return nValue.getNodeValue();
     }
-
 }

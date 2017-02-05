@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.ImageValidator;
 
 public class ImageValidatorTest {
-
     private ImageValidator imageValidator;
 
     @BeforeClass
@@ -30,18 +29,15 @@ public class ImageValidatorTest {
 
     @Test(dataProvider = "ValidImageProvider")
     public void ValidImageTest(final String[] Image) {
-
         for (String temp : Image) {
             boolean valid = this.imageValidator.validate(temp);
             System.out.println("Image is valid : " + temp + " , " + valid);
             Assert.assertEquals(true, valid);
         }
-
     }
 
     @Test(dataProvider = "InvalidImageProvider", dependsOnMethods = "ValidImageTest")
     public void InValidImageTest(final String[] Image) {
-
         for (String temp : Image) {
             boolean valid = this.imageValidator.validate(temp);
             System.out.println("Image is valid : " + temp + " , " + valid);

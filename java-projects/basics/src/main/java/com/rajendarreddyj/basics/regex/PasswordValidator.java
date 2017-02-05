@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
  * special symbol (“@#$%”). This regular expression pattern is very useful to implement a strong and complex password.
  */
 public class PasswordValidator {
-
     private Pattern pattern;
     private Matcher matcher;
     private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})";

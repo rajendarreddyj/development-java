@@ -11,7 +11,6 @@ import com.rajendarreddyj.basics.regex.HTMLLinkExtrator;
 import com.rajendarreddyj.basics.regex.HTMLLinkExtrator.HtmlLink;
 
 public class HTMLLinkExtratorTest {
-
     private HTMLLinkExtrator htmlLinkExtrator;
 
     @BeforeClass
@@ -32,15 +31,11 @@ public class HTMLLinkExtratorTest {
 
     @Test(dataProvider = "HTMLContentProvider")
     public void ValidHTMLLinkTest(final String html) {
-
         Vector<HtmlLink> links = this.htmlLinkExtrator.grabHTMLLinks(html);
-
         Assert.assertTrue(links.size() != 0);
-
         for (int i = 0; i < links.size(); i++) {
             HtmlLink htmlLinks = links.get(i);
             System.out.println(htmlLinks);
         }
-
     }
 }

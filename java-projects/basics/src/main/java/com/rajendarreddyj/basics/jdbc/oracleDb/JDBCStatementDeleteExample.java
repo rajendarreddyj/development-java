@@ -13,14 +13,12 @@ import java.sql.Statement;
  * statement.executeUpdate(deleteTableSQL);
  */
 public class JDBCStatementDeleteExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
     private static final String DB_PASSWORD = "rajendar";
 
     public static void main(final String[] argv) {
-
         try {
             deleteRecordFromDbUserTable();
         } catch (SQLException e) {
@@ -29,7 +27,6 @@ public class JDBCStatementDeleteExample {
     }
 
     private static void deleteRecordFromDbUserTable() throws SQLException {
-
         Connection dbConnection = null;
         Statement statement = null;
         String deleteTableSQL = "DELETE DBUSER WHERE USER_ID = 1";

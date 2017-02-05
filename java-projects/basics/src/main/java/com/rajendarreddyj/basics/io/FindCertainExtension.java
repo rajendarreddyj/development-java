@@ -7,7 +7,6 @@ import java.io.FilenameFilter;
  * A FilenameFilter example, it will only display files that use “.txt” extension in folder “.“.
  */
 public class FindCertainExtension {
-
     private static final String FILE_DIR = ".";
     private static final String FILE_TEXT_EXT = ".txt";
 

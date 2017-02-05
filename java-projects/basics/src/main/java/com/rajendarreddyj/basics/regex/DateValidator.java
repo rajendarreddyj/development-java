@@ -13,10 +13,8 @@ import java.util.regex.Pattern;
  * below.
  */
 public class DateValidator {
-
     private Pattern pattern;
     private Matcher matcher;
-
     private static final String DATE_PATTERN = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
 
     public DateValidator() {
@@ -31,19 +29,13 @@ public class DateValidator {
      * @return true valid date fromat, false invalid date format
      */
     public boolean validate(final String date) {
-
         this.matcher = this.pattern.matcher(date);
-
         if (this.matcher.matches()) {
-
             this.matcher.reset();
-
             if (this.matcher.find()) {
-
                 String day = this.matcher.group(1);
                 String month = this.matcher.group(2);
                 int year = Integer.parseInt(this.matcher.group(3));
-
                 if (day.equals("31") && (month.equals("4") || month.equals("6") || month.equals("9") || month.equals("11") || month.equals("04")
                         || month.equals("06") || month.equals("09"))) {
                     return false; // only 1,3,5,7,8,10,12 has 31 days

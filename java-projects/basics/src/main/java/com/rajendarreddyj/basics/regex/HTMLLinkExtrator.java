@@ -18,12 +18,9 @@ import java.util.regex.Pattern;
  * extract the link from 1st pattern value. Of course with some logic as below.
  */
 public class HTMLLinkExtrator {
-
     private Pattern patternTag, patternLink;
     private Matcher matcherTag, matcherLink;
-
     private static final String HTML_A_TAG_PATTERN = "(?i)<a([^>]+)>(.+?)</a>";
-
     private static final String HTML_A_HREF_TAG_PATTERN = "\\s*(?i)href\\s*=\\s*(\"([^\"]*\")|'[^']*'|([^'\">\\s]+))";
 
     public HTMLLinkExtrator() {
@@ -39,7 +36,6 @@ public class HTMLLinkExtrator {
      * @return Vector links and link text
      */
     public Vector<HtmlLink> grabHTMLLinks(final String html) {
-
         Vector<HtmlLink> result = new Vector<>();
         this.matcherTag = this.patternTag.matcher(html);
         while (this.matcherTag.find()) {
@@ -55,7 +51,6 @@ public class HTMLLinkExtrator {
     }
 
     public class HtmlLink {
-
         String link;
         String linkText;
 

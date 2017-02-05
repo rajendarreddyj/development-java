@@ -15,14 +15,12 @@ import java.sql.SQLException;
  * preparedStatement.executeUpdate();
  */
 public class JDBCPreparedStatementCreateExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
     private static final String DB_PASSWORD = "rajendar";
 
     public static void main(final String[] argv) {
-
         try {
             createTable();
         } catch (SQLException e) {
@@ -31,12 +29,10 @@ public class JDBCPreparedStatementCreateExample {
     }
 
     private static void createTable() throws SQLException {
-
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
         String createTableSQL = "CREATE TABLE DBUSER1(" + "USER_ID NUMBER(5) NOT NULL, " + "USERNAME VARCHAR(20) NOT NULL, "
                 + "CREATED_BY VARCHAR(20) NOT NULL, " + "CREATED_DATE DATE NOT NULL, " + "PRIMARY KEY (USER_ID) " + ")";
-
         try {
             dbConnection = getDBConnection();
             preparedStatement = dbConnection.prepareStatement(createTableSQL);
@@ -57,7 +53,6 @@ public class JDBCPreparedStatementCreateExample {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);

@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
  * widely use in different websites.
  */
 public class UsernameValidator {
-
     private Pattern pattern;
     private Matcher matcher;
     private static final String USERNAME_PATTERN = "^[a-zA-Z0-9_ !`@#$%^&*()+=:;\"'{}<>,./?|~\\/-]{3,15}$";

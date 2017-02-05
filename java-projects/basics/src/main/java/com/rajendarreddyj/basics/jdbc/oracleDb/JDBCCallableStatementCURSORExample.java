@@ -24,14 +24,12 @@ import oracle.jdbc.OracleTypes;
  * cast the returned CURSOR to ResultSet and loop through the records sequentially.
  */
 public class JDBCCallableStatementCURSORExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
     private static final String DB_PASSWORD = "rajendar";
 
     public static void main(final String[] argv) {
-
         try {
             callOracleStoredProcCURSORParameter();
         } catch (SQLException e) {
@@ -40,7 +38,6 @@ public class JDBCCallableStatementCURSORExample {
     }
 
     private static void callOracleStoredProcCURSORParameter() throws SQLException {
-
         Connection dbConnection = null;
         CallableStatement callableStatement = null;
         ResultSet rs = null;
@@ -80,7 +77,6 @@ public class JDBCCallableStatementCURSORExample {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);

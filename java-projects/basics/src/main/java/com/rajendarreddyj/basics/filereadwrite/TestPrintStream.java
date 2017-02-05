@@ -7,7 +7,6 @@ public class TestPrintStream {
     public static void main(final String[] args) {
         System.out.println("January");
         System.out.println("February");
-
         PrintStream ps = null;
         try {
             ps = new PrintStream("sample.txt");
@@ -17,10 +16,8 @@ public class TestPrintStream {
             ps.close();
         }
         System.setOut(ps);
-
         System.out.println("March");
         System.out.println("April");
-
         ps.close();
     }
 }

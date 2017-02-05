@@ -15,7 +15,6 @@ import java.sql.Statement;
  * statement.executeUpdate(updateTableSQL);
  */
 public class JDBCStatementUpdateExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -33,7 +32,6 @@ public class JDBCStatementUpdateExample {
         Connection dbConnection = null;
         Statement statement = null;
         String updateTableSQL = "UPDATE DBUSER" + " SET USERNAME = 'rajendar_new' " + " WHERE USER_ID = 1";
-
         try {
             dbConnection = getDBConnection();
             statement = dbConnection.createStatement();
@@ -54,7 +52,6 @@ public class JDBCStatementUpdateExample {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);

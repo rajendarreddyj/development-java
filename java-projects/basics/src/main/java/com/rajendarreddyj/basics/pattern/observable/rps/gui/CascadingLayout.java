@@ -27,7 +27,6 @@ public class CascadingLayout implements LayoutManager {
             // position/size the component
             comp.setSize(comp.getPreferredSize());
             comp.setLocation(x, y);
-
             x += 40;
             y += 40;
         }

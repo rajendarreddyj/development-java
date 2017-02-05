@@ -6,7 +6,6 @@ package com.rajendarreddyj.basics.enums;
  *
  */
 public class TokenType extends TypeSafeEnum {
-
     public TokenType(final String name) {
         super(name, TokenType.class);
     }

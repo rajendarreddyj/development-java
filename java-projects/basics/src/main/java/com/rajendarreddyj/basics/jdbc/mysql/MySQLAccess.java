@@ -30,7 +30,6 @@ public class MySQLAccess {
                 System.err.println("Unable to load driver.");
                 E.printStackTrace();
             }
-
             // Setup the connection with the DB
             this.connect = DriverManager.getConnection(url, userName, password);
             if (!this.connect.isClosed()) {
@@ -41,7 +40,6 @@ public class MySQLAccess {
             System.err.println("Cannot connect to database server");
             e.printStackTrace();
         }
-
         // Statements allow to issue SQL queries to the database
         this.statement = this.connect.createStatement();
         // Result set get the result of the SQL query
@@ -59,33 +57,26 @@ public class MySQLAccess {
             this.preparedStatement.setString(5, "TestSummary");
             this.preparedStatement.setString(6, "TestComment");
             this.preparedStatement.executeUpdate();
-
             this.preparedStatement = this.connect.prepareStatement("SELECT myuser, webpage, datum, summery, COMMENTS from table.COMMENTS");
             this.resultSet = this.preparedStatement.executeQuery();
             this.writeResultSet(this.resultSet);
-
             // Remove again the insert comment
             this.preparedStatement = this.connect.prepareStatement("delete from table.COMMENTS where myuser= ? ; ");
             this.preparedStatement.setString(1, "Test");
             this.preparedStatement.executeUpdate();
-
             this.resultSet = this.statement.executeQuery("select * from table.COMMENTS");
             this.writeMetaData(this.resultSet);
-
         } catch (Exception e) {
             throw e;
         } finally {
             this.close();
         }
-
     }
 
     private void writeMetaData(final ResultSet resultSet) throws SQLException {
         // Now get some metadata from the database
         // Result set get the result of the SQL query
-
         System.out.println("The columns in the table are: ");
-
         System.out.println("Table: " + resultSet.getMetaData().getTableName(1));
         for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
             System.out.println("Column " + i + " " + resultSet.getMetaData().getColumnName(i));
@@ -118,17 +109,13 @@ public class MySQLAccess {
             if (this.resultSet != null) {
                 this.resultSet.close();
             }
-
             if (this.statement != null) {
                 this.statement.close();
             }
-
             if (this.connect != null) {
                 this.connect.close();
             }
         } catch (Exception e) {
-
         }
     }
-
 }

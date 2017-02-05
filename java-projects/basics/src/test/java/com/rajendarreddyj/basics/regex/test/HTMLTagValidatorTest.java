@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.HTMLTagValidator;
 
 public class HTMLTagValidatorTest {
-
     private HTMLTagValidator htmlTagValidator;
 
     @BeforeClass
@@ -31,19 +30,15 @@ public class HTMLTagValidatorTest {
 
     @Test(dataProvider = "ValidHTMLTagProvider")
     public void ValidHTMLTagTest(final String tag) {
-
         boolean valid = this.htmlTagValidator.validate(tag);
         System.out.println("HTMLTag is valid : " + tag + " , " + valid);
         Assert.assertEquals(true, valid);
-
     }
 
     @Test(dataProvider = "InvalidHTMLTagProvider", dependsOnMethods = "ValidHTMLTagTest")
     public void InValidHTMLTagTest(final String tag) {
-
         boolean valid = this.htmlTagValidator.validate(tag);
         System.out.println("HTMLTag is valid : " + tag + " , " + valid);
         Assert.assertEquals(false, valid);
-
     }
 }

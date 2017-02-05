@@ -13,10 +13,8 @@ import java.util.regex.Pattern;
  * but does not allow one double quotes (") "string, one single quote (') 'string or a closing tag > without single or
  * double quotes enclosed. At last , end with a closing tag “>”
  */public class HTMLTagValidator {
-
     private Pattern pattern;
     private Matcher matcher;
-
     private static final String HTML_TAG_PATTERN = "<(\"[^\"]*\"|'[^']*'|[^'\">])*>";
 
     public HTMLTagValidator() {
@@ -31,9 +29,7 @@ import java.util.regex.Pattern;
      * @return true valid html tag, false invalid html tag
      */
     public boolean validate(final String tag) {
-
         this.matcher = this.pattern.matcher(tag);
         return this.matcher.matches();
-
     }
 }

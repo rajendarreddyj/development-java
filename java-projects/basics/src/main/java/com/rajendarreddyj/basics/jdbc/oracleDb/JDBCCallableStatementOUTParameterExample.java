@@ -26,14 +26,12 @@ import java.sql.SQLException;
  * CallableStatement JDBC example to call a stored procedure via CallableStatement.
  */
 public class JDBCCallableStatementOUTParameterExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
     private static final String DB_PASSWORD = "rajendar";
 
     public static void main(final String[] argv) {
-
         try {
             callOracleStoredProcOUTParameter();
         } catch (SQLException e) {
@@ -42,7 +40,6 @@ public class JDBCCallableStatementOUTParameterExample {
     }
 
     private static void callOracleStoredProcOUTParameter() throws SQLException {
-
         Connection dbConnection = null;
         CallableStatement callableStatement = null;
         String getDBUSERByUserIdSql = "{call getDBUSERByUserId(?,?,?,?)}";
@@ -74,7 +71,6 @@ public class JDBCCallableStatementOUTParameterExample {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);

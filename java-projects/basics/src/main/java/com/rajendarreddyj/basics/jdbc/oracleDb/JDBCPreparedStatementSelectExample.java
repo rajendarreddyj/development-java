@@ -18,14 +18,12 @@ import java.sql.SQLException;
  * username = rs.getString("USERNAME"); }
  */
 public class JDBCPreparedStatementSelectExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
     private static final String DB_PASSWORD = "rajendar";
 
     public static void main(final String[] argv) {
-
         try {
             selectRecordsFromTable();
         } catch (SQLException e) {
@@ -34,11 +32,9 @@ public class JDBCPreparedStatementSelectExample {
     }
 
     private static void selectRecordsFromTable() throws SQLException {
-
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
         String selectSQL = "SELECT USER_ID, USERNAME FROM DBUSER1 WHERE USER_ID = ?";
-
         try {
             dbConnection = getDBConnection();
             preparedStatement = dbConnection.prepareStatement(selectSQL);
@@ -64,7 +60,6 @@ public class JDBCPreparedStatementSelectExample {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);

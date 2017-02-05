@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileSearch {
-
     private String fileNameToSearch;
     private List<String> result = new ArrayList<>();
 
@@ -22,12 +21,9 @@ public class FileSearch {
     }
 
     public static void main(final String[] args) {
-
         FileSearch fileSearch = new FileSearch();
-
         // try different directory and filename :)
         fileSearch.searchDirectory(new File("."), "sample.txt");
-
         int count = fileSearch.getResult().size();
         if (count == 0) {
             System.out.println("\nNo result found!");
@@ -40,22 +36,17 @@ public class FileSearch {
     }
 
     public void searchDirectory(final File directory, final String fileNameToSearch) {
-
         this.setFileNameToSearch(fileNameToSearch);
-
         if (directory.isDirectory()) {
             this.search(directory);
         } else {
             System.out.println(directory.getAbsoluteFile() + " is not a directory!");
         }
-
     }
 
     private void search(final File file) {
-
         if (file.isDirectory()) {
             System.out.println("Searching directory ... " + file.getAbsoluteFile());
-
             // do you have permission to read this directory?
             if (file.canRead()) {
                 for (File temp : file.listFiles()) {
@@ -65,15 +56,11 @@ public class FileSearch {
                         if (this.getFileNameToSearch().equals(temp.getName().toLowerCase())) {
                             this.result.add(temp.getAbsoluteFile().toString());
                         }
-
                     }
                 }
-
             } else {
                 System.out.println(file.getAbsoluteFile() + "Permission Denied");
             }
         }
-
     }
-
 }

@@ -1,4 +1,3 @@
-
 package com.rajendarreddyj.basics.xml;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -14,7 +13,6 @@ import org.w3c.dom.Element;
  * document.
  */
 public class DocumentFactory {
-
     private static Document getNewDocument(String topTag, final String prefix, final String nameSpace) {
         Document newDoc = null;
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();

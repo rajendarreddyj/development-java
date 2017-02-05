@@ -22,14 +22,12 @@ import java.sql.SQLException;
  * CallableStatement.
  */
 public class JDBCCallableStatementINParameterExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
     private static final String DB_PASSWORD = "rajendar";
 
     public static void main(final String[] argv) {
-
         try {
             callOracleStoredProcINParameter();
         } catch (SQLException e) {
@@ -38,11 +36,9 @@ public class JDBCCallableStatementINParameterExample {
     }
 
     private static void callOracleStoredProcINParameter() throws SQLException {
-
         Connection dbConnection = null;
         CallableStatement callableStatement = null;
         String insertStoreProc = "{call insertDBUSER(?,?,?,?)}";
-
         try {
             dbConnection = getDBConnection();
             callableStatement = dbConnection.prepareCall(insertStoreProc);
@@ -66,7 +62,6 @@ public class JDBCCallableStatementINParameterExample {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);

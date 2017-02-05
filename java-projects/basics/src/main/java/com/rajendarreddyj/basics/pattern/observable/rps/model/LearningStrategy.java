@@ -10,7 +10,6 @@ import java.util.Observable;
  */
 public class LearningStrategy implements RPSStrategy {
     private static final long serialVersionUID = 1L;
-
     private Weapon opponentsLastMove;
     private int playerNumber;
 

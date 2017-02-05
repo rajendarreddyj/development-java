@@ -28,7 +28,6 @@ public class CounterRunner implements Runnable {
                 Thread.sleep(10 + RANDOM.nextInt(50));
             } catch (InterruptedException ie) {
             }
-
             if (this.increment) {
                 this.counter.increment();
             } else {

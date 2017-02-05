@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
  */
 
 public class JDBCBatchUpdateExample1 {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -27,7 +26,6 @@ public class JDBCBatchUpdateExample1 {
     private static final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
     public static void main(final String[] argv) {
-
         try {
             batchInsertRecordsIntoTable();
         } catch (SQLException e) {
@@ -36,7 +34,6 @@ public class JDBCBatchUpdateExample1 {
     }
 
     private static void batchInsertRecordsIntoTable() throws SQLException {
-
         Connection dbConnection = null;
         Statement statement = null;
         String insertTableSQL1 = "INSERT INTO DBUSER" + "(USER_ID, USERNAME, CREATED_BY, CREATED_DATE) " + "VALUES" + "(101,'rajendar101','system', "
@@ -68,7 +65,6 @@ public class JDBCBatchUpdateExample1 {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);
@@ -85,7 +81,6 @@ public class JDBCBatchUpdateExample1 {
     }
 
     private static String getCurrentTimeStamp() {
-
         java.util.Date today = new java.util.Date();
         return dateFormat.format(today.getTime());
     }

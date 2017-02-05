@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.PasswordValidator;
 
 public class PasswordValidatorTest {
-
     private PasswordValidator passwordValidator;
 
     @BeforeClass
@@ -28,18 +27,15 @@ public class PasswordValidatorTest {
 
     @Test(dataProvider = "ValidPasswordProvider")
     public void ValidPasswordTest(final String[] password) {
-
         for (String temp : password) {
             boolean valid = this.passwordValidator.validate(temp);
             System.out.println("Password is valid : " + temp + " , " + valid);
             Assert.assertEquals(true, valid);
         }
-
     }
 
     @Test(dataProvider = "InvalidPasswordProvider", dependsOnMethods = "ValidPasswordTest")
     public void InValidPasswordTest(final String[] password) {
-
         for (String temp : password) {
             boolean valid = this.passwordValidator.validate(temp);
             System.out.println("Password is valid : " + temp + " , " + valid);

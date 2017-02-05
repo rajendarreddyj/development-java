@@ -60,7 +60,6 @@ public class PaintedView extends View {
             Ellipse2D.Double handle2 = new Ellipse2D.Double(x, y + 30, 20, 20);
             Line2D.Double blade1 = new Line2D.Double(x + 15, y + 15, x + 50, y + 40);
             Line2D.Double blade2 = new Line2D.Double(x + 15, y + 35, x + 50, y + 10);
-
             g2.setStroke(new BasicStroke(3));
             g2.setColor(Color.YELLOW);
             g2.draw(handle1);

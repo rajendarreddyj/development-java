@@ -25,6 +25,5 @@ public class RandomStrategy implements RPSStrategy {
      */
     @Override
     public void update(final Observable o, final Object arg) {
-
     }
 }

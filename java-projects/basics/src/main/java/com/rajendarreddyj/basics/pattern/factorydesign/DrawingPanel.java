@@ -144,7 +144,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 System.out.println("*** DrawingPanel saving animated GIF: " + new File(animationSaveFileName).getName());
                 System.out.println("***");
                 settingsFile.delete();
-
                 System.setProperty(ANIMATED_PROPERTY, "1");
                 System.setProperty(SAVE_PROPERTY, animationSaveFileName);
             }
@@ -177,7 +176,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             return false;
         }
     }
-
     /*
     private static boolean propertyIsFalse(String name) {
     try {
@@ -194,7 +192,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
     private static boolean mainIsActive() {
         ThreadGroup group = Thread.currentThread().getThreadGroup();
         int activeCount = group.activeCount();
-
         // look for the main thread in the current thread group
         Thread[] threads = new Thread[activeCount];
         group.enumerate(threads);
@@ -207,7 +204,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 return thread.isAlive();
             }
         }
-
         // didn't find a running main thread; guess that main is done running
         return false;
     }
@@ -274,13 +270,10 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         if ((width < 0) || (width > MAX_SIZE) || (height < 0) || (height > MAX_SIZE)) {
             throw new IllegalArgumentException("Illegal width/height: " + width + " x " + height);
         }
-
         checkAnimationSettings();
-
         synchronized (this.getClass()) {
             instances++;
             this.instanceNumber = instances; // each DrawingPanel stores its own int number
-
             if ((shutdownThread == null) && !usingDrJava()) {
                 shutdownThread = new Thread(new Runnable() {
                     // Runnable implementation; used for shutdown thread.
@@ -296,7 +289,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                                     } catch (SecurityException sex) {
                                     }
                                 }
-
                                 Thread.sleep(250);
                             }
                         } catch (Exception e) {
@@ -309,17 +301,14 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         }
         this.width = width;
         this.height = height;
-
         if (DEBUG) {
             System.out.println("w=" + width + ",h=" + height + ",anim=" + this.isAnimated() + ",graph=" + this.isGraphical() + ",save=" + this.shouldSave());
         }
-
         if (this.isAnimated() && this.shouldSave()) {
             // image must be no more than 256 colors
             this.image = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_INDEXED);
             // image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
             this.PRETTY = false; // turn off anti-aliasing to save palette colors
-
             // initially fill the entire frame with the background color,
             // because it won't show through via transparency like with a full ARGB image
             Graphics g = this.image.getGraphics();
@@ -329,36 +318,29 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         }
         this.initialPixel = this.image.getRGB(0, 0);
-
         this.g2 = (Graphics2D) this.image.getGraphics();
         this.g2.setColor(Color.BLACK);
         if (this.PRETTY) {
             this.g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         }
-
         if (this.isAnimated()) {
             this.initializeAnimation();
         }
-
         if (this.isGraphical()) {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (Exception e) {
             }
-
             this.statusBar = new JLabel(" ");
             this.statusBar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
             this.panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
             this.panel.setBackground(this.backgroundColor);
             this.panel.setPreferredSize(new Dimension(width, height));
             this.imagePanel = new ImagePanel(this.image);
             this.imagePanel.setBackground(this.backgroundColor);
             this.panel.add(this.imagePanel);
-
             // listen to mouse movement
             this.panel.addMouseMotionListener(this);
-
             // main window frame
             this.frame = new JFrame(TITLE);
             this.frame.setResizable(false);
@@ -369,17 +351,14 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             this.frame.getContentPane().add(center);
             this.frame.getContentPane().add(this.statusBar, "South");
             this.frame.setBackground(Color.DARK_GRAY);
-
             // menu bar
             this.setupMenuBar();
-
             this.frame.pack();
             this.center(this.frame);
             this.frame.setVisible(true);
             if (!this.shouldSave()) {
                 this.frame.toFront();
             }
-
             // repaint timer so that the screen will update
             this.createTime = System.currentTimeMillis();
             this.timer = new Timer(DELAY, this);
@@ -451,7 +430,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             JOptionPane.showMessageDialog(this.frame,
                     "DrawingPanel\n" + "Graphical library class to support Building Java Programs textbook\n" + "written by Marty Stepp and Stuart Reges\n"
                             + "University of Washington\n\n" + "please visit our web site at:\n" + "http://www.buildingjavaprograms.com/",
-
                     "About DrawingPanel", JOptionPane.INFORMATION_MESSAGE);
         }
     }
@@ -523,7 +501,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         // try {
         // mt.waitForAll();
         // } catch (InterruptedException e) {}
-
         boolean result = this.imagePanel.imageUpdate(img, arg1, arg2, arg3, arg4, arg5);
         // imagePanel.repaint();
         return result;
@@ -533,7 +510,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
     public Image loadImage(final String filename) {
         Toolkit tk = Toolkit.getDefaultToolkit();
         Image img = tk.getImage(filename);
-
         // Java is stupid and doesn't actually load images unless you do this
         MediaTracker mt = new MediaTracker(this.imagePanel);
         mt.addImage(img, 0);
@@ -542,7 +518,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         } catch (InterruptedException ie) {
             // won't happen unless program exits during image load
         }
-
         return img;
     }
 
@@ -570,7 +545,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             if (filename == null) {
                 filename = this.callingClassName + ".png";
             }
-
             if (this.isAnimated()) {
                 this.saveAnimated(filename);
             } else {
@@ -585,16 +559,13 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
     // take the current contents of the panel and write them to a file
     public void save(String filename) throws IOException {
         BufferedImage image2 = this.getImage();
-
         // if saving multiple panels, append number
         // (e.g. output_*.png becomes output_1.png, output_2.png, etc.)
         if (this.isMultiple()) {
             filename = filename.replaceAll("\\*", String.valueOf(this.instanceNumber));
         }
-
         int lastDot = filename.lastIndexOf(".");
         String extension = filename.substring(lastDot + 1);
-
         // write file
         // TODO: doesn't save background color I don't think
         ImageIO.write(image2, extension, new File(filename));
@@ -608,9 +579,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         }
         this.frames.add(new ImageFrame(this.getImage(), 5000));
         // encoder.continueEncoding(stream, getImage(), 5000);
-
         // Gif89Encoder gifenc = new Gif89Encoder();
-
         // add each frame of animation to the encoder
         try {
             for (int i = 0; i < this.frames.size(); i++) {
@@ -623,7 +592,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         } catch (OutOfMemoryError e) {
             System.out.println("Out of memory when saving");
         }
-
         // gifenc.setComments(annotation);
         // gifenc.setUniformDelay((int) Math.round(100 / frames_per_second));
         // gifenc.setUniformDelay(DELAY);
@@ -641,7 +609,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             this.panel.setBackground(c);
             this.imagePanel.setBackground(c);
         }
-
         // with animated images, need to palette-swap the old bg color for the new
         // because there's no notion of transparency in a palettized 8-bit image
         if (this.isAnimated()) {
@@ -670,7 +637,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         BufferedImage newImage = new BufferedImage(width, height, this.image.getType());
         this.imagePanel.setImage(newImage);
         newImage.getGraphics().drawImage(this.image, 0, 0, this.imagePanel);
-
         this.width = width;
         this.height = height;
         this.image = newImage;
@@ -714,20 +680,17 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 }
             }
         }
-
         // manually enable animation if necessary
         if (!this.isAnimated() && !this.isMultiple() && this.autoEnableAnimationOnSleep()) {
             this.animated = true;
             this.initializeAnimation();
         }
-
         // capture a frame of animation
         if (this.isAnimated() && this.shouldSave() && !this.isMultiple()) {
             try {
                 if (this.frames.size() < MAX_FRAMES) {
                     this.frames.add(new ImageFrame(this.getImage(), millis));
                 }
-
                 // reset creation timer so that we won't save/close just yet
                 this.createTime = System.currentTimeMillis();
             } catch (OutOfMemoryError e) {
@@ -789,7 +752,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             this.frame.getContentPane().validate();
             this.imagePanel.repaint();
             this.setStatusBarText(" ");
-
             Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
             if ((size.width <= screen.width) && (size.height <= screen.height)) {
                 this.frame.pack();
@@ -802,7 +764,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
     private void center(final Window frame) {
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension screen = tk.getScreenSize();
-
         int x = Math.max(0, (screen.width - frame.getWidth()) / 2);
         int y = Math.max(0, (screen.height - frame.getHeight()) / 2);
         frame.setLocation(x, y);
@@ -823,13 +784,11 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         // save current image to a temp file
         try {
             String tempFile = this.saveToTempFile();
-
             // use file chooser dialog to find image to compare against
             this.checkChooser();
             if (this.chooser.showOpenDialog(this.frame) != JFileChooser.APPROVE_OPTION) {
                 return;
             }
-
             // user chose a file; let's diff it
             new DiffImage(this.chooser.getSelectedFile().toString(), tempFile);
         } catch (IOException ioe) {
@@ -842,7 +801,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         // save current image to a temp file
         try {
             String tempFile = this.saveToTempFile();
-
             // get list of images to compare against from web site
             URL url = new URL(COURSE_WEB_SITE);
             Scanner input = new Scanner(url.openStream());
@@ -852,19 +810,16 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 String line = input.nextLine().trim();
                 if ((line.length() > 0) && !line.startsWith("#")) {
                     lines.add(line);
-
                     // get filename
                     int lastSlash = line.lastIndexOf('/');
                     if (lastSlash >= 0) {
                         line = line.substring(lastSlash + 1);
                     }
-
                     // remove extension
                     int dot = line.lastIndexOf('.');
                     if (dot >= 0) {
                         line = line.substring(0, dot);
                     }
-
                     filenames.add(line);
                 }
             }
@@ -884,7 +839,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                     if (choice < 0) {
                         return;
                     }
-
                     // user chose a file; let's diff it
                     fileURL = lines.get(choice);
                 }
@@ -929,7 +883,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 break;
             }
         }
-
         return className;
     }
 
@@ -1026,7 +979,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 PrintStream out = new PrintStream(new File(ANIMATION_FILE_NAME));
                 out.println(filename);
                 out.close();
-
                 JOptionPane.showMessageDialog(this.frame,
                         "Due to constraints about how DrawingPanel works, you'll need to\n"
                                 + "re-run your program.  When you run it the next time, DrawingPanel will \n" + "automatically save your animated image as: "
@@ -1043,20 +995,17 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         if (this.chooser.showSaveDialog(this.frame) != JFileChooser.APPROVE_OPTION) {
             return null;
         }
-
         File selectedFile = this.chooser.getSelectedFile();
         String filename = selectedFile.toString();
         if (!filename.toLowerCase().endsWith(extension)) {
             // Windows is dumb about extensions with file choosers
             filename += "." + extension;
         }
-
         // confirm overwrite of file
         if (new File(filename).exists()
                 && (JOptionPane.showConfirmDialog(this.frame, "File exists.  Overwrite?", "Overwrite?", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION)) {
             return null;
         }
-
         return filename;
     }
 
@@ -1079,45 +1028,35 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
     private void setupMenuBar() {
         // abort compare if we're running as an applet or in a secure environment
         boolean secure = (System.getSecurityManager() != null);
-
         JMenuItem saveAs = new JMenuItem("Save As...", 'A');
         saveAs.addActionListener(this);
         saveAs.setAccelerator(KeyStroke.getKeyStroke("ctrl S"));
         saveAs.setEnabled(!secure);
-
         JMenuItem saveAnimated = new JMenuItem("Save Animated GIF...", 'G');
         saveAnimated.addActionListener(this);
         saveAnimated.setAccelerator(KeyStroke.getKeyStroke("ctrl G"));
         saveAnimated.setEnabled(!secure);
-
         JMenuItem compare = new JMenuItem("Compare to File...", 'C');
         compare.addActionListener(this);
         compare.setAccelerator(KeyStroke.getKeyStroke("ctrl C"));
         compare.setEnabled(!secure);
-
         JMenuItem compareURL = new JMenuItem("Compare to Web File...", 'U');
         compareURL.addActionListener(this);
         compareURL.setAccelerator(KeyStroke.getKeyStroke("ctrl U"));
         compareURL.setEnabled(!secure);
-
         JMenuItem zoomIn = new JMenuItem("Zoom In", 'I');
         zoomIn.addActionListener(this);
         zoomIn.setAccelerator(KeyStroke.getKeyStroke("ctrl EQUALS"));
-
         JMenuItem zoomOut = new JMenuItem("Zoom Out", 'O');
         zoomOut.addActionListener(this);
         zoomOut.setAccelerator(KeyStroke.getKeyStroke("ctrl MINUS"));
-
         JMenuItem zoomNormal = new JMenuItem("Zoom Normal (100%)", 'N');
         zoomNormal.addActionListener(this);
         zoomNormal.setAccelerator(KeyStroke.getKeyStroke("ctrl 0"));
-
         JMenuItem exit = new JMenuItem("Exit", 'x');
         exit.addActionListener(this);
-
         JMenuItem about = new JMenuItem("About...", 'A');
         about.addActionListener(this);
-
         JMenu file = new JMenu("File");
         file.setMnemonic('F');
         file.add(compareURL);
@@ -1127,17 +1066,14 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         file.add(saveAnimated);
         file.addSeparator();
         file.add(exit);
-
         JMenu view = new JMenu("View");
         view.setMnemonic('V');
         view.add(zoomIn);
         view.add(zoomOut);
         view.add(zoomNormal);
-
         JMenu help = new JMenu("Help");
         help.setMnemonic('H');
         help.add(about);
-
         JMenuBar bar = new JMenuBar();
         bar.add(file);
         bar.add(view);
@@ -1157,10 +1093,8 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
     private int showOptionDialog(final Frame parent, final String title, final String message, final String[] names) {
         final JDialog dialog = new JDialog(parent, title, true);
         JPanel center = new JPanel(new GridLayout(0, 1));
-
         // just a hack to make the return value a mutable reference to an int
         final int[] hack = { -1 };
-
         for (int i = 0; i < names.length; i++) {
             final JButton button = new JButton(names[i]);
             button.setActionCommand(String.valueOf(i));
@@ -1173,7 +1107,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             });
             center.add(button);
         }
-
         JPanel south = new JPanel();
         JButton cancel = new JButton("Cancel");
         cancel.setMnemonic('C');
@@ -1185,11 +1118,9 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             }
         });
         south.add(cancel);
-
         dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         dialog.getContentPane().setLayout(new BorderLayout(10, 5));
         // ((JComponent) dialog.getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
         if (message != null) {
             JLabel messageLabel = new JLabel(message);
             dialog.add(messageLabel, BorderLayout.NORTH);
@@ -1202,14 +1133,12 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         cancel.requestFocus();
         dialog.setVisible(true);
         cancel.requestFocus();
-
         return hack[0];
     }
 
     // Reports the differences between two images.
     private class DiffImage extends JPanel implements ActionListener, ChangeListener {
         private static final long serialVersionUID = 0;
-
         private BufferedImage image1;
         private BufferedImage image2;
         private String image1name;
@@ -1218,7 +1147,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         private String label1Text = "Expected";
         private String label2Text = "Actual";
         private boolean highlightDiffs = false;
-
         private Color highlightColor = new Color(224, 0, 224);
         private JLabel image1Label;
         private JLabel image2Label;
@@ -1265,14 +1193,12 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             if ((this.image1 == null) || (this.image2 == null)) {
                 return;
             }
-
             int w1 = this.image1.getWidth();
             int h1 = this.image1.getHeight();
             int w2 = this.image2.getWidth();
             int h2 = this.image2.getHeight();
             int wmax = Math.max(w1, w2);
             int hmax = Math.max(h1, h2);
-
             // check each pair of pixels
             this.numDiffPixels = 0;
             for (int y = 0; y < hmax; y++) {
@@ -1289,14 +1215,11 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         // initializes diffimage panel
         public void display() {
             this.countDiffPixels();
-
             this.setupComponents();
             this.setupEvents();
             this.setupLayout();
-
             this.frame.pack();
             DrawingPanel.this.center(this.frame);
-
             this.frame.setVisible(true);
             this.frame.toFront();
         }
@@ -1309,7 +1232,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             int h = this.getHeight();
             int dw = w - iw;
             int dh = h - ih;
-
             if (dw > 0) {
                 g2.fillRect(iw, 0, dw, ih);
             }
@@ -1327,12 +1249,10 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         public void paintComponent(final Graphics g) {
             super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g;
-
             // draw the expected output (image 1)
             if (this.image1 != null) {
                 this.drawImageFull(g2, this.image1);
             }
-
             // draw the actual output (image 2)
             if (this.image2 != null) {
                 Composite oldComposite = g2.getComposite();
@@ -1341,17 +1261,14 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 g2.setComposite(oldComposite);
             }
             g2.setColor(Color.BLACK);
-
             // draw the highlighted diffs (if so desired)
             if (this.highlightDiffs && (this.image1 != null) && (this.image2 != null)) {
                 int w1 = this.image1.getWidth();
                 int h1 = this.image1.getHeight();
                 int w2 = this.image2.getWidth();
                 int h2 = this.image2.getHeight();
-
                 int wmax = Math.max(w1, w2);
                 int hmax = Math.max(h1, h2);
-
                 // check each pair of pixels
                 g2.setColor(this.highlightColor);
                 for (int y = 0; y < hmax; y++) {
@@ -1388,7 +1305,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             if (DrawingPanel.this.chooser.showSaveDialog(this.frame) != JFileChooser.APPROVE_OPTION) {
                 return;
             }
-
             File selectedFile = DrawingPanel.this.chooser.getSelectedFile();
             try {
                 this.save(selectedFile.toString());
@@ -1403,7 +1319,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             if (DrawingPanel.this.chooser.showSaveDialog(this.frame) != JFileChooser.APPROVE_OPTION) {
                 return;
             }
-
             File selectedFile = DrawingPanel.this.chooser.getSelectedFile();
             try {
                 this.setImage1(selectedFile.toString());
@@ -1421,7 +1336,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             if (image == null) {
                 throw new NullPointerException();
             }
-
             this.image1 = image;
             this.setPreferredSize(
                     new Dimension(Math.max(this.getPreferredSize().width, image.getWidth()), Math.max(this.getPreferredSize().height, image.getHeight())));
@@ -1447,7 +1361,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             if (DrawingPanel.this.chooser.showSaveDialog(this.frame) != JFileChooser.APPROVE_OPTION) {
                 return;
             }
-
             File selectedFile = DrawingPanel.this.chooser.getSelectedFile();
             try {
                 this.setImage2(selectedFile.toString());
@@ -1465,7 +1378,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             if (image == null) {
                 throw new NullPointerException();
             }
-
             this.image2 = image;
             this.setPreferredSize(
                     new Dimension(Math.max(this.getPreferredSize().width, image.getWidth()), Math.max(this.getPreferredSize().height, image.getHeight())));
@@ -1482,7 +1394,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             } else {
                 this.setImage2(ImageIO.read(new File(filename)));
             }
-
         }
 
         private void setupComponents() {
@@ -1493,26 +1404,21 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             this.frame = new JFrame(title);
             this.frame.setResizable(false);
             // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
             this.slider = new JSlider();
             this.slider.setPaintLabels(false);
             this.slider.setPaintTicks(true);
             this.slider.setSnapToTicks(true);
             this.slider.setMajorTickSpacing(25);
             this.slider.setMinorTickSpacing(5);
-
             this.box = new JCheckBox("Highlight diffs in color: ", this.highlightDiffs);
-
             this.colorButton = new JButton();
             this.colorButton.setBackground(this.highlightColor);
             this.colorButton.setForeground(this.highlightColor);
             this.colorButton.setPreferredSize(new Dimension(24, 24));
-
             this.diffPixelsLabel = new JLabel("(" + this.numDiffPixels + " pixels differ)");
             this.diffPixelsLabel.setFont(this.diffPixelsLabel.getFont().deriveFont(Font.BOLD));
             this.image1Label = new JLabel(this.label1Text);
             this.image2Label = new JLabel(this.label2Text);
-
             this.setupMenuBar();
         }
 
@@ -1524,18 +1430,15 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             southPanel1.add(this.slider);
             southPanel1.add(this.image2Label);
             southPanel1.add(Box.createHorizontalStrut(20));
-
             JPanel southPanel2 = new JPanel();
             southPanel2.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
             southPanel2.add(this.diffPixelsLabel);
             southPanel2.add(Box.createHorizontalStrut(20));
             southPanel2.add(this.box);
             southPanel2.add(this.colorButton);
-
             Container southPanel = javax.swing.Box.createVerticalBox();
             southPanel.add(southPanel1);
             southPanel.add(southPanel2);
-
             this.frame.add(this, BorderLayout.CENTER);
             this.frame.add(southPanel, BorderLayout.SOUTH);
         }
@@ -1548,17 +1451,14 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             this.setImage1Item.setAccelerator(KeyStroke.getKeyStroke("ctrl 1"));
             this.setImage2Item = new JMenuItem("Set Image 2...", '2');
             this.setImage2Item.setAccelerator(KeyStroke.getKeyStroke("ctrl 2"));
-
             JMenu file = new JMenu("File");
             file.setMnemonic('F');
             file.add(this.setImage1Item);
             file.add(this.setImage2Item);
             file.addSeparator();
             file.add(this.saveAsItem);
-
             JMenuBar bar = new JMenuBar();
             bar.add(file);
-
             // disabling menu bar to simplify code
             // frame.setJMenuBar(bar);
         }
@@ -1580,7 +1480,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             this.setImage2Item.addActionListener(this);
         }
     }
-
     // ******************************************************************************
     // DirectGif89Frame.java
     // ******************************************************************************
@@ -1601,7 +1500,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
      * @see IndexGif89Frame
      */
     class DirectGif89Frame extends Gif89Frame {
-
         private int[] argbPixels;
 
         // ----------------------------------------------------------------------------
@@ -1615,7 +1513,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
          */
         public DirectGif89Frame(final Image img) throws IOException {
             PixelGrabber pg = new PixelGrabber(img, 0, 0, -1, -1, true);
-
             String errmsg = null;
             try {
                 if (!pg.grabPixels()) {
@@ -1624,16 +1521,13 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             } catch (InterruptedException e) {
                 errmsg = "interrupted grabbing pixels from image";
             }
-
             if (errmsg != null) {
                 throw new IOException(errmsg + " (" + this.getClass().getName() + ")");
             }
-
             this.theWidth = pg.getWidth();
             this.theHeight = pg.getHeight();
             this.argbPixels = (int[]) pg.getPixels();
             this.ciPixels = new byte[this.argbPixels.length];
-
             // flush to conserve resources
             img.flush();
         }
@@ -1663,7 +1557,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             return this.argbPixels;
         }
     }
-
     // ******************************************************************************
     // Gif89Encoder.java
     // ******************************************************************************
@@ -1981,13 +1874,10 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         public void encode(final OutputStream out) throws IOException {
             int nframes = this.getFrameCount();
             boolean is_sequence = nframes > 1;
-
             // N.B. must be called before writing screen descriptor
             this.colorTable.closePixelProcessing();
-
             // write GIF HEADER
             putAscii("GIF89a", out);
-
             // write global blocks
             this.writeLogicalScreenDescriptor(out);
             this.colorTable.encode(out);
@@ -1997,7 +1887,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             if ((this.theComments != null) && (this.theComments.length() > 0)) {
                 this.writeCommentExtension(out);
             }
-
             // write out the control and rendering data for each frame
             for (int i = 0; i < nframes; ++i) {
                 DirectGif89Frame frame = (DirectGif89Frame) this.vFrames.elementAt(i);
@@ -2005,10 +1894,8 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 this.vFrames.set(i, null); // for GC's sake
                 System.gc();
             }
-
             // write GIF TRAILER
             out.write(';');
-
             out.flush();
         }
 
@@ -2030,13 +1917,10 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             boolean is_sequence = true;
             Gif89Frame gf = new DirectGif89Frame(image);
             this.accommodateFrame(gf);
-
             // N.B. must be called before writing screen descriptor
             this.colorTable.closePixelProcessing();
-
             // write GIF HEADER
             putAscii("GIF89a", out);
-
             // write global blocks
             this.writeLogicalScreenDescriptor(out);
             this.colorTable.encode(out);
@@ -2060,7 +1944,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         public void endEncoding(final OutputStream out) throws IOException {
             // write GIF TRAILER
             out.write(';');
-
             out.flush();
         }
 
@@ -2097,17 +1980,14 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         private void writeLogicalScreenDescriptor(final OutputStream os) throws IOException {
             putShort(this.dispDim.width, os);
             putShort(this.dispDim.height, os);
-
             // write 4 fields, packed into a byte (bitfieldsize:value)
             // global color map present? (1:1)
             // bits per primary color less 1 (3:7)
             // sorted color table? (1:0)
             // bits per pixel less 1 (3:varies)
             os.write(0xf0 | (this.colorTable.getDepth() - 1));
-
             // write background color index
             os.write(this.bgIndex);
-
             // Jef Poskanzer's notes on the next field, for our possible edification:
             // Pixel aspect ratio - 1:1.
             // Putbyte( (byte) 49, outs );
@@ -2115,7 +1995,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             // not zero it throws an ImageFormatException. It doesn't know that
             // 49 means a 1:1 aspect ratio. Well, whatever, zero works with all
             // the other decoders I've tried so it probably doesn't hurt.
-
             // OK, if it's good enough for Jef, it's definitely good enough for us:
             os.write(0);
         }
@@ -2125,19 +2004,14 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             // n.b. most software seems to interpret the count as a repeat count
             // (i.e., interations beyond 1) rather than as an iteration count
             // (thus, to avoid repeating we have to omit the whole extension)
-
             os.write('!'); // GIF Extension Introducer
             os.write(0xff); // Application Extension Label
-
             os.write(11); // application ID block size
             putAscii("NETSCAPE2.0", os); // application ID data
-
             os.write(3); // data sub-block size
             os.write(1); // a looping flag? dunno
-
             // we finally write the relevent data
             putShort(this.loopCount > 1 ? this.loopCount - 1 : 0, os);
-
             os.write(0); // block terminator
         }
 
@@ -2145,19 +2019,16 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         private void writeCommentExtension(final OutputStream os) throws IOException {
             os.write('!'); // GIF Extension Introducer
             os.write(0xfe); // Comment Extension Label
-
             int remainder = this.theComments.length() % 255;
             int nsubblocks_full = this.theComments.length() / 255;
             int nsubblocks = nsubblocks_full + (remainder > 0 ? 1 : 0);
             int ibyte = 0;
             for (int isb = 0; isb < nsubblocks; ++isb) {
                 int size = isb < nsubblocks_full ? 255 : remainder;
-
                 os.write(size);
                 putAscii(this.theComments.substring(ibyte, ibyte + size), os);
                 ibyte += size;
             }
-
             os.write(0); // block terminator
         }
 
@@ -2169,14 +2040,11 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
 
     // ==============================================================================
     class GifColorTable {
-
         // the palette of ARGB colors, packed as returned by Color.getRGB()
         private int[] theColors = new int[256];
-
         // other basic attributes
         private int colorDepth;
         private int transparentIndex = -1;
-
         // these fields track color-index info across frames
         private int ciCount = 0; // count of distinct color indices
         private ReverseColorMap ciLookup; // cumulative rgb-to-ci lookup table
@@ -2261,13 +2129,11 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             if (this.ciLookup == null) {
                 throw new IOException("RGB frames require palette autodetection");
             }
-
             int[] argb_pixels = (int[]) dgf.getPixelSource();
             byte[] ci_pixels = dgf.getPixelSink();
             int npixels = argb_pixels.length;
             for (int i = 0; i < npixels; ++i) {
                 int argb = argb_pixels[i];
-
                 // handle transparency
                 if ((argb >>> 24) < 0x80) {
                     if (this.transparentIndex == -1) {
@@ -2279,25 +2145,19 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                         continue; // CONTINUE - index already in table
                     }
                 }
-
                 // try to look up the index in our "reverse" color table
                 int color_index = this.ciLookup.getPaletteIndex(argb & 0xffffff);
-
                 if (color_index == -1) // if it isn't in there yet
                 {
                     if (this.ciCount == 256) {
                         throw new IOException("can't encode as GIF (> 256 colors)");
                     }
-
                     // store color in our accumulating palette
                     this.theColors[this.ciCount] = argb;
-
                     // store index in reverse color table
                     this.ciLookup.put(argb & 0xffffff, this.ciCount);
-
                     // send color index to our output array
                     ci_pixels[i] = (byte) this.ciCount;
-
                     // increment count of distinct color indices
                     ++this.ciCount;
                 } else {
@@ -2343,7 +2203,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
     // tuning the capacity (at the very least). Suggestions are welcome.
     // ==============================================================================
     class ReverseColorMap {
-
         private class ColorRecord {
             int rgb;
             int ipalette;
@@ -2359,7 +2218,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         // more space than we have time. So let's try a sparse table with a maximum
         // load of about 1/8 capacity.
         private static final int HCAPACITY = 2053; // a nice prime number
-
         // our hash table proper
         private ColorRecord[] hTable = new ColorRecord[HCAPACITY];
 
@@ -2369,15 +2227,12 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         // ----------------------------------------------------------------------------
         int getPaletteIndex(final int rgb) {
             ColorRecord rec;
-
             for (int itable = rgb % this.hTable.length; ((rec = this.hTable[itable]) != null) && (rec.rgb != rgb); itable = ++itable % this.hTable.length) {
                 ;
             }
-
             if (rec != null) {
                 return rec.ipalette;
             }
-
             return -1;
         }
 
@@ -2386,15 +2241,12 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         // ----------------------------------------------------------------------------
         void put(final int rgb, final int ipalette) {
             int itable;
-
             for (itable = rgb % this.hTable.length; this.hTable[itable] != null; itable = ++itable % this.hTable.length) {
                 ;
             }
-
             this.hTable[itable] = new ColorRecord(rgb, ipalette);
         }
     }
-
     // ******************************************************************************
     // Gif89Frame.java
     // ******************************************************************************
@@ -2433,42 +2285,35 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
      * @see IndexGif89Frame
      */
     abstract class Gif89Frame {
-
         //// Public "Disposal Mode" constants ////
-
         /**
          * The animated GIF renderer shall decide how to dispose of this Gif89Frame's display area.
          * 
          * @see Gif89Frame#setDisposalMode
          */
         public static final int DM_UNDEFINED = 0;
-
         /**
          * The animated GIF renderer shall take no display-disposal action.
          * 
          * @see Gif89Frame#setDisposalMode
          */
         public static final int DM_LEAVE = 1;
-
         /**
          * The animated GIF renderer shall replace this Gif89Frame's area with the background color.
          * 
          * @see Gif89Frame#setDisposalMode
          */
         public static final int DM_BGCOLOR = 2;
-
         /**
          * The animated GIF renderer shall replace this Gif89Frame's area with the previous frame's bitmap.
          * 
          * @see Gif89Frame#setDisposalMode
          */
         public static final int DM_REVERT = 3;
-
         //// Bitmap variables set in package subclass constructors ////
         int theWidth = -1;
         int theHeight = -1;
         byte[] ciPixels;
-
         //// GIF graphic frame control options ////
         private Point thePosition = new Point(0, 0);
         private boolean isInterlaced;
@@ -2580,14 +2425,11 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
 
     // ==============================================================================
     class GifPixelsEncoder {
-
         private static final int EOF = -1;
-
         private int imgW, imgH;
         private byte[] pixAry;
         private boolean wantInterlaced;
         private int initCodeSize;
-
         // raster data navigators
         private int countDown;
         private int xCur, yCur;
@@ -2605,15 +2447,11 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         // ----------------------------------------------------------------------------
         void encode(final OutputStream os) throws IOException {
             os.write(this.initCodeSize); // write "initial code size" byte
-
             this.countDown = this.imgW * this.imgH; // reset navigation variables
             this.xCur = this.yCur = this.curPass = 0;
-
             this.compress(this.initCodeSize + 1, os); // compress and write the pixel data
-
             os.write(0); // write block terminator
         }
-
         // ****************************************************************************
         // (J.E.) The logic of the next two methods is largely intact from
         // Jef Poskanzer. Some stylistic changes were made for consistency sake,
@@ -2627,13 +2465,11 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         private void bumpPosition() {
             // Bump the current X position
             ++this.xCur;
-
             // If we are at the end of a scan line, set xCur back to the beginning
             // If we are interlaced, bump the yCur to the appropriate spot,
             // otherwise, just increment it.
             if (this.xCur == this.imgW) {
                 this.xCur = 0;
-
                 if (!this.wantInterlaced) {
                     ++this.yCur;
                 } else {
@@ -2674,16 +2510,11 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             if (this.countDown == 0) {
                 return EOF;
             }
-
             --this.countDown;
-
             byte pix = this.pixAry[(this.yCur * this.imgW) + this.xCur];
-
             this.bumpPosition();
-
             return pix & 0xff;
         }
-
         // ****************************************************************************
         // (J.E.) I didn't touch Jef Poskanzer's code from this point on. (Well, OK,
         // I changed the name of the sole outside method it accesses.) I figure
@@ -2695,18 +2526,14 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         // communication. I could have dumped it in a separate class with a callback
         // via an interface, but it didn't seem worth messing with.
         // ****************************************************************************
-
         // GIFCOMPR.C - GIF Image compression routines
         //
         // Lempel-Ziv compression based on 'compress'. GIF modifications by
         // David Rowley (mgardi@watdcsu.waterloo.edu)
 
         // General DEFINEs
-
         static final int BITS = 12;
-
         static final int HSIZE = 5003; // 80% occupancy
-
         // GIF Image compression - modified 'compress'
         //
         // Based on: compress.c - File compression ala IEEE Computer, June 1984.
@@ -2717,7 +2544,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         // Ken Turkowski (decvax!decwrl!turtlevax!ken)
         // James A. Woods (decvax!ihnp4!ames!jaw)
         // Joe Orost (decvax!vax135!petsd!joe)
-
         int n_bits; // number of bits/code
         int maxbits = BITS; // user settable max # bits/code
         int maxcode; // maximum code, given n_bits
@@ -2729,15 +2555,11 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
 
         int[] htab = new int[HSIZE];
         int[] codetab = new int[HSIZE];
-
         int hsize = HSIZE; // for dynamic table sizing
-
         int free_ent = 0; // first unused entry
-
         // block compression parameters -- after all codes are used up,
         // and compression rate changes, start over.
         boolean clear_flg = false;
-
         // Algorithm: use open addressing double hashing (no chaining) on the
         // prefix code / next character combination. We do a variant of Knuth's
         // algorithm D (vol. 3, sec. 6.4) along with G. Knott's relatively-prime
@@ -2749,9 +2571,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         // for the decompressor. Late addition: construct the table according to
         // file size for noticeable speed improvement on small files. Please direct
         // questions about this implementation to ames!jaw.
-
         int g_init_bits;
-
         int ClearCode;
         int EOFCode;
 
@@ -2763,38 +2583,28 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             int disp;
             int hsize_reg;
             int hshift;
-
             // Set up the globals: g_init_bits - initial number of bits
             this.g_init_bits = init_bits;
-
             // Set up the necessary values
             this.clear_flg = false;
             this.n_bits = this.g_init_bits;
             this.maxcode = this.MAXCODE(this.n_bits);
-
             this.ClearCode = 1 << (init_bits - 1);
             this.EOFCode = this.ClearCode + 1;
             this.free_ent = this.ClearCode + 2;
-
             this.char_init();
-
             ent = this.nextPixel();
-
             hshift = 0;
             for (fcode = this.hsize; fcode < 65536; fcode *= 2) {
                 ++hshift;
             }
             hshift = 8 - hshift; // set hash code range bound
-
             hsize_reg = this.hsize;
             this.cl_hash(hsize_reg); // clear hash table
-
             this.output(this.ClearCode, outs);
-
             outer_loop: while ((c = this.nextPixel()) != EOF) {
                 fcode = (c << this.maxbits) + ent;
                 i = (c << hshift) ^ ent; // xor hashing
-
                 if (this.htab[i] == fcode) {
                     ent = this.codetab[i];
                     continue;
@@ -2808,7 +2618,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                         if ((i -= disp) < 0) {
                             i += hsize_reg;
                         }
-
                         if (this.htab[i] == fcode) {
                             ent = this.codetab[i];
                             continue outer_loop;
@@ -2843,30 +2652,24 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         // Maintain a BITS character long buffer (so that 8 codes will
         // fit in it exactly). Use the VAX insv instruction to insert each
         // code in turn. When the buffer fills up empty it and start over.
-
         int cur_accum = 0;
         int cur_bits = 0;
-
         int masks[] = { 0x0000, 0x0001, 0x0003, 0x0007, 0x000F, 0x001F, 0x003F, 0x007F, 0x00FF, 0x01FF, 0x03FF, 0x07FF, 0x0FFF, 0x1FFF, 0x3FFF, 0x7FFF,
                 0xFFFF };
 
         void output(final int code, final OutputStream outs) throws IOException {
             this.cur_accum &= this.masks[this.cur_bits];
-
             if (this.cur_bits > 0) {
                 this.cur_accum |= (code << this.cur_bits);
             } else {
                 this.cur_accum = code;
             }
-
             this.cur_bits += this.n_bits;
-
             while (this.cur_bits >= 8) {
                 this.char_out((byte) (this.cur_accum & 0xff), outs);
                 this.cur_accum >>= 8;
                 this.cur_bits -= 8;
             }
-
             // If the next entry is going to be too big for the code size,
             // then increase it, if possible.
             if ((this.free_ent > this.maxcode) || this.clear_flg) {
@@ -2882,7 +2685,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                     }
                 }
             }
-
             if (code == this.EOFCode) {
                 // At EOF, write the rest of the buffer.
                 while (this.cur_bits > 0) {
@@ -2890,11 +2692,9 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                     this.cur_accum >>= 8;
                     this.cur_bits -= 8;
                 }
-
                 this.flush_char(outs);
             }
         }
-
         // Clear out the hash table
 
         // table clear for block compress
@@ -2902,7 +2702,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             this.cl_hash(this.hsize);
             this.free_ent = this.ClearCode + 2;
             this.clear_flg = true;
-
             this.output(this.ClearCode, outs);
         }
 
@@ -2912,7 +2711,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 this.htab[i] = -1;
             }
         }
-
         // GIF Specific routines
 
         // Number of characters so far in this 'packet'
@@ -2944,7 +2742,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             }
         }
     }
-
     // ******************************************************************************
     // IndexGif89Frame.java
     // ******************************************************************************
@@ -2968,7 +2765,6 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
      * @see DirectGif89Frame
      */
     class IndexGif89Frame extends Gif89Frame {
-
         // ----------------------------------------------------------------------------
         /**
          * Construct a IndexGif89Frame from color-index pixel data.

@@ -13,14 +13,12 @@ import java.sql.Statement;
  */
 
 public class JDBCStatementCreateExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
     private static final String DB_PASSWORD = "rajendar";
 
     public static void main(final String[] argv) {
-
         try {
             createDbUserTable();
         } catch (SQLException e) {
@@ -29,7 +27,6 @@ public class JDBCStatementCreateExample {
     }
 
     private static void createDbUserTable() throws SQLException {
-
         Connection dbConnection = null;
         Statement statement = null;
         String createTableSQL = "CREATE TABLE DBUSER(" + "USER_ID NUMBER(5) NOT NULL, " + "USERNAME VARCHAR(20) NOT NULL, "

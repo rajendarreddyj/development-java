@@ -24,7 +24,6 @@ import com.rajendarreddyj.basics.pattern.observable.rps.model.Game;
 public class RockPaperScissorsGui {
     // file we use to save our serialized game state
     private static final String SAVE_FILE = "rps.dat";
-
     private JFrame frame;
     private JButton play;
     private JButton switchViews;
@@ -49,9 +48,7 @@ public class RockPaperScissorsGui {
         this.frame.setLocation(300, 100);
         this.frame.setSize(400, 300);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         this.view = new ImageView(this.game);
-
         this.play = new JButton("Play");
         this.switchViews = new JButton("Switch Views");
         this.history = new JButton("History");
@@ -72,7 +69,6 @@ public class RockPaperScissorsGui {
         south.add(this.play);
         south.add(this.switchViews);
         south.add(this.history);
-
         this.frame.add(this.view, BorderLayout.CENTER);
         this.frame.add(south, BorderLayout.SOUTH);
     }
@@ -80,10 +76,8 @@ public class RockPaperScissorsGui {
     // switches views in (Image -> Painted -> Text) order
     private void switchViews() {
         this.frame.remove(this.view);
-
         // hey view, stop listening now.
         this.view.goAway();
-
         if (this.view instanceof TextView) {
             this.view = new ImageView(this.game);
         } else if (this.view instanceof ImageView) {
@@ -91,9 +85,7 @@ public class RockPaperScissorsGui {
         } else {
             this.view = new TextView(this.game);
         }
-
         this.frame.add(this.view, BorderLayout.CENTER);
-
         // tell Java to update the layout on the screen
         this.frame.validate();
     }

@@ -52,7 +52,6 @@ import com.rajendarreddyj.basics.enums.TokenType;
  * 
  */
 public class EvalXML {
-
     /**
      * The symbol table consists of a set of String, Integer pairs, where the String object is the key.
      */
@@ -101,7 +100,6 @@ public class EvalXML {
      */
     private int symbolLookup(final String name) {
         int symVal = 0;
-
         Integer i = this.mSymTab.get(name);
         if (i != null) {
             symVal = i.intValue();
@@ -241,7 +239,6 @@ public class EvalXML {
         int rslt = 0;
         if (root.getLocalName().equals(TokenType.TIMES.toString()) || root.getLocalName().equals(TokenType.DIV.toString())
                 || root.getLocalName().equals(TokenType.MOD.toString())) {
-
             ArrayList<Node> children = this.toElementNodeList(root.getChildNodes());
             Node lhs = children.get(0);
             Node rhs = children.get(1);
@@ -372,5 +369,4 @@ public class EvalXML {
         }
         return result;
     } // eval
-
 }

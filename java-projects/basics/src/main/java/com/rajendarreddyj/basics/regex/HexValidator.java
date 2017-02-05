@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
  * colors code checking.
  */
 public class HexValidator {
-
     private Pattern pattern;
     private Matcher matcher;
     private static final String HEX_PATTERN = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$";
@@ -29,9 +28,7 @@ public class HexValidator {
      * @return true valid hex, false invalid hex
      */
     public boolean validate(final String hex) {
-
         this.matcher = this.pattern.matcher(hex);
         return this.matcher.matches();
-
     }
 }

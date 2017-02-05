@@ -51,13 +51,11 @@ public class TextView extends View {
             weapon1 = this.getGame().getWeapon1().toString();
             this.move1.setText(weapon1);
         }
-
         String weapon2 = " ";
         if (this.getGame().getWeapon2() != null) {
             weapon2 = this.getGame().getWeapon2().toString();
             this.move2.setText(weapon2);
         }
-
         // highlight the winner
         int winner = this.getGame().winner();
         this.move1.setBackground(null);

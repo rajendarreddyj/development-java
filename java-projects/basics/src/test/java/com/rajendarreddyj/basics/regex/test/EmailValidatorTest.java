@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.EmailValidator;
 
 public class EmailValidatorTest {
-
     private EmailValidator emailValidator;
 
     @BeforeClass
@@ -31,18 +30,15 @@ public class EmailValidatorTest {
 
     @Test(dataProvider = "ValidEmailProvider")
     public void ValidEmailTest(final String[] Email) {
-
         for (String temp : Email) {
             boolean valid = this.emailValidator.validate(temp);
             System.out.println("Email is valid : " + temp + " , " + valid);
             Assert.assertEquals(true, valid);
         }
-
     }
 
     @Test(dataProvider = "InvalidEmailProvider", dependsOnMethods = "ValidEmailTest")
     public void InValidEmailTest(final String[] Email) {
-
         for (String temp : Email) {
             boolean valid = this.emailValidator.validate(temp);
             System.out.println("Email is valid : " + temp + " , " + valid);

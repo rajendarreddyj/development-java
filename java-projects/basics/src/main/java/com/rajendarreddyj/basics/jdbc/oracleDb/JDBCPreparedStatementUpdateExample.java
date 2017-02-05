@@ -16,14 +16,12 @@ import java.sql.SQLException;
  * preparedStatement.setInt(2, 1001); // execute insert SQL stetement preparedStatement .executeUpdate();
  */
 public class JDBCPreparedStatementUpdateExample {
-
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
     private static final String DB_PASSWORD = "rajendar";
 
     public static void main(final String[] argv) {
-
         try {
             updateRecordToTable();
         } catch (SQLException e) {
@@ -32,11 +30,9 @@ public class JDBCPreparedStatementUpdateExample {
     }
 
     private static void updateRecordToTable() throws SQLException {
-
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
         String updateTableSQL = "UPDATE DBUSER SET USERNAME = ? " + " WHERE USER_ID = ?";
-
         try {
             dbConnection = getDBConnection();
             preparedStatement = dbConnection.prepareStatement(updateTableSQL);
@@ -58,7 +54,6 @@ public class JDBCPreparedStatementUpdateExample {
     }
 
     private static Connection getDBConnection() {
-
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);
