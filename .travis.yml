@@ -3,5 +3,5 @@ sudo: false
 jdk:
   - oraclejdk8
 script:
-  - ./mvnw clean install
+  - ./mvnw clean install -Dmaven.test.failure.ignore=true
   - cd spring-gradle-projects && ./gradlew build
