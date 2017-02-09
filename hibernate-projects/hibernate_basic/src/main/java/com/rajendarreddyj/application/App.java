@@ -24,7 +24,7 @@ public class App {
 
         session.save(stock);
         session.getTransaction().commit();
-
+        HibernateUtil.shutdown();
     }
 
 }

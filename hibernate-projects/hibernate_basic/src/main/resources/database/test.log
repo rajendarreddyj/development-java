@@ -1,0 +1,7 @@
+/*C3*/SET SCHEMA PUBLIC
+drop table PUBLIC.Stock if exists
+create table PUBLIC.Stock (stockId integer not null, stockCode varchar(255), stockName varchar(255), primary key (stockId))
+INSERT INTO STOCK VALUES(1,'123','RAJ1')
+INSERT INTO STOCK VALUES(2,'124','RAJ2')
+COMMIT
+DISCONNECT
