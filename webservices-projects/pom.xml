@@ -17,5 +17,9 @@
   </properties>
   <modules>
     <module>jaxwsprojects</module>
+    <module>apachecxfprojects</module>
+    <module>axis1projects</module>
+    <module>axis2projects</module>
+    <module>resteasyprojects</module>
   </modules>
 </project>
