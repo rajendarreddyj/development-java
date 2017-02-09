@@ -9,6 +9,6 @@
   <artifactId>javaee7</artifactId>
   <packaging>pom</packaging>
   <modules>
-    <module>jsr340</module>
+    <module>jsr340-servlets</module>
   </modules>
 </project>

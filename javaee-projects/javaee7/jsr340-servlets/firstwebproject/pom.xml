@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.rajendarreddyj</groupId>
-    <artifactId>jsr340</artifactId>
+    <artifactId>jsr340-servlets</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
   <artifactId>firstwebproject</artifactId>
