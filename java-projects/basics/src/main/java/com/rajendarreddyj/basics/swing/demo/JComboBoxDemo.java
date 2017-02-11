@@ -1,4 +1,4 @@
-package com.rajendarreddyj.basics.swing;
+package com.rajendarreddyj.basics.swing.demo;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -35,7 +35,7 @@ public class JComboBoxDemo extends JPanel {
                 @SuppressWarnings("unchecked")
                 JComboBox<String> jcmbType = (JComboBox<String>) e.getSource();
                 String cmbType = (String) jcmbType.getSelectedItem();
-                JComboBoxDemo.this.jlbPicture.setIcon(new ImageIcon("src/main/resources/" + cmbType.trim().toLowerCase() + ".jpg"));
+                JComboBoxDemo.this.jlbPicture.setIcon(new ImageIcon("src/main/resources/images/" + cmbType.trim().toLowerCase() + ".jpg"));
             }
         });
         // Set up the picture

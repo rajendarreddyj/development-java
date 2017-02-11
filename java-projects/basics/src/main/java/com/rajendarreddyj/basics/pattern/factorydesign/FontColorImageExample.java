@@ -26,8 +26,8 @@ public class FontColorImageExample {
         Color c = Color.GREEN.darker();
         g.setColor(c);
         g.fillOval(20, 70, 100, 50);
-        Image img1 = ImageFactory.loadImage("src/main/resources/tinman.png", panel);
-        Image img2 = ImageFactory.loadImage("src/main/resources/cuteicecream.jpg", panel);
+        Image img1 = ImageFactory.loadImage("src/main/resources/images/tinman.png", panel);
+        Image img2 = ImageFactory.loadImage("src/main/resources/images/cuteicecream.jpg", panel);
         g.drawImage(img1, 100, 20, panel);
         g.drawImage(img2, 300, 50, 200, 300, panel);
         // derive new font, same as existing (prototype) font, but bigger and bold

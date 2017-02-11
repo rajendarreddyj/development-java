@@ -1,4 +1,4 @@
-package com.rajendarreddyj.basics.swing;
+package com.rajendarreddyj.basics.swing.demo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,10 +22,10 @@ public class JButtonDemo1 extends JPanel implements ActionListener {
 
     public JButtonDemo1() {
         // Create Icons that can be used with the jButtons
-        ImageIcon leftButtonIcon = new ImageIcon("src/main/resources/rightarrow.jpg");
-        ImageIcon middleButtonIcon = new ImageIcon("src/main/resources/java-swing.jpg");
-        ImageIcon rightButtonIcon = new ImageIcon("src/main/resources/leftarrow.jpg");
-        // ImageIcon rightButtonIcon = createImageIcon("src/main/resources/leftarrow.jpg");
+        ImageIcon leftButtonIcon = new ImageIcon("src/main/resources/images/rightarrow.jpg");
+        ImageIcon middleButtonIcon = new ImageIcon("src/main/resources/images/java-swing.jpg");
+        ImageIcon rightButtonIcon = new ImageIcon("src/main/resources/images/leftarrow.jpg");
+        // ImageIcon rightButtonIcon = createImageIcon("src/main/resources/images/leftarrow.jpg");
         jbnLeft = new JButton("Disable centre button", leftButtonIcon);
         jbnLeft.setVerticalTextPosition(AbstractButton.CENTER);
         jbnLeft.setHorizontalTextPosition(AbstractButton.LEADING);

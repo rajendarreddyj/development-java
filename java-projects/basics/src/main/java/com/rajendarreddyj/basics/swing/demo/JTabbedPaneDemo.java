@@ -1,4 +1,4 @@
-package com.rajendarreddyj.basics.swing;
+package com.rajendarreddyj.basics.swing.demo;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -20,7 +20,7 @@ public class JTabbedPaneDemo extends JPanel {
     private static final long serialVersionUID = 1L;
 
     public JTabbedPaneDemo() {
-        ImageIcon icon = new ImageIcon("src/main/resources/java-swing.jpg");
+        ImageIcon icon = new ImageIcon("src/main/resources/images/java-swing.jpg");
         JTabbedPane jtbExample = new JTabbedPane();
         JPanel jplInnerPanel1 = this.createInnerPanel("Tab 1 Contains Tooltip and Icon");
         jtbExample.addTab("One", icon, jplInnerPanel1, "Tab 1");
