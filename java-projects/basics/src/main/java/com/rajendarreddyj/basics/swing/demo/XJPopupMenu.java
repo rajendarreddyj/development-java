@@ -1,4 +1,4 @@
-package com.rajendarreddyj.basics.swing;
+package com.rajendarreddyj.basics.swing.demo;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -33,7 +33,7 @@ public class XJPopupMenu extends JPopupMenu implements ActionListener {
     private JPanel panelMenus = new JPanel();
     private JScrollPane scroll = null;
     private JFrame jframe = null;
-    public static final Icon EMPTY_IMAGE_ICON = new ImageIcon("src/main/resources/menu_spacer.gif");
+    public static final Icon EMPTY_IMAGE_ICON = new ImageIcon("src/main/resources/images/menu_spacer.gif");
 
     public XJPopupMenu(final JFrame jframe) {
         super();

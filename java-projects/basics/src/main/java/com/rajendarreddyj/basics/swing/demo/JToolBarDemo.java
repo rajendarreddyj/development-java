@@ -1,4 +1,4 @@
-package com.rajendarreddyj.basics.swing;
+package com.rajendarreddyj.basics.swing.demo;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -47,7 +47,7 @@ public class JToolBarDemo extends JFrame {
     public void addButtons(final JToolBar jtbToolBar) {
         JButton jbnToolbarButtons = null;
         // first button
-        jbnToolbarButtons = new JButton(new ImageIcon("src/main/resources/left.gif"));
+        jbnToolbarButtons = new JButton(new ImageIcon("src/main/resources/images/left.gif"));
         jbnToolbarButtons.setToolTipText("left");
         jbnToolbarButtons.addActionListener(new ActionListener() {
 
@@ -58,7 +58,7 @@ public class JToolBarDemo extends JFrame {
         });
         jtbToolBar.add(jbnToolbarButtons);
         // 2nd button
-        jbnToolbarButtons = new JButton(new ImageIcon("src/main/resources/right.gif"));
+        jbnToolbarButtons = new JButton(new ImageIcon("src/main/resources/images/right.gif"));
         jbnToolbarButtons.setToolTipText("right");
         jbnToolbarButtons.addActionListener(new ActionListener() {
 
@@ -70,7 +70,7 @@ public class JToolBarDemo extends JFrame {
         jtbToolBar.add(jbnToolbarButtons);
         jtbToolBar.addSeparator();
         // 3rd button
-        jbnToolbarButtons = new JButton(new ImageIcon("src/main/resources/open.gif"));
+        jbnToolbarButtons = new JButton(new ImageIcon("src/main/resources/images/open.gif"));
         jbnToolbarButtons.setToolTipText("open");
         jbnToolbarButtons.addActionListener(new ActionListener() {
 
@@ -81,7 +81,7 @@ public class JToolBarDemo extends JFrame {
         });
         jtbToolBar.add(jbnToolbarButtons);
         // 4th button
-        jbnToolbarButtons = new JButton(new ImageIcon("src/main/resources/save.gif"));
+        jbnToolbarButtons = new JButton(new ImageIcon("src/main/resources/images/save.gif"));
         jbnToolbarButtons.setToolTipText("save");
         jbnToolbarButtons.addActionListener(new ActionListener() {
 

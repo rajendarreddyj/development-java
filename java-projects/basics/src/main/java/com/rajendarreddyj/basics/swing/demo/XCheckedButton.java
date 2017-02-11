@@ -1,4 +1,4 @@
-package com.rajendarreddyj.basics.swing;
+package com.rajendarreddyj.basics.swing.demo;
 
 import java.awt.Color;
 import java.awt.event.ItemEvent;
@@ -131,7 +131,7 @@ public class XCheckedButton extends JButton {
     public void displayIcon(final boolean checkedFlag) {
         if (checkedFlag && this.isDisplayCheck()) {
             if (checkedIcon == null) {
-                checkedIcon = new ImageIcon("src/main/resources/check.gif");
+                checkedIcon = new ImageIcon("src/main/resources/images/check.gif");
             }
             this.setIcon(checkedIcon);
         } else {

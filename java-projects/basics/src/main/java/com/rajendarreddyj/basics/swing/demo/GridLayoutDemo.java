@@ -1,9 +1,8 @@
-package com.rajendarreddyj.basics.swing;
+package com.rajendarreddyj.basics.swing.demo;
 
 import java.awt.ComponentOrientation;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -15,14 +14,15 @@ import javax.swing.JTextField;
  * @author rajendarreddy
  *
  */
-public class FlowLayoutDemo {
-    public static boolean RIGHT_TO_LEFT = false;
+public class GridLayoutDemo {
+    public final static boolean RIGHT_TO_LEFT = false;
 
-    public static void addComponents(final Container contentPane) {
+    public static void addComponentsToPane(final Container contentPane) {
         if (RIGHT_TO_LEFT) {
             contentPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         }
-        contentPane.setLayout(new FlowLayout());
+        // Any number of rows and 2 columns
+        contentPane.setLayout(new GridLayout(0, 2));
 
         contentPane.add(new JLabel("JLabel 1"));
         contentPane.add(new JButton("JButton 2"));
@@ -34,19 +34,11 @@ public class FlowLayoutDemo {
     private static void createAndShowGUI() {
         JFrame.setDefaultLookAndFeelDecorated(true);
 
-        JFrame frame = new JFrame("FlowLayout Source Demo") {
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            public Dimension getMinimumSize() {
-                Dimension prefSize = this.getPreferredSize();
-                return new Dimension(100, prefSize.height);
-            }
-        };
+        JFrame frame = new JFrame("GridLayout Source Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Set up the content pane and components in FlowLayout
-        addComponents(frame.getContentPane());
+        // Set up the content pane and components in GridLayout
+        addComponentsToPane(frame.getContentPane());
 
         frame.pack();
         frame.setVisible(true);

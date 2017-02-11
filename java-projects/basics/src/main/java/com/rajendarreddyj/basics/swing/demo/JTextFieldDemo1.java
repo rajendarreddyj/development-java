@@ -1,4 +1,4 @@
-package com.rajendarreddyj.basics.swing;
+package com.rajendarreddyj.basics.swing.demo;
 
 import java.awt.Container;
 import java.awt.FlowLayout;

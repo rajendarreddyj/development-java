@@ -29,8 +29,8 @@ public class ImageView extends View {
      */
     public ImageView(final Game game) {
         super(game);
-        this.move1 = new JButton(this.getIcon("src/main/resources/blank.png"));
-        this.move2 = new JButton(this.getIcon("src/main/resources/blank.png"));
+        this.move1 = new JButton(this.getIcon("src/main/resources/images/blank.png"));
+        this.move2 = new JButton(this.getIcon("src/main/resources/images/blank.png"));
         this.setState();
         this.setLayout(new FlowLayout());
         // this.setLayout(new CascadingLayout());
@@ -52,10 +52,10 @@ public class ImageView extends View {
         String file1 = "blank.png";
         String file2 = "blank.png";
         if (this.getGame().getWeapon1() != null) {
-            file1 = "src/main/resources/" + this.getGame().getWeapon1().toString().toLowerCase() + ".png";
+            file1 = "src/main/resources/images/" + this.getGame().getWeapon1().toString().toLowerCase() + ".png";
         }
         if (this.getGame().getWeapon2() != null) {
-            file2 = "src/main/resources/" + this.getGame().getWeapon2().toString().toLowerCase() + ".png";
+            file2 = "src/main/resources/images/" + this.getGame().getWeapon2().toString().toLowerCase() + ".png";
         }
         this.move1.setIcon(this.getIcon(file1));
         this.move2.setIcon(this.getIcon(file2));

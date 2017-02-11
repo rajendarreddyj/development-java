@@ -1,4 +1,4 @@
-package com.rajendarreddyj.basics.swing;
+package com.rajendarreddyj.basics.swing.demo;
 
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
@@ -19,7 +19,7 @@ public class JlabelDemo extends JPanel {
     JLabel jlbLabel1, jlbLabel2, jlbLabel3;
 
     public JlabelDemo() {
-        ImageIcon icon = new ImageIcon("src/main/resources/java-swing.jpg", "Java File Icon");
+        ImageIcon icon = new ImageIcon("src/main/resources/images/java-swing.jpg", "Java File Icon");
         // Creating an Icon
         this.setLayout(new GridLayout(3, 1));
         // 3 rows, 1 column Panel having Grid Layout

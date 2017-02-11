@@ -1,4 +1,4 @@
-package com.rajendarreddyj.basics.swing;
+package com.rajendarreddyj.basics.swing.demo;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -70,7 +70,7 @@ public class JCheckBoxDemo extends JPanel {
         this.choices = new StringBuffer("cght");// Default Image has all the parts.
 
         // Set up the picture label
-        this.jlbPicture = new JLabel(new ImageIcon("src/main/resources/geek-" + this.choices.toString().trim() + ".gif"));
+        this.jlbPicture = new JLabel(new ImageIcon("src/main/resources/images/geek-" + this.choices.toString().trim() + ".gif"));
         this.jlbPicture.setToolTipText(this.choices.toString().trim());
 
         // Put the check boxes in a column in a panel
@@ -113,7 +113,7 @@ public class JCheckBoxDemo extends JPanel {
             }
 
             JCheckBoxDemo.this.choices.setCharAt(index, c);
-            JCheckBoxDemo.this.jlbPicture.setIcon(new ImageIcon("src/main/resources/geek-" + JCheckBoxDemo.this.choices.toString().trim() + ".gif"));
+            JCheckBoxDemo.this.jlbPicture.setIcon(new ImageIcon("src/main/resources/images/geek-" + JCheckBoxDemo.this.choices.toString().trim() + ".gif"));
             JCheckBoxDemo.this.jlbPicture.setToolTipText(JCheckBoxDemo.this.choices.toString());
         }
     }
