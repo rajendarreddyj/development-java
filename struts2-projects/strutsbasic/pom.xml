@@ -8,7 +8,7 @@
   </parent>
   <artifactId>strutsbasic</artifactId>
   <packaging>war</packaging>
-  <name>strutsbasic Maven Webapp</name>
+  <name>strutsbasic</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

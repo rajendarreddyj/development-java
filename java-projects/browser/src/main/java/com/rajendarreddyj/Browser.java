@@ -8,19 +8,18 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.event.HyperlinkEvent;
 
-public class ReadFile extends JFrame {
+public class Browser extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private final JTextField addressBar;
     private final JEditorPane display = new JEditorPane();
 
     // The constructor
-    public ReadFile() {
+    public Browser() {
         // Title of the browser
         super("Rajendar Browser");
-
         this.addressBar = new JTextField("http://");
-        this.addressBar.addActionListener(e -> ReadFile.this.Action(e.getActionCommand()));
+        this.addressBar.addActionListener(e -> Browser.this.Action(e.getActionCommand()));
 
         // Add addressBar object to the JFrame
         this.add(this.addressBar, BorderLayout.NORTH);
@@ -28,9 +27,8 @@ public class ReadFile extends JFrame {
         this.display.setEditable(false);
         this.display.addHyperlinkListener(h -> {
             if (h.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                ReadFile.this.Action(h.getURL().toString());
+                Browser.this.Action(h.getURL().toString());
             }
-
         }
 
         );

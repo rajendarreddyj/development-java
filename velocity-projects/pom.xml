@@ -3,9 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.rajendarreddyj</groupId>
-    <artifactId>jaxwsprojects</artifactId>
+    <artifactId>development-java</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>jaxwsrpcstyle</artifactId>
-  <name>jaxwsrpcstyle</name>
+  <artifactId>velocity-projects</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>velocity-api</module>
+  </modules>
 </project>

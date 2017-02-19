@@ -8,7 +8,7 @@
   </parent>
   <artifactId>rivrclient</artifactId>
   <packaging>war</packaging>
-  <name>rivrclient Maven Webapp</name>
+  <name>rivrclient</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

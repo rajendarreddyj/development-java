@@ -95,9 +95,15 @@
         <ignoreVersion type="regex">(?i).*beta(?:-?\d+)?</ignoreVersion>
       </ignoreVersions>
     </rule>
+    <rule groupId="org.neo4j">
+      <ignoreVersions>
+        <ignoreVersion type="regex">(?i).*alpha(?:-?\d+)?</ignoreVersion>
+      </ignoreVersions>
+    </rule>
     <rule groupId="org.postgresql">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*jre(?:-?\d+)?</ignoreVersion>
+        <ignoreVersion>42.0.0</ignoreVersion>
       </ignoreVersions>
     </rule>
   </rules>
