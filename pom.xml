@@ -1218,5 +1218,6 @@
     <module>quartz-projects</module>
     <module>guava-projects</module>
     <module>velocity-projects</module>
+    <module>algorithms-projects</module>
   </modules>
 </project>
