@@ -103,7 +103,6 @@
     <rule groupId="org.postgresql">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*jre(?:-?\d+)?</ignoreVersion>
-        <ignoreVersion>42.0.0</ignoreVersion>
       </ignoreVersions>
     </rule>
   </rules>
