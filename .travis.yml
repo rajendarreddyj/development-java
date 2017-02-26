@@ -28,24 +28,22 @@ after_success:
   - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then
       ./mvnw clean cobertura:cobertura coveralls:report;
       ./mvnw clean install -Dmaven.test.failure.ignore=true cobertura:cobertura sonar:sonar;
-      # sonar-scanner;
     fi
 
 addons:
-  coverity_scan:
-    project:
-      name: "rajendarreddyj/development-java"
-      description: "Build submitted via Travis CI"
-    notification_email: rajendarreddyj@gmail.com
-    build_command_prepend: "mvn clean"
-    build_command:   "./mvnw -DskipTests=true compile"
-    branch_pattern: coverity_scan  
-  sonarqube:
+ sonarqube: 
     token:
       secure:7428862723397eef66c5f8dc8defc1ed64932e04
     branches:
       - master
-      
+  coverity_scan:
+    project:
+      name: "rajendarreddyj/development-java"
+    notification_email: rajendarreddyj@gmail.com
+    build_command_prepend: "mvn clean"
+    build_command:   "./mvnw -DskipTests=true compile"
+    branch_pattern: coverity_scan  
+     
 notifications:
   slack:
     on_success: never  # options: [always|never|change] default: always
