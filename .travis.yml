@@ -6,4 +6,4 @@ script:
   - ./mvnw clean install -Dmaven.test.skip=true
   - cd spring-gradle-projects && ./gradlew build
 after_success:
-  - cd .. && ./mvnw clean test -Dmaven.test.failure.ignore=true jacoco:report coveralls:report
+  - cd .. && ./mvnw clean test -Dmaven.test.failure.ignore=true cobertura:cobertura coveralls:report
