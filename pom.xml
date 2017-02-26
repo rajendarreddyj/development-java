@@ -144,6 +144,7 @@
     <maven.pmd.plugin.version>3.7</maven.pmd.plugin.version>
     <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
     <maven.jacoco.plugin.version>0.7.9</maven.jacoco.plugin.version>
+    <maven.coveralls.plugin.version>4.3.0</maven.coveralls.plugin.version>
     <enforce.managed.deps.rule.version>1.2</enforce.managed.deps.rule.version>
     <!-- Testing Serers -->
     <tomee.plugin.version>1.7.4</tomee.plugin.version>
@@ -1231,6 +1232,11 @@
           <artifactId>maven-jaxws-plugin</artifactId>
           <version>${maven.jaxws.plugin.version}</version>
         </plugin>
+        <plugin>
+          <groupId>org.eluder.coveralls</groupId>
+          <artifactId>coveralls-maven-plugin</artifactId>
+          <version>${maven.coveralls.plugin.version}</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -1272,6 +1278,13 @@
         </configuration>
       </plugin>
       <plugin>
+        <groupId>org.eluder.coveralls</groupId>
+        <artifactId>coveralls-maven-plugin</artifactId>
+        <configuration>
+          <repoToken>K5St724LNtjmL2qerxhf6RSQF0ptfgLtx</repoToken>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.openejb.maven</groupId>
         <artifactId>tomee-maven-plugin</artifactId>
         <configuration>
@@ -1282,6 +1295,18 @@
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
