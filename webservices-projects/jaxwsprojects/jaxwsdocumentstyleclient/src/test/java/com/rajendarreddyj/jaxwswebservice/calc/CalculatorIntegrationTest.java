@@ -16,7 +16,7 @@ import com.rajendarreddyj.jaxwswebservice.calc.impl.CalculatorImpl;
  * @author rajendarreddy.jagapathi
  *
  */
-public class CalculatorITest {
+public class CalculatorIntegrationTest {
 
     @Test
     public void checkCalculatorService() throws MalformedURLException {
