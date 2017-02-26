@@ -13,7 +13,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>jaxwsdocumentstyle</module>
-    <module>jaxwsdocumentstyleclient</module>
     <module>jaxwsrpcstyle</module>
   </modules>
 </project>
