@@ -31,11 +31,7 @@ after_success:
     fi
 
 addons:
- sonarqube: 
-    token:
-      secure:7428862723397eef66c5f8dc8defc1ed64932e04
-    branches:
-      - master
+  sonarqube: true
   coverity_scan:
     project:
       name: "rajendarreddyj/development-java"
