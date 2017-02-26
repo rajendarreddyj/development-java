@@ -1,6 +1,6 @@
 language: java
 
-sudo: false
+sudo: required
 
 jdk:
   - oraclejdk8
@@ -12,8 +12,9 @@ env:
    - secure: "HHTP5GsbRnB+wgO3oVW/8V+M7Qg8V95XACfdFpg9XdLIytzpI/S5y0nohXKb36GU7JfjT8TNuZ7To3+Qg+Ws7mFzojvcpHagkHFaidftskqsWvaj7L0uEERomGxwrqoe6gMVDP29pMeG7TZmQCVD8sA6k/kqSMnzycPTWP2unCHfL3h8YLtTl44lvsOA2XrV4Q0PNjS+g6umxKbbNSi5Lin37NwCQ/lxZx8Dcoy8sXQK9APOgOl34qA0z33ovRkCBmRhUG1J/D/tDh+MTSbnYpg5X8SUGJONfaYMKD5wjM+YkOeq1aG2HaWFOKv0cQVQesTaiaNVZ15zlUrKMqMb3JL1nShTmQR2lm1CSrMM2a1aIh5C4dm+QkcycPr07NM8MUOeE00sAurd48X2xsFmuHp3va30Exb+YJBzDOG+K2vuLgV5BH93VxCs5Qn1su41jitYXCs+iV/+NzRYNs16SqVvsZDUGObqNe+rQXNBCZlvwfZEjXVKYoij4eQl8EG2qzwNL+yrTt+52VNNmtBOD8T1tlMyBeHgZv8RCMem3uEm91VWXQ2juy8azJDytnE6HVXuAWP1Y1PD35yTr3SdnDxZnGplaBQYTWglJXxW4Df000dnvF/g3xQtjLT72o2zmDngW+V6AjMGyNZLyZhi87Yl0BSH1owdVW96lsVRRG8="
 
 before_install:
-      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
-
+  - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then
+      echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-;
+    fi
 script:
    # Run Build when not on coverity branch.
   - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then
