@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/rajendarreddyj/development-java.svg?branch=master)](https://travis-ci.org/rajendarreddyj/development-java)
 [![Coverage Status](https://coveralls.io/repos/github/rajendarreddyj/development-java/badge.svg?branch=master)](https://coveralls.io/github/rajendarreddyj/development-java?branch=master)
 [![Coverity Scan](https://scan.coverity.com/projects/11891/badge.svg)](https://scan.coverity.com/projects/rajendarreddyj-development-java)
+[![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.rajendarreddyj%3Adevelopment-java)](https://sonarqube.com/dashboard/index/com.rajendarreddyj%3Adevelopment-java) 
+[![Technical debt ratio](https://sonarqube.com/api/badges/measure?key=com.rajendarreddyj%3Adevelopment-java&metric=sqale_debt_ratio)](https://sonarqube.com/dashboard/index/com.rajendarreddyj%3Adevelopment-java)
 
 This repository will have example projects related to spring framework, hibernate, Core Java and Java EE.
 
