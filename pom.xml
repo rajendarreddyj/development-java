@@ -1251,6 +1251,10 @@
             <maxmem>256m</maxmem>
             <!-- aggregated reports for multi-module projects -->
             <aggregate>true</aggregate>
+            <excludes>
+              <exclude>com/rajendarreddyj/**/*Test.class</exclude>
+              <exclude>com/rajendarreddyj/**/Test*.class</exclude>
+            </excludes>
           </configuration>
         </plugin>
         <plugin>
