@@ -12,8 +12,8 @@
   <url>http://maven.apache.org</url>
   <packaging>pom</packaging>
   <modules>
+    <module>jaxwsdocumentstyle</module>
+    <module>jaxwsdocumentstyleclient</module>
     <module>jaxwsrpcstyle</module>
-    <module>jaxwswebservice</module>
-    <module>jaxwswebserviceclient</module>
   </modules>
 </project>
