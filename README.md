@@ -1,6 +1,6 @@
 development-java    
 =================
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/development-java/master/LICENSE)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/rajendarreddyj/development-java/master/LICENSE)
 [![Build Status](https://travis-ci.org/rajendarreddyj/development-java.svg?branch=master)](https://travis-ci.org/rajendarreddyj/development-java)
 
 This repository will have example projects related to spring framework, hibernate, Core Java and Java EE.
