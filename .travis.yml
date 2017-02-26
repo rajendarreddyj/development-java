@@ -3,7 +3,7 @@ sudo: false
 jdk:
   - oraclejdk8
 script:
-  - ./mvnw clean install -Dmaven.test.failure.ignore=true
+  - ./mvnw clean install -Dmaven.test.skip=true
   - cd spring-gradle-projects && ./gradlew build
 after_success:
-  - ./mvnw clean test -Dmaven.test.failure.ignore=true jacoco:report coveralls:report
+  - cd .. && ./mvnw clean test -Dmaven.test.failure.ignore=true jacoco:report coveralls:report

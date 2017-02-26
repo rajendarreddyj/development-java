@@ -1229,7 +1229,7 @@
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
-          <artifactId>maven-jaxws-plugin</artifactId>
+          <artifactId>jaxws-maven-plugin</artifactId>
           <version>${maven.jaxws.plugin.version}</version>
         </plugin>
         <plugin>
