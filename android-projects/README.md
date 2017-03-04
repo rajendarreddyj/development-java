@@ -1,3 +1,3 @@
-Android Projects
+android-projects
 =================
 This Directory will have example projects related to Android.
