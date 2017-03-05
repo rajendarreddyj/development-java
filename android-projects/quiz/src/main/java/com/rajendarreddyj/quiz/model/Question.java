@@ -1,4 +1,4 @@
-package com.rajendarreddyj.quiz.pojo.pojo;
+package com.rajendarreddyj.quiz.model;
 
 /**
  * Created by rajendarreddy on 3/3/17.

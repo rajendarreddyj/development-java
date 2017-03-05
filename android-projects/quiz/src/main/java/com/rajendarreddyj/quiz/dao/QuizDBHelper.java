@@ -1,4 +1,4 @@
-package com.rajendarreddyj.quiz.dao.dao;
+package com.rajendarreddyj.quiz.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.rajendarreddyj.quiz.pojo.pojo.Question;
+import com.rajendarreddyj.quiz.model.Question;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +74,7 @@ public class QuizDBHelper extends SQLiteOpenHelper {
     }
 
     // Adding new question
-    public void addQuestion(Question quest) {
+    private void addQuestion(Question quest) {
         //SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_QUES, quest.getQuestion());
@@ -88,7 +88,7 @@ public class QuizDBHelper extends SQLiteOpenHelper {
     }
 
     public List<Question> getAllQuestions() {
-        List<Question> quesList = new ArrayList<Question>();
+        List<Question> quesList = new ArrayList<>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_QUEST;
         dbase=this.getReadableDatabase();
@@ -113,7 +113,7 @@ public class QuizDBHelper extends SQLiteOpenHelper {
 
     public int rowcount()
     {
-        int row=0;
+        int row;
         String selectQuery = "SELECT  * FROM " + TABLE_QUEST;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

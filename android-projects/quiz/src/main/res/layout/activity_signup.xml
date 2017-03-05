@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rajendarreddyj.quiz.activity.ResultActivity">
-
+    android:fitsSystemWindows="true"
+    tools:context="com.rajendarreddyj.quiz.activity.SignupActivity">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +20,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_result" />
+    <include layout="@layout/content_signup" />
 
 </android.support.design.widget.CoordinatorLayout>

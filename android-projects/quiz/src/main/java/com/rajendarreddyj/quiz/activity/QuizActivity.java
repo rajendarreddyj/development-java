@@ -4,17 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.rajendarreddyj.quiz.R;
-import com.rajendarreddyj.quiz.dao.dao.QuizDBHelper;
-import com.rajendarreddyj.quiz.pojo.pojo.Question;
+import com.rajendarreddyj.quiz.dao.QuizDBHelper;
+import com.rajendarreddyj.quiz.model.Question;
 
 import java.util.List;
 
@@ -25,7 +24,6 @@ public class QuizActivity extends AppCompatActivity {
     private Question currentQ;
     private TextView txtQuestion;
     private RadioButton rda, rdb, rdc, rdd;
-    private Button butNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +37,7 @@ public class QuizActivity extends AppCompatActivity {
         rdb = (RadioButton) findViewById(R.id.radio1);
         rdc = (RadioButton) findViewById(R.id.radio2);
         rdd = (RadioButton) findViewById(R.id.radio3);
-        butNext = (Button) findViewById(R.id.button1);
+        Button butNext = (Button) findViewById(R.id.button1);
         setQuestionView();
         butNext.setOnClickListener(new View.OnClickListener() {
             @Override
