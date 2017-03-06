@@ -31,3 +31,27 @@ This mojo displays all plugins that have newer versions available.
 This mojo displays properties that are linked to artifact versions and have updates available.
 
 `mvn versions:display-property-updates`
+
+To create PMD report
+
+`mvn -Dmaven.test.failure.ignore=true pmd:pmd`
+
+To open findbugs gui
+
+`mvn -Dmaven.test.failure.ignore=true findbugs:gui`
+
+To create findbugs report
+
+`mvn -Dmaven.test.failure.ignore=true findbugs:findbugs` 
+
+To run sonarqube analysis
+
+`mvn -Dmaven.test.failure.ignore=true clean verify sonar:sonar`
+
+To generate checkstyle report as standalone
+
+`mvn -Dmaven.test.failure.ignore=true checkstyle:checkstyle`
+
+To run cobertura code coverage analysis to report to coveralls -- requires coveralls token
+
+`mvn -Dmaven.test.failure.ignore=true clean test cobertura:cobertura coveralls:report`
