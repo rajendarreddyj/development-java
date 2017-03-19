@@ -3,17 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.rajendarreddyj</groupId>
-    <artifactId>development-java</artifactId>
+    <artifactId>java8-projects</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>java-projects</artifactId>
-  <packaging>pom</packaging>
-  <name>Java Projects</name>
-  <description>Java Projects</description>
-  <modules>
-    <module>basics</module>
-    <module>browser</module>
-    <module>ldapconnect</module>
-    <module>scheduler</module>
-  </modules>
+  <artifactId>java8basics</artifactId>
+  <packaging>jar</packaging>
+  <name>java8basics</name>
+  <url>http://maven.apache.org</url>
 </project>
