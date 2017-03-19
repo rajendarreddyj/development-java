@@ -6,14 +6,11 @@
     <artifactId>development-java</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>java-projects</artifactId>
+  <artifactId>java8-projects</artifactId>
   <packaging>pom</packaging>
-  <name>Java Projects</name>
-  <description>Java Projects</description>
+  <name>Java 8 Projects</name>
+  <description>Java 8  Projects</description>
   <modules>
-    <module>basics</module>
-    <module>browser</module>
-    <module>ldapconnect</module>
-    <module>scheduler</module>
+    <module>java8basics</module>
   </modules>
 </project>

@@ -1340,16 +1340,18 @@
   <modules>
     <module>proprietary-lib</module>
     <module>common-pojos</module>
-    <module>hibernate-projects</module>
-    <module>javaee-projects</module>
     <module>java-projects</module>
+    <module>java8-projects</module>
+    <module>java9-projects</module>
+    <module>javaee-projects</module>
+    <module>algorithms-projects</module>
     <module>spring-projects</module>
     <module>struts2-projects</module>
+    <module>hibernate-projects</module>
     <module>voicexml-projects</module>
     <module>webservices-projects</module>
     <module>quartz-projects</module>
     <module>guava-projects</module>
     <module>velocity-projects</module>
-    <module>algorithms-projects</module>
   </modules>
 </project>
