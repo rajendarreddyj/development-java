@@ -1339,6 +1339,7 @@
   </build>
   <modules>
     <module>proprietary-lib</module>
+    <module>common-pojos</module>
     <module>hibernate-projects</module>
     <module>javaee-projects</module>
     <module>java-projects</module>
