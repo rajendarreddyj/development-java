@@ -8,4 +8,7 @@
   </parent>
   <artifactId>axis1projects</artifactId>
   <packaging>pom</packaging>
+  <modules>
+    <module>axis1wsdl</module>
+  </modules>
 </project>
