@@ -21,10 +21,7 @@ public class Main {
     private void loadAlgorithms() {
         algorithms = ServiceLoader.load(Algorithm.class);
         algorithmMap = new HashMap<>();
-        for (  Algorithm al : algorithms) {
-            algorithmMap.put(al.getClass().getSimpleName(),al);
-        }
-        //algorithms.stream().forEach(al -> algorithmMap.put(al.get().getClass().getSimpleName(), al.get()));
+        algorithms.stream().forEach(al -> algorithmMap.put(al.get().getClass().getSimpleName(), al.get()));
     }
 
     public static void main(String[] args) {
