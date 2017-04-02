@@ -10,6 +10,7 @@
   <packaging>pom</packaging>
   <properties>
     <!-- Java Compiler-->
+    <java.version>9</java.version>
     <maven.compiler.source>9</maven.compiler.source>
     <maven.compiler.target>9</maven.compiler.target>
     <maven.compiler.release>9</maven.compiler.release>
