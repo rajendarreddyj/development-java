@@ -1,0 +1,4 @@
+TransactionId${DELIMETER}Amount${DELIMETER}ExecutionDate ${DELIMETER}Currency${DELIMETER}Status$NEWLINE
+#foreach( $csvData in $csvDataFeed.csvDataList)
+$!csvData.TransactionId$DELIMETER$!csvData.Amount $DELIMETER$!csvData.ExecutionDate$DELIMETER $!csvData.Currency$DELIMETER$!csvData.Status$NEWLINE
+#end
