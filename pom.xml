@@ -11,7 +11,6 @@
     <!-- Java Compiler -->
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.release>1.8</maven.compiler.release>
     <java.version>1.8</java.version>
     <!-- Java Specs apis -->
     <javaee.api.version>7.0</javaee.api.version>
@@ -164,9 +163,6 @@
     <sonar.jacoco.reportPath>${user.dir}/target/jacoco.exec</sonar.jacoco.reportPath>
     <sonar.java.binaries>${basedir}</sonar.java.binaries>
   </properties>
-  <prerequisites>
-    <maven>3.2.5</maven>
-  </prerequisites>
   <!-- All dependencies defined within 'dependencyManagement' to avoid having to specify versions within child modules. -->
   <dependencyManagement>
     <dependencies>
@@ -1130,7 +1126,7 @@
                     <version>${java.version}</version>
                   </requireJavaVersion>
                   <requireMavenVersion>
-                    <version>3.0</version>
+                    <version>3.3</version>
                   </requireMavenVersion>
                   <DependencyConvergence />
                   <bannedDependencies>
@@ -1418,5 +1414,6 @@
     <module>guava-projects</module>
     <module>velocity-projects</module>
     <module>selenium-projects</module>
+    <module>codejam-projects</module>
   </modules>
 </project>
