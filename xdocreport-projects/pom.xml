@@ -13,6 +13,14 @@
   </modules>
   <dependencies>
     <dependency>
+      <groupId>com.rajendarreddyj</groupId>
+      <artifactId>common-pojos</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>fr.opensagres.xdocreport</groupId>
+      <artifactId>fr.opensagres.xdocreport.document</artifactId>
+    </dependency>
+    <dependency>
       <groupId>fr.opensagres.xdocreport</groupId>
       <artifactId>fr.opensagres.xdocreport.document.docx</artifactId>
     </dependency>
@@ -59,6 +67,10 @@
     <dependency>
       <groupId>fr.opensagres.xdocreport</groupId>
       <artifactId>fr.opensagres.xdocreport.document.pptx</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>fr.opensagres.xdocreport</groupId>
+      <artifactId>fr.opensagres.xdocreport.document.tools</artifactId>
     </dependency>
     <!-- <dependency>
       <groupId>fr.opensagres.xdocreport</groupId>
@@ -123,6 +135,10 @@
     <dependency>
       <groupId>fr.opensagres.xdocreport</groupId>
       <artifactId>fr.opensagres.odfdom.converter.pdf.itext5</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
     </dependency>
   </dependencies>
 </project>

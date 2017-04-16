@@ -16,18 +16,19 @@ import fr.opensagres.odfdom.converter.pdf.PdfOptions;
  */
 public class ConvertODTToPDF {
     public static void main(final String[] args) {
-        generatePDF("src/main/resources/ODTFile.odt", "target/ODTFile.pdf");
+        generatePDF("src/main/resources/ODTToPDF.odt", "target/ODTToPDF.pdf");
     }
 
     /**
      * 
      */
-    private static void generatePDF(final String odtFileName, final String pdfFilePath) {
+    private static void generatePDF(final String odtFileName, final String targetFilePath) {
         long startTime = System.currentTimeMillis();
         try {
             File inputFile = new File(odtFileName);
             OdfTextDocument document = OdfTextDocument.loadDocument(new FileInputStream(inputFile));
-            File outFile = new File(pdfFilePath);
+            /*InputStream in = ConvertODTToPDF.class.getResourceAsStream( "ODTToPDF.odt" );*/
+            File outFile = new File(targetFilePath);
             outFile.getParentFile().mkdirs();
             OutputStream out = new FileOutputStream(outFile);
             PdfOptions options = PdfOptions.create().fontEncoding("windows-1250");
@@ -35,6 +36,6 @@ public class ConvertODTToPDF {
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        System.out.println("Generate " + pdfFilePath + " with " + (System.currentTimeMillis() - startTime) + " ms.");
+        System.out.println("Generate " + targetFilePath + " with " + (System.currentTimeMillis() - startTime) + " ms.");
     }
 }
