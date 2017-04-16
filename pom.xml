@@ -68,6 +68,8 @@
     <httpclient.version>4.5.3</httpclient.version>
     <httpcore.version>4.4.6</httpcore.version>
     <itextpdf.version>5.5.10</itextpdf.version>
+    <poi.version>3.15</poi.version>
+    <ooxml.schemas.version>1.3</ooxml.schemas.version>
     <xdocreport.version>2.0.0</xdocreport.version>
     <!-- Commons Dependencies -->
     <commons.codec.version>1.10</commons.codec.version>
@@ -1210,6 +1212,26 @@
         <groupId>fr.opensagres.xdocreport</groupId>
         <artifactId>fr.opensagres.poi.xwpf.converter.pdf.itext5</artifactId>
         <version>${xdocreport.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>${poi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>${poi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml-schemas</artifactId>
+        <version>${poi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>ooxml-schemas</artifactId>
+        <version>${ooxml.schemas.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
