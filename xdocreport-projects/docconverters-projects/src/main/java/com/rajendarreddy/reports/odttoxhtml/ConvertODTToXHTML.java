@@ -16,7 +16,7 @@ import fr.opensagres.odfdom.converter.xhtml.XHTMLOptions;
  */
 public class ConvertODTToXHTML {
     public static void main(final String[] args) {
-        generateXHTML("src/main/resources/ODTToXHTML.odt", "target/ODTToXHTML.htm");
+        generateXHTML("src/main/resources/ODTToPDF.odt", "target/ODTToPDF.htm");
     }
 
     /**
