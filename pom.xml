@@ -124,6 +124,7 @@
     <velocity.version>1.7</velocity.version>
     <velocity.tools.version>2.0</velocity.tools.version>
     <xml.apis.version>1.4.01</xml.apis.version>
+    <xmlbeans.version>2.6.0</xmlbeans.version>
     <!-- PLUGIN VERSIONS -->
     <maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
     <maven.clean.plugin.version>3.0.0</maven.clean.plugin.version>
@@ -1227,11 +1228,28 @@
         <groupId>org.apache.poi</groupId>
         <artifactId>poi-ooxml-schemas</artifactId>
         <version>${poi.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.xmlbeans</groupId>
+            <artifactId>xmlbeans</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.apache.poi</groupId>
         <artifactId>ooxml-schemas</artifactId>
         <version>${ooxml.schemas.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.xmlbeans</groupId>
+            <artifactId>xmlbeans</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.xmlbeans</groupId>
+        <artifactId>xmlbeans</artifactId>
+        <version>${xmlbeans.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

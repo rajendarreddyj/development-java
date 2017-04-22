@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+  version="3.1">
+  <display-name>xdocreports-webapp</display-name>
+  <!-- Servlet used to generate report with servlet -->
+  <servlet>
+    <servlet-name>ReportsServlet</servlet-name>
+    <servlet-class>com.rajendarreddy.reports.servlet.ReportsServlet
+    </servlet-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </servlet>
+  <!-- Servlet used to generate report with Dispatcher -->
+  <servlet>
+    <servlet-name>ReportServletDispatcher</servlet-name>
+    <servlet-class>fr.opensagres.xdocreport.document.web.dispatcher.ProcessDispatcherXDocReportServlet</servlet-class>
+    <init-param>
+      <param-name>dispatchers</param-name>
+      <param-value>com.rajendarreddy.reports.dispatcher.ReportsDispatcher</param-value>
+    </init-param>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReportsServlet</servlet-name>
+    <url-pattern>/reportServlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ReportServletDispatcher</servlet-name>
+    <url-pattern>/reportDispatcher/*</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.htm</welcome-file>
+  </welcome-file-list>
+</web-app>

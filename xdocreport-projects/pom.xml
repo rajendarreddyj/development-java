@@ -10,6 +10,7 @@
   <packaging>pom</packaging>
   <modules>
     <module>docconverters-projects</module>
+    <module>xdocreports-webapp</module>
   </modules>
   <dependencies>
     <dependency>
@@ -39,10 +40,6 @@
     <dependency>
       <groupId>fr.opensagres.xdocreport</groupId>
       <artifactId>fr.opensagres.xdocreport.converter.odt.odfdom</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>fr.opensagres.xdocreport</groupId>
-      <artifactId>fr.opensagres.xdocreport.converter.docx.docx4j</artifactId>
     </dependency>
     <dependency>
       <groupId>fr.opensagres.xdocreport</groupId>
@@ -86,19 +83,11 @@
     </dependency>
     <dependency>
       <groupId>fr.opensagres.xdocreport</groupId>
-      <artifactId>fr.opensagres.odfdom.converter.pdf</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>fr.opensagres.xdocreport</groupId>
       <artifactId>fr.opensagres.odfdom.converter.core</artifactId>
     </dependency>
     <dependency>
       <groupId>fr.opensagres.xdocreport</groupId>
       <artifactId>fr.opensagres.odfdom.converter.xhtml</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>fr.opensagres.xdocreport</groupId>
-      <artifactId>fr.opensagres.poi.xwpf.converter.pdf</artifactId>
     </dependency>
     <dependency>
       <groupId>fr.opensagres.xdocreport</groupId>
@@ -111,18 +100,6 @@
     <dependency>
       <groupId>fr.opensagres.xdocreport</groupId>
       <artifactId>fr.opensagres.xdocreport.remoting.converter.server</artifactId>
-    </dependency>
-    <dependency>
-      <artifactId>fr.opensagres.odfdom.converter.pdf-gae</artifactId>
-      <groupId>fr.opensagres.xdocreport</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>fr.opensagres.poi.xwpf.converter.pdf-gae</artifactId>
-      <groupId>fr.opensagres.xdocreport</groupId>
-    </dependency>
-    <dependency>
-      <groupId>fr.opensagres.xdocreport</groupId>
-      <artifactId>fr.opensagres.poi.xwpf.converter.xhtml-gae</artifactId>
     </dependency>
     <dependency>
       <groupId>fr.opensagres.xdocreport</groupId>
@@ -155,6 +132,10 @@
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>ooxml-schemas</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xmlbeans</groupId>
+      <artifactId>xmlbeans</artifactId>
     </dependency>
   </dependencies>
 </project>
