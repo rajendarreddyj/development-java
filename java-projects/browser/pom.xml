@@ -9,4 +9,10 @@
   <artifactId>browser</artifactId>
   <name>java based Browser</name>
   <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+  </dependencies>
 </project>
