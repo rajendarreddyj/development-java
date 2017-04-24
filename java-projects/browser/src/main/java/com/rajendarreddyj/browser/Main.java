@@ -1,4 +1,4 @@
-package com.rajendarreddyj;
+package com.rajendarreddyj.browser;
 
 import javax.swing.JFrame;
 
