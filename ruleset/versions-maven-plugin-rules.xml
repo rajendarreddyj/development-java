@@ -10,6 +10,22 @@
         <ignoreVersion>20030911</ignoreVersion>
       </ignoreVersions>
     </rule>
+    <rule groupId="com.fasterxml.jackson.core">
+      <ignoreVersions>
+        <ignoreVersion type="regex">(?i).*pr(?:-?\d+)?</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+    <rule groupId="com.google.guava">
+      <ignoreVersions>
+        <ignoreVersion type="regex">(?i).*-rc(?:-?\d+)?-android</ignoreVersion>
+        <ignoreVersion type="regex">(?i).*-rc(?:-?\d+)?</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+    <rule groupId="com.sun.mail">
+      <ignoreVersions>
+        <ignoreVersion type="regex">(?i).*rc(?:-?\d+)?</ignoreVersion>
+      </ignoreVersions>
+    </rule>
     <rule groupId="commons-discovery">
       <ignoreVersions>
         <ignoreVersion type="regex">.*-dev</ignoreVersion>
@@ -45,6 +61,11 @@
         <ignoreVersion type="regex">(?i).*-M(?:-?\d+)?</ignoreVersion>
       </ignoreVersions>
     </rule>
+    <rule groupId="javax.mail">
+      <ignoreVersions>
+        <ignoreVersion type="regex">(?i).*rc(?:-?\d+)?</ignoreVersion>
+      </ignoreVersions>
+    </rule>
     <rule groupId="javax.servlet">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*-b(?:-?\d+)?</ignoreVersion>
@@ -54,11 +75,17 @@
     <rule groupId="javax.validation">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*Alpha(?:-?\d+)?</ignoreVersion>
+        <ignoreVersion type="regex">(?i).*Beta(?:-?\d+)?</ignoreVersion>
       </ignoreVersions>
     </rule>
     <rule groupId="org.apache.struts">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*BETA(?:-?\d+)?</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+    <rule groupId="org.apache.tomcat.embed">
+      <ignoreVersions>
+        <ignoreVersion type="regex">(?i).*M(?:-?\d+)?</ignoreVersion>
       </ignoreVersions>
     </rule>
     <rule groupId="org.javassist">
@@ -93,16 +120,23 @@
     <rule groupId="org.mockito">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*beta(?:-?\d+)?</ignoreVersion>
+        <ignoreVersion type="regex">(?i).*rc(?:-?\d+)?</ignoreVersion>
       </ignoreVersions>
     </rule>
     <rule groupId="org.neo4j">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*alpha(?:-?\d+)?</ignoreVersion>
+        <ignoreVersion type="regex">(?i).*rc(?:-?\d+)?</ignoreVersion>
       </ignoreVersions>
     </rule>
     <rule groupId="org.postgresql">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*jre(?:-?\d+)?</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+    <rule groupId="org.slf4j">
+      <ignoreVersions>
+        <ignoreVersion type="regex">(?i).*alpha(?:-?\d+)?</ignoreVersion>
       </ignoreVersions>
     </rule>
   </rules>

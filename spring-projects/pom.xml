@@ -10,4 +10,7 @@
   <artifactId>spring-projects</artifactId>
   <packaging>pom</packaging>
   <name>Spring projects</name>
+  <modules>
+    <module>spring-rest-security</module>
+  </modules>
 </project>

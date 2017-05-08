@@ -6,8 +6,4 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <artifactId>codejam-projects</artifactId>
-  <packaging>pom</packaging>
-  <modules>
-    <module>2008</module>
-  </modules>
 </project>
