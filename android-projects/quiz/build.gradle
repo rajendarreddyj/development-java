@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
         applicationId "com.rajendarreddyj.quiz"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -24,12 +24,13 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "com.google.firebase:firebase-auth:9.0.2"
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:25.3.1'
-    testCompile 'junit:junit:4.12'
+    compile "com.google.firebase:firebase-core:$rootProject.ext.playServicesVersion"
+    compile "com.google.firebase:firebase-auth:$rootProject.ext.playServicesVersion"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
+    compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+    testCompile "junit:junit:$rootProject.ext.junitVersion"
 }
