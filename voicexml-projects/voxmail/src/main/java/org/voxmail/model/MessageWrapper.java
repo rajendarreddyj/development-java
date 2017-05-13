@@ -16,6 +16,7 @@ package org.voxmail.model;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.mail.Flags;
 import javax.mail.Message;
@@ -24,7 +25,7 @@ import javax.mail.Message;
  * @author James
  */
 public class MessageWrapper implements Comparable<MessageWrapper> {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     /** Creates a new instance of MessageWrapper */
     public MessageWrapper(final Message message) {
 
@@ -70,7 +71,7 @@ public class MessageWrapper implements Comparable<MessageWrapper> {
         } catch (Exception e) {
             // e.printStackTrace();
         }
-        System.out.println("getAudioFileName: " + fileLocation);
+        logger.info("getAudioFileName: " + fileLocation);
         return fileLocation;
     }
 
@@ -330,18 +331,18 @@ public class MessageWrapper implements Comparable<MessageWrapper> {
             flags.getUserFlags();
 
             if (this.message.isSet(Flags.Flag.FLAGGED)) {
-                System.out.println("Msg: " + this.message.getMessageNumber() + ", FLAGGED flag, setting to skipped");
+                logger.info("Msg: " + this.message.getMessageNumber() + ", FLAGGED flag, setting to skipped");
                 this.status = MessageWrapper.MESSAGE_STATUS_SKIPPED;
             } else if (this.message.isSet(Flags.Flag.SEEN)) {
-                System.out.println("Msg: " + this.message.getMessageNumber() + ", SEEN flag, setting to saved");
+                logger.info("Msg: " + this.message.getMessageNumber() + ", SEEN flag, setting to saved");
                 this.status = MessageWrapper.MESSAGE_STATUS_SAVED;
             } else if (this.message.isSet(Flags.Flag.DELETED)) {
-                System.out.println("Msg: " + this.message.getMessageNumber() + ", DELETED flag, setting to deleted");
+                logger.info("Msg: " + this.message.getMessageNumber() + ", DELETED flag, setting to deleted");
                 this.status = MessageWrapper.MESSAGE_STATUS_DELETED;
             }
 
             else {
-                System.out.println("Msg: " + this.message.getMessageNumber() + ", No flags, setting to new");
+                logger.info("Msg: " + this.message.getMessageNumber() + ", No flags, setting to new");
                 this.status = MessageWrapper.MESSAGE_STATUS_NEW;
             }
         } catch (Exception e) {

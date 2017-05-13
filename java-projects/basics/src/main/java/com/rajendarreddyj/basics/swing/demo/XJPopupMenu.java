@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Logger;
 
 import javax.swing.AbstractButton;
 import javax.swing.Icon;
@@ -30,6 +31,7 @@ import javax.swing.plaf.basic.BasicSeparatorUI;
  */
 public class XJPopupMenu extends JPopupMenu implements ActionListener {
     private static final long serialVersionUID = 1;
+    private static final Logger logger = Logger.getAnonymousLogger();
     private JPanel panelMenus = new JPanel();
     private JScrollPane scroll = null;
     private JFrame jframe = null;
@@ -104,7 +106,7 @@ public class XJPopupMenu extends JPopupMenu implements ActionListener {
             menuItem.setIcon(EMPTY_IMAGE_ICON);
         }
         if (!(menuItem instanceof XCheckedButton)) {
-            System.out.println(menuItem.getName());
+            logger.info(menuItem.getName());
         }
     }
 

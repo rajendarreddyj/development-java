@@ -13,12 +13,14 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Logger;
 import java.util.Set;
 import java.util.TreeMap;
 
 import org.junit.Test;
 
 public class MapTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     @Test
     public void givenHashMap_whenRetrievesKeyset_thenCorrect() {
         Map<String, String> map = new HashMap<>();
@@ -208,22 +210,22 @@ public class MapTest {
         MyKey k2 = new MyKey(2, "secondKey");
         MyKey k3 = new MyKey(2, "thirdKey");
 
-        System.out.println("storing value for k1");
+        logger.info("storing value for k1");
         map.put(k1, "firstValue");
 
-        System.out.println("storing value for k2");
+        logger.info("storing value for k2");
         map.put(k2, "secondValue");
 
-        System.out.println("storing value for k3");
+        logger.info("storing value for k3");
         map.put(k3, "thirdValue");
 
-        System.out.println("retrieving value for k1");
+        logger.info("retrieving value for k1");
         String v1 = map.get(k1);
 
-        System.out.println("retrieving value for k2");
+        logger.info("retrieving value for k2");
         String v2 = map.get(k2);
 
-        System.out.println("retrieving value for k3");
+        logger.info("retrieving value for k3");
         String v3 = map.get(k3);
 
         assertEquals("firstValue", v1);

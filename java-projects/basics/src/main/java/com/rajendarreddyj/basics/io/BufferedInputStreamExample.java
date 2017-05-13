@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /*
  * To show how to read a file in Java with BufferedInputStream and DataInputStream classes. The readLine() from the type
@@ -12,6 +13,7 @@ import java.io.IOException;
  * characters. It’s advised to use BufferedReader.
  */
 public class BufferedInputStreamExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     @SuppressWarnings("deprecation")
     public static void main(final String[] args) {
         File file = new File("javaio-appendfile.txt");
@@ -23,7 +25,7 @@ public class BufferedInputStreamExample {
             bis = new BufferedInputStream(fis);
             dis = new DataInputStream(bis);
             while (dis.available() != 0) {
-                System.out.println(dis.readLine());
+                logger.info(dis.readLine());
             }
         } catch (IOException e) {
             e.printStackTrace();

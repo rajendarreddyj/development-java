@@ -3,6 +3,7 @@ package com.rajendarreddyj.basics.xml;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Logger;
 
 import org.apache.xerces.parsers.DOMParser;
 
@@ -14,6 +15,7 @@ import org.apache.xerces.parsers.DOMParser;
  * </p>
  */
 public class XMLExpressions {
+    private static final Logger logger = Logger.getAnonymousLogger();
     static final String TOP_TAG = "EXPRESSION";
     static final String NAME_SPACE = "http://www.test.com/expression";
     static final String PREFIX = "ex";
@@ -37,16 +39,16 @@ public class XMLExpressions {
                             String xml = xmlParse.parse(line, TOP_TAG, PREFIX, NAME_SPACE, "xmlexpr/expression.xsd");
                             Integer rslt = evalStmtOrExp.eval(parser, xml.getBytes());
                             if (rslt != null) {
-                                System.out.println(rslt);
+                                logger.info(String.valueOf(rslt));
                             }
                         } catch (ExpParseException e1) {
-                            System.out.println("Expression parse error: " + e1);
+                            logger.info("Expression parse error: " + e1);
                         }
                     }
                 }
             } while ((line != null) && (len > 0));
         } catch (IOException e2) {
-            System.out.println("IOException: " + e2.getMessage());
+            logger.info("IOException: " + e2.getMessage());
         }
     } // main
 }

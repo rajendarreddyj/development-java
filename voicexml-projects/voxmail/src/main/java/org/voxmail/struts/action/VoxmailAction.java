@@ -2,6 +2,7 @@ package org.voxmail.struts.action;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +16,7 @@ import org.voxmail.VoxmailException;
 import org.voxmail.model.Mailbox;
 
 public class VoxmailAction extends Action {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     static DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
 
     /**
@@ -37,7 +38,7 @@ public class VoxmailAction extends Action {
 
         String contactId = request.getParameter("contactId");
 
-        System.out.println(df.format(new Date()) + ": INCOMING contactId is " + contactId);
+        logger.info(df.format(new Date()) + ": INCOMING contactId is " + contactId);
 
         Mailbox mailbox = null;
         try {
@@ -48,7 +49,7 @@ public class VoxmailAction extends Action {
             request.setAttribute("msg", "tryAgain: Voxmail exception: " + e.toString());
             return mapping.findForward("testPage");
         }
-        System.out.println("Mailbox id: " + mailbox.getMailboxId());
+        logger.info("Mailbox id: " + mailbox.getMailboxId());
 
         return mapping.findForward("voxmail");
     }

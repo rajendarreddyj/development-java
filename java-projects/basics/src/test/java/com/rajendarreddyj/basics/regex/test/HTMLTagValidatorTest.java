@@ -1,5 +1,7 @@
 package com.rajendarreddyj.basics.regex.test;
 
+import java.util.logging.Logger;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -8,6 +10,7 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.HTMLTagValidator;
 
 public class HTMLTagValidatorTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private HTMLTagValidator htmlTagValidator;
 
     @BeforeClass
@@ -31,14 +34,14 @@ public class HTMLTagValidatorTest {
     @Test(dataProvider = "ValidHTMLTagProvider")
     public void ValidHTMLTagTest(final String tag) {
         boolean valid = this.htmlTagValidator.validate(tag);
-        System.out.println("HTMLTag is valid : " + tag + " , " + valid);
+        logger.info("HTMLTag is valid : " + tag + " , " + valid);
         Assert.assertEquals(true, valid);
     }
 
     @Test(dataProvider = "InvalidHTMLTagProvider", dependsOnMethods = "ValidHTMLTagTest")
     public void InValidHTMLTagTest(final String tag) {
         boolean valid = this.htmlTagValidator.validate(tag);
-        System.out.println("HTMLTag is valid : " + tag + " , " + valid);
+        logger.info("HTMLTag is valid : " + tag + " , " + valid);
         Assert.assertEquals(false, valid);
     }
 }

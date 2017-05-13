@@ -12,6 +12,7 @@ package org.voxmail.struts.action;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.DateFormat;
+import java.util.logging.Logger;
 
 import javax.mail.Flags;
 import javax.mail.Folder;
@@ -33,7 +34,7 @@ import org.voxmail.mail.MailConnection;
 import org.voxmail.model.Mailbox;
 
 public class InboxAction extends Action {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     static DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
 
     protected String quota_count = "4096"; // max message count
@@ -52,7 +53,7 @@ public class InboxAction extends Action {
     @Override
     public ActionForward execute(final ActionMapping mapping, final ActionForm form, final HttpServletRequest request, final HttpServletResponse response) {
 
-        System.out.println("InboxAction:URL=" + request.getRequestURL().toString());
+        logger.info("InboxAction:URL=" + request.getRequestURL().toString());
         HttpSession session = request.getSession(true);
 
         String cmd = request.getParameter("cmd"); // commands starting with '_' indicate retrieval
@@ -74,7 +75,7 @@ public class InboxAction extends Action {
 
         String destination = "login";
 
-        System.out.println("CMD=" + cmd + ", PLATFORM=" + platform);
+        logger.info("CMD=" + cmd + ", PLATFORM=" + platform);
         try {
             if ("doLogin".equals(cmd)) {
                 // getCntact(request.getParameter("phone"), request.getParameter("pin"));
@@ -173,10 +174,10 @@ public class InboxAction extends Action {
                 destination = "greeting";
             }
 
-            System.out.println("destination=" + destination);
+            logger.info("destination=" + destination);
 
             if ((destination != null) && (skipRD == false)) {
-                System.out.println("RD_DESTINATION=" + destination);
+                logger.info("RD_DESTINATION=" + destination);
                 // RequestDispatcher rd = getServletContext().getRequestDispatcher("/" + platform + "/" + destination);
 
                 // if (rd != null)
@@ -259,7 +260,7 @@ public class InboxAction extends Action {
         String mailurl = mailbox.getMailUrl(); // get the appropriate mailurl from the contact object
 
         // logger.debug("GETTING NEW MAIL CONNECTION...");
-        System.out.println("MailURL: " + mailurl);
+        logger.info("MailURL: " + mailurl);
 
         try {
             mail = new MailConnection(mailbox);
@@ -277,8 +278,8 @@ public class InboxAction extends Action {
         String imapUsername = request.getParameter("imapUsername");
         String imapPassword = request.getParameter("imapPassword");
 
-        System.out.println("mailboxId=" + mailboxId);
-        System.out.println("pin=" + pin);
+        logger.info("mailboxId=" + mailboxId);
+        logger.info("pin=" + pin);
         request.getSession().getServletContext().getRealPath("/");
 
         try {
@@ -312,8 +313,8 @@ public class InboxAction extends Action {
             Message message = inbox.getMessage(Integer.parseInt(request.getParameter("msgindex")));
             String folder = request.getParameter("newfolder");
 
-            System.out.println("SETTING FLAG................................");
-            System.out.println("folder=" + folder);
+            logger.info("SETTING FLAG................................");
+            logger.info("folder=" + folder);
 
             // remove existing flags
             message.setFlag(Flags.Flag.SEEN, false);
@@ -361,12 +362,12 @@ public class InboxAction extends Action {
                 Part p2 = multipart.getBodyPart(i);
 
                 if (p2.isMimeType("text/plain")) {
-                    System.out.println("MimeType: text/plain");
+                    logger.info("MimeType: text/plain");
                     break;
                 } else {
                     response.setContentType("audio/wav");
                     if (p2.getFileName() != null) {
-                        System.out.println("Setting content disposition");
+                        logger.info("Setting content disposition");
                         response.setHeader("Content-Disposition", "attachment; filename=\"" + p2.getFileName() + "\"");
                         OutputStream out = response.getOutputStream();
                         InputStream in = p2.getInputStream();
@@ -376,7 +377,7 @@ public class InboxAction extends Action {
                             c = in.read();
                         }
                     } else {
-                        System.out.println("Filename is null");
+                        logger.info("Filename is null");
                     }
                 }
             }

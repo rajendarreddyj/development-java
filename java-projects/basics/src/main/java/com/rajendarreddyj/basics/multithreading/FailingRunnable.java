@@ -1,18 +1,20 @@
 package com.rajendarreddyj.basics.multithreading;
 
+import java.util.logging.Logger;
+
 /**
  * @author rajendarreddy
  *
  */
 public class FailingRunnable implements Runnable {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     /* (non-Javadoc)
      * @see java.lang.Runnable#run()
      */
     @SuppressWarnings("unused")
     @Override
     public void run() {
-        System.out.println("Thread started");
+        logger.info("Thread started");
 
         // The compiler can detect when some code cannot be reached
         // so this "if" statement is used to trick the compiler
@@ -20,7 +22,7 @@ public class FailingRunnable implements Runnable {
         if (true) {
             throw new RuntimeException("Stopping the thread");
         }
-        System.out.println("This won't be printed");
+        logger.info("This won't be printed");
     }
 
 }

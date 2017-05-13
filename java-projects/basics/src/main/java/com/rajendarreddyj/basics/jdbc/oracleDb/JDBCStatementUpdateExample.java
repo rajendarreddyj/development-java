@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Logger;
 
 /*
  * The “Statement” interface is used to execute a simple SQL statement with no parameters. For create, insert, update or
@@ -15,6 +16,7 @@ import java.sql.Statement;
  * statement.executeUpdate(updateTableSQL);
  */
 public class JDBCStatementUpdateExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -24,7 +26,7 @@ public class JDBCStatementUpdateExample {
         try {
             updateRecordIntoDbUserTable();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
     }
 
@@ -35,12 +37,12 @@ public class JDBCStatementUpdateExample {
         try {
             dbConnection = getDBConnection();
             statement = dbConnection.createStatement();
-            System.out.println(updateTableSQL);
+            logger.info(updateTableSQL);
             // execute update SQL stetement
             statement.execute(updateTableSQL);
-            System.out.println("Record is updated to DBUSER table!");
+            logger.info("Record is updated to DBUSER table!");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         } finally {
             if (statement != null) {
                 statement.close();
@@ -56,13 +58,13 @@ public class JDBCStatementUpdateExample {
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         try {
             dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
             return dbConnection;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         return dbConnection;
     }

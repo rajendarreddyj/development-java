@@ -1,6 +1,7 @@
 package com.rajendarreddy.servlet;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.AsyncEvent;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "UploadServlet", urlPatterns = { "/UploadServlet" }, asyncSupported = true)
 public class UploadServlet extends HttpServlet {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -35,7 +36,7 @@ public class UploadServlet extends HttpServlet {
 
             @Override
             public void onError(final AsyncEvent event) {
-                System.out.println(event.getThrowable());
+                logger.info(event.getThrowable().toString());
             }
 
             @Override
@@ -44,7 +45,7 @@ public class UploadServlet extends HttpServlet {
 
             @Override
             public void onTimeout(final AsyncEvent event) {
-                System.out.println("my asyncListener.onTimeout");
+                logger.info("my asyncListener.onTimeout");
             }
         });
         ServletInputStream input = request.getInputStream();

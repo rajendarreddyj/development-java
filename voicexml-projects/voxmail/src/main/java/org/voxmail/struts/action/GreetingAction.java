@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,7 @@ import com.oreilly.servlet.multipart.ParamPart;
 import com.oreilly.servlet.multipart.Part;
 
 public class GreetingAction extends Action {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     static DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
     public String filePath_Greetings = null; // directory where recorded messages are saved
     public static boolean isInitialized = false;
@@ -68,7 +69,7 @@ public class GreetingAction extends Action {
             request.setAttribute("greetingPath", greetingPath);
             return mapping.findForward("greeting");
         } else {
-            System.out.println(df.format(new Date()) + "GreetingAction: Saving a greeting.");
+            logger.info(df.format(new Date()) + "GreetingAction: Saving a greeting.");
             String forward = "";
 
             try {
@@ -101,7 +102,7 @@ public class GreetingAction extends Action {
         // test the directory where we'll be saving recorded greetings
         File dir2 = new File(this.filePath_Greetings);
         if (!dir2.exists() || !dir2.isDirectory()) {
-            // System.out.println("Could not find filePath_Greetings: " + filePath_Greetings);
+            // logger.info("Could not find filePath_Greetings: " + filePath_Greetings);
             throw new ServletException("Could not find filePath_Greetings: " + this.filePath_Greetings);
         } else {
             if (!this.filePath_Greetings.endsWith("/") && !this.filePath_Greetings.endsWith("\\")) {
@@ -109,7 +110,7 @@ public class GreetingAction extends Action {
             }
         }
 
-        System.out.println("LeaveMessageAction filePath_Greetings=" + this.filePath_Greetings);
+        logger.info("LeaveMessageAction filePath_Greetings=" + this.filePath_Greetings);
 
     }
 
@@ -127,8 +128,8 @@ public class GreetingAction extends Action {
         String greetingType = "";
         String nextPage = "";
 
-        System.out.println("#---------------------------------------------------#");
-        System.out.println("GreetingAction - Attempting to parse stream...");
+        logger.info("#---------------------------------------------------#");
+        logger.info("GreetingAction - Attempting to parse stream...");
 
         try {
 
@@ -156,14 +157,14 @@ public class GreetingAction extends Action {
                     } else if ("cmd".equals(name)) {
                     }
 
-                    System.out.println("name=" + name + ", value=" + value);
+                    logger.info("name=" + name + ", value=" + value);
 
                 } else if (part.isFile()) {
                     // put the file into a ByteArrayOutputStream. We'll save it when we finish parsing
                     filePart = (FilePart) part;
 
                     audioFileName = filePart.getFileName();
-                    System.out.println("filename=" + audioFileName);
+                    logger.info("filename=" + audioFileName);
 
                     bout = new ByteArrayOutputStream();
                     filePart.writeTo(bout);
@@ -174,7 +175,7 @@ public class GreetingAction extends Action {
             if ((filePart != null) && (bout != null)) {
                 try {
                     if (audioFileName != null) { // we really do have a file!
-                        System.out.println("we really do have a file");
+                        logger.info("we really do have a file");
 
                         String timeStamp = new SimpleDateFormat("yyyy-MM-dd_kk,mm,S").format(new Date());
                         String realPath = request.getSession().getServletContext().getRealPath(this.filePath_Greetings);
@@ -184,7 +185,7 @@ public class GreetingAction extends Action {
                         // test directory
                         File dir = new File(myPath);
                         if (!dir.exists()) {
-                            System.out.println("Directory does not exist: " + myPath);
+                            logger.info("Directory does not exist: " + myPath);
                         }
 
                         File file = new File(myPath + myFileName);
@@ -210,32 +211,32 @@ public class GreetingAction extends Action {
                         }
 
                         // Save mailbox info
-                        System.out.println("GreetingAction - saving mailbox");
+                        logger.info("GreetingAction - saving mailbox");
                         Voxmail.getInstance().getVoxmailService().updateGreeting(mailbox);
 
                     } else {
-                        System.out.println("GreetingAction - Empty or missing file part");
+                        logger.info("GreetingAction - Empty or missing file part");
                     }
                 } catch (Exception e) {
-                    System.out.println("Unable to save file: " + e.getMessage());
+                    logger.info("Unable to save file: " + e.getMessage());
                 }
             } else {
-                System.out.println("Selected the standard greeting");
+                logger.info("Selected the standard greeting");
                 mailbox.setGreetingType(Mailbox.GREETING_TYPE_DEFAULT);
                 nextPage = "standardConfirm";
 
                 // Save mailbox info
-                System.out.println("GreetingAction - saving mailbox with standard greeting");
+                logger.info("GreetingAction - saving mailbox with standard greeting");
                 Voxmail.getInstance().getVoxmailService().updateGreeting(mailbox);
             }
 
-            System.out.println("GreetingAction: mailboxId=" + mailboxId + "*");
+            logger.info("GreetingAction: mailboxId=" + mailboxId + "*");
 
         } catch (Exception e) {
             // try to at least grab the nextpage
             e.printStackTrace();
-            System.out.println("Parsing failed: " + e.getMessage());
-            System.out.println("We're still going to try and redirect to nextpage.");
+            logger.info("Parsing failed: " + e.getMessage());
+            logger.info("We're still going to try and redirect to nextpage.");
         }
 
         return nextPage;

@@ -1,9 +1,12 @@
 package com.rajendarreddyj.basics.condition;
 
+import java.util.logging.Logger;
+
 /*
  * In this example, we will store the multiples of two and store them in an array and also print them.
  */
 public class TwosMultiples {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         int[] twosMultiples = new int[10];
         // using for loop to iterate through the numbers and once
@@ -19,7 +22,7 @@ public class TwosMultiples {
         }
         // For loop to iterate through the array using for each
         for (int i : twosMultiples) {
-            System.out.println(i);
+            logger.info(String.valueOf(i));
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.rajendarreddyj.java8basics.streams;
 
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 /**
@@ -7,6 +8,7 @@ import java.util.stream.Stream;
  *
  */
 public class InfiniteStream {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         doWhileOldWay();
 
@@ -18,7 +20,7 @@ public class InfiniteStream {
 
         int i = 0;
         while (i < 10) {
-            System.out.println(i);
+            logger.info(String.valueOf(i));
             i++;
         }
     }

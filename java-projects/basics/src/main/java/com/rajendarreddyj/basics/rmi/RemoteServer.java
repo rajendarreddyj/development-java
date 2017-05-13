@@ -4,11 +4,13 @@ import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.logging.Logger;
 
 import com.rajendarreddyj.basics.swing.rmiclient.Send;
 
 @SuppressWarnings("deprecation")
 public class RemoteServer extends UnicastRemoteObject implements Send {
+    private static final Logger logger = Logger.getAnonymousLogger();
     /**
      * 
      */
@@ -37,11 +39,11 @@ public class RemoteServer extends UnicastRemoteObject implements Send {
         try {
             Send remoteServer = new RemoteServer();
             Naming.rebind(name, remoteServer);
-            System.out.println("RemoteServer bound");
+            logger.info("RemoteServer bound");
         } catch (java.rmi.RemoteException e) {
-            System.out.println("Cannot create remote server object");
+            logger.info("Cannot create remote server object");
         } catch (java.net.MalformedURLException e) {
-            System.out.println("Cannot look up server object");
+            logger.info("Cannot look up server object");
         }
     }
 }

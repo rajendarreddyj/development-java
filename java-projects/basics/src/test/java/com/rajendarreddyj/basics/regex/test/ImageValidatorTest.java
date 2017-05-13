@@ -1,5 +1,7 @@
 package com.rajendarreddyj.basics.regex.test;
 
+import java.util.logging.Logger;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -8,6 +10,7 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.ImageValidator;
 
 public class ImageValidatorTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private ImageValidator imageValidator;
 
     @BeforeClass
@@ -31,7 +34,7 @@ public class ImageValidatorTest {
     public void ValidImageTest(final String[] Image) {
         for (String temp : Image) {
             boolean valid = this.imageValidator.validate(temp);
-            System.out.println("Image is valid : " + temp + " , " + valid);
+            logger.info("Image is valid : " + temp + " , " + valid);
             Assert.assertEquals(true, valid);
         }
     }
@@ -40,7 +43,7 @@ public class ImageValidatorTest {
     public void InValidImageTest(final String[] Image) {
         for (String temp : Image) {
             boolean valid = this.imageValidator.validate(temp);
-            System.out.println("Image is valid : " + temp + " , " + valid);
+            logger.info("Image is valid : " + temp + " , " + valid);
             Assert.assertEquals(false, valid);
         }
     }

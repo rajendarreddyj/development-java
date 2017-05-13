@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.logging.Logger;
 
 import org.odftoolkit.odfdom.doc.OdfTextDocument;
 
@@ -15,6 +16,7 @@ import fr.opensagres.odfdom.converter.xhtml.XHTMLOptions;
  *
  */
 public class ConvertODTToXHTML {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         generateXHTML("src/main/resources/ODTToPDF.odt", "target/ODTToPDF.htm");
     }
@@ -38,6 +40,6 @@ public class ConvertODTToXHTML {
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        System.out.println("Generate " + targetFilePath + " with " + (System.currentTimeMillis() - startTime) + " ms.");
+        logger.info("Generate " + targetFilePath + " with " + (System.currentTimeMillis() - startTime) + " ms.");
     }
 }

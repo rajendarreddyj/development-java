@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 /*
  * how to call a Oracle stored procedure via JDBC CallableStatement, and how to pass IN parameters from Java to stored
@@ -22,6 +23,7 @@ import java.sql.SQLException;
  * CallableStatement.
  */
 public class JDBCCallableStatementINParameterExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -31,7 +33,7 @@ public class JDBCCallableStatementINParameterExample {
         try {
             callOracleStoredProcINParameter();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
     }
 
@@ -48,9 +50,9 @@ public class JDBCCallableStatementINParameterExample {
             callableStatement.setDate(4, getCurrentDate());
             // execute insertDBUSER store procedure
             callableStatement.executeUpdate();
-            System.out.println("Record is inserted into DBUSER table!");
+            logger.info("Record is inserted into DBUSER table!");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         } finally {
             if (callableStatement != null) {
                 callableStatement.close();
@@ -66,13 +68,13 @@ public class JDBCCallableStatementINParameterExample {
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         try {
             dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
             return dbConnection;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         return dbConnection;
     }

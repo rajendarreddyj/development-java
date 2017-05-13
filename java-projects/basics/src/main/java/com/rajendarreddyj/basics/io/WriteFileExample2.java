@@ -3,9 +3,11 @@ package com.rajendarreddyj.basics.io;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /* An updated JDK7 example, using new “try resource close” method to handle file easily. */
 public class WriteFileExample2 {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         File file = new File("newfile2.txt");
         String content = "This is the text content2";
@@ -19,7 +21,7 @@ public class WriteFileExample2 {
             fop.write(contentInBytes);
             fop.flush();
             fop.close();
-            System.out.println("Done");
+            logger.info("Done");
         } catch (IOException e) {
             e.printStackTrace();
         }

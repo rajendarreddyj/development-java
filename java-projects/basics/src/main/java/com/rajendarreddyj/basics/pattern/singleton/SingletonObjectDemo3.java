@@ -1,15 +1,17 @@
 package com.rajendarreddyj.basics.pattern.singleton;
 
+import java.util.logging.Logger;
+
 /**
  * @author rajendarreddy
  *
  */
 public class SingletonObjectDemo3 {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String args[]) {
         SingletonClass3.getSingletonObject();
         // Your Business Logic
-        System.out.println("Singleton object obtained");
+        logger.info("Singleton object obtained");
     }
 }
 

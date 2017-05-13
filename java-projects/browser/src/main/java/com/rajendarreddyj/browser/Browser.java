@@ -1,6 +1,7 @@
 package com.rajendarreddyj.browser;
 
 import java.awt.BorderLayout;
+import java.util.logging.Logger;
 
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
@@ -9,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.event.HyperlinkEvent;
 
 public class Browser extends JFrame {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final long serialVersionUID = 1L;
     private final JTextField addressBar;
     private final JEditorPane display = new JEditorPane();
@@ -46,7 +47,7 @@ public class Browser extends JFrame {
             this.display.setPage(userText);
             this.addressBar.setText(userText);
         } catch (Exception e) {
-            System.out.println("Error!");
+            logger.info("Error!");
         }
     }
 }

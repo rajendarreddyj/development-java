@@ -1,5 +1,7 @@
 package com.rajendarreddyj.basics.regex.test;
 
+import java.util.logging.Logger;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -8,6 +10,7 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.IPAddressValidator;
 
 public class IPAddressValidatorTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private IPAddressValidator ipAddressValidator;
 
     @BeforeClass
@@ -31,14 +34,14 @@ public class IPAddressValidatorTest {
     @Test(dataProvider = "ValidIPAddressProvider")
     public void ValidIPAddressTest(final String ip) {
         boolean valid = this.ipAddressValidator.validate(ip);
-        System.out.println("IPAddress is valid : " + ip + " , " + valid);
+        logger.info("IPAddress is valid : " + ip + " , " + valid);
         Assert.assertEquals(true, valid);
     }
 
     @Test(dataProvider = "InvalidIPAddressProvider", dependsOnMethods = "ValidIPAddressTest")
     public void InValidIPAddressTest(final String ip) {
         boolean valid = this.ipAddressValidator.validate(ip);
-        System.out.println("IPAddress is valid : " + ip + " , " + valid);
+        logger.info("IPAddress is valid : " + ip + " , " + valid);
         Assert.assertEquals(false, valid);
     }
 }

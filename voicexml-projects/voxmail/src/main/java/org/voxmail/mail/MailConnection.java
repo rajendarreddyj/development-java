@@ -11,6 +11,7 @@ package org.voxmail.mail;
 
 // for logging
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 import javax.mail.Folder;
 import javax.mail.Session;
@@ -22,7 +23,7 @@ import org.voxmail.Voxmail;
 import org.voxmail.model.Mailbox;
 
 public class MailConnection implements HttpSessionBindingListener, Serializable {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final long serialVersionUID = 1L;
 
     static final String fileProviderName = "maildir:";
@@ -48,11 +49,11 @@ public class MailConnection implements HttpSessionBindingListener, Serializable 
             String useImap = Voxmail.getProps().getProperty("useImap");
             URLName urlName = null;
             if ((useImap != null) && useImap.toLowerCase().equals("true")) {
-                System.out.println("MailConnection using imap to getStore for mailbox: " + mailbox.getMailboxId());
+                logger.info("MailConnection using imap to getStore for mailbox: " + mailbox.getMailboxId());
                 urlName = this.getImapUrl(mailbox);
-                System.out.println("Imap URL: " + urlName.toString() + ", host: " + urlName.getHost() + ", username: " + urlName.getUsername());
+                logger.info("Imap URL: " + urlName.toString() + ", host: " + urlName.getHost() + ", username: " + urlName.getUsername());
             } else {
-                System.out.println("MailConnection using file store to getStore for mailurl: " + mailurl);
+                logger.info("MailConnection using file store to getStore for mailurl: " + mailurl);
                 urlName = new URLName(mailurl);
             }
 

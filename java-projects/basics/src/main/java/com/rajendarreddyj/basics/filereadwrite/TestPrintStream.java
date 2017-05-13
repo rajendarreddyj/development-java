@@ -2,11 +2,13 @@ package com.rajendarreddyj.basics.filereadwrite;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.logging.Logger;
 
 public class TestPrintStream {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
-        System.out.println("January");
-        System.out.println("February");
+        logger.info("January");
+        logger.info("February");
         PrintStream ps = null;
         try {
             ps = new PrintStream("sample.txt");
@@ -16,8 +18,8 @@ public class TestPrintStream {
             ps.close();
         }
         System.setOut(ps);
-        System.out.println("March");
-        System.out.println("April");
+        logger.info("March");
+        logger.info("April");
         ps.close();
     }
 }

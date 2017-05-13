@@ -1,10 +1,13 @@
 package com.rajendarreddyj.basics.multithreading;
 
+import java.util.logging.Logger;
+
 /**
  * @author rajendarreddy
  *
  */
 public class ThreadDemo {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         Thread thread1 = new Thread(new XThread(), "thread1");
         Thread thread2 = new Thread(new XThread(), "thread2");
@@ -24,24 +27,24 @@ public class ThreadDemo {
         } catch (InterruptedException e) {
         }
         // Display info about the main thread
-        System.out.println(Thread.currentThread());
+        logger.info(Thread.currentThread().toString());
     }
 }
 
 class XThread extends Thread {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     XThread() {
     }
 
     XThread(final String threadName) {
         super(threadName); // Initialize thread.
-        System.out.println(this);
+        logger.info(this.toString());
         this.start();
     }
 
     @Override
     public void run() {
         // Display info about this particular thread
-        System.out.println(Thread.currentThread().getName());
+        logger.info(Thread.currentThread().getName());
     }
 }

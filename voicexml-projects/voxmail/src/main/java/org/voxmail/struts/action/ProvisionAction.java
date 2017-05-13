@@ -12,6 +12,7 @@ package org.voxmail.struts.action;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +27,7 @@ import org.voxmail.model.Mailbox;
 import org.voxmail.utils.WebUtil;
 
 public class ProvisionAction extends Action {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     static DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
 
     /**
@@ -54,14 +55,14 @@ public class ProvisionAction extends Action {
 
         request.getParameter("cmd");
 
-        System.out.println(df.format(new Date()) + ": Provision contactId is " + contactId);
+        logger.info(df.format(new Date()) + ": Provision contactId is " + contactId);
 
         if (!WebUtil.isEmpty(contactId)) {
             Mailbox mailbox = null;
             try {
                 List<Mailbox> list = Voxmail.getInstance().getVoxmailService().retrieveMailboxByPhoneNumber(phoneNumber);
                 if (list.size() > 1) {
-                    System.out.println("***Exception provisioning mailbox, phoneNumber: " + phoneNumber + " has multiple"
+                    logger.info("***Exception provisioning mailbox, phoneNumber: " + phoneNumber + " has multiple"
                             + "entries in the database.  It must be unique. Please correct this problem before provisioning this number");
 
                     throw new VoxmailException("Exception provisioning mailbox, phoneNumber: " + phoneNumber + " has multiple"
@@ -75,7 +76,7 @@ public class ProvisionAction extends Action {
                         if (mailbox.getFirstName().equals(firstName) && mailbox.getLastName().equals(lastName)) {
                             // ok, let it go.
                         } else {
-                            System.out.println("***Exception provisioning mailbox, a different mailbox with this work phone number already "
+                            logger.info("***Exception provisioning mailbox, a different mailbox with this work phone number already "
                                     + "exists.  Please use a different work phone");
 
                             throw new VoxmailException("Exception provisioning mailbox, a different mailbox with this work phone number already "
@@ -84,7 +85,7 @@ public class ProvisionAction extends Action {
                     }
                 }
                 if (mailbox != null) {
-                    System.out.println("ProvisionAction mailbox already exists for contactId: " + contactId);
+                    logger.info("ProvisionAction mailbox already exists for contactId: " + contactId);
                     mailbox.setEmail(email);
                     mailbox.setFirstName(firstName);
                     mailbox.setLastName(lastName);
@@ -100,7 +101,7 @@ public class ProvisionAction extends Action {
 
                     Voxmail.getInstance().getVoxmailService().updateMailbox(mailbox);
                 } else {
-                    System.out.println("ProvisionAction creating mailbox for contactId: " + contactId);
+                    logger.info("ProvisionAction creating mailbox for contactId: " + contactId);
                     String mailRoot = request.getSession().getServletContext().getRealPath("/mailroot");
                     Voxmail.getInstance().getVoxmailService().createMailbox(contactId, firstName, lastName, phoneNumber, email, mailRoot);
 

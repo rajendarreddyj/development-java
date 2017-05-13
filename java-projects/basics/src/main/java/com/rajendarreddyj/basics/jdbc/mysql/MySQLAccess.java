@@ -7,8 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class MySQLAccess {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private Connection connect = null;
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
@@ -25,7 +27,7 @@ public class MySQLAccess {
                 // broken Java implementations
                 // This will load the MySQL driver, each DB has its own driver
                 Class.forName("org.gjt.mm.mysql.Driver").newInstance();
-                System.out.println("MySQL driver loaded");
+                logger.info("MySQL driver loaded");
             } catch (Exception E) {
                 System.err.println("Unable to load driver.");
                 E.printStackTrace();
@@ -33,9 +35,9 @@ public class MySQLAccess {
             // Setup the connection with the DB
             this.connect = DriverManager.getConnection(url, userName, password);
             if (!this.connect.isClosed()) {
-                System.out.println("Successfully connected to " + "MySQL server using TCP/IP...");
+                logger.info("Successfully connected to " + "MySQL server using TCP/IP...");
             }
-            System.out.println("Database connection established");
+            logger.info("Database connection established");
         } catch (Exception e) {
             System.err.println("Cannot connect to database server");
             e.printStackTrace();
@@ -76,10 +78,10 @@ public class MySQLAccess {
     private void writeMetaData(final ResultSet resultSet) throws SQLException {
         // Now get some metadata from the database
         // Result set get the result of the SQL query
-        System.out.println("The columns in the table are: ");
-        System.out.println("Table: " + resultSet.getMetaData().getTableName(1));
+        logger.info("The columns in the table are: ");
+        logger.info("Table: " + resultSet.getMetaData().getTableName(1));
         for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
-            System.out.println("Column " + i + " " + resultSet.getMetaData().getColumnName(i));
+            logger.info("Column " + i + " " + resultSet.getMetaData().getColumnName(i));
         }
     }
 
@@ -95,11 +97,11 @@ public class MySQLAccess {
             String summery = resultSet.getString("summery");
             Date date = resultSet.getDate("datum");
             String comment = resultSet.getString("comments");
-            System.out.println("User: " + user);
-            System.out.println("Website: " + website);
-            System.out.println("Summery: " + summery);
-            System.out.println("Date: " + date);
-            System.out.println("Comment: " + comment);
+            logger.info("User: " + user);
+            logger.info("Website: " + website);
+            logger.info("Summery: " + summery);
+            logger.info("Date: " + date);
+            logger.info("Comment: " + comment);
         }
     }
 

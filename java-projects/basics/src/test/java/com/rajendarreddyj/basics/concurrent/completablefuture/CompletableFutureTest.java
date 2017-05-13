@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,6 +17,7 @@ import org.junit.Test;
  *
  */
 public class CompletableFutureTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     @Test
     public void whenRunningCompletableFutureAsynchronously_thenGetMethodWaitsForResult() throws InterruptedException, ExecutionException {
         Future<String> completableFuture = this.calculateAsync();
@@ -65,14 +67,14 @@ public class CompletableFutureTest {
     @Test
     public void whenAddingThenAcceptToFuture_thenFunctionExecutesAfterComputationIsFinished() throws ExecutionException, InterruptedException {
         CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello");
-        CompletableFuture<Void> future = completableFuture.thenAccept(s -> System.out.println("Computation returned: " + s));
+        CompletableFuture<Void> future = completableFuture.thenAccept(s -> logger.info("Computation returned: " + s));
         future.get();
     }
 
     @Test
     public void whenAddingThenRunToFuture_thenFunctionExecutesAfterComputationIsFinished() throws ExecutionException, InterruptedException {
         CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello");
-        CompletableFuture<Void> future = completableFuture.thenRun(() -> System.out.println("Computation finished."));
+        CompletableFuture<Void> future = completableFuture.thenRun(() -> logger.info("Computation finished."));
         future.get();
     }
 
@@ -99,7 +101,7 @@ public class CompletableFutureTest {
 
     @Test
     public void whenUsingThenAcceptBoth_thenWaitForExecutionOfBothFutures() throws ExecutionException, InterruptedException {
-        CompletableFuture.supplyAsync(() -> "Hello").thenAcceptBoth(CompletableFuture.supplyAsync(() -> " World"), (s1, s2) -> System.out.println(s1 + s2));
+        CompletableFuture.supplyAsync(() -> "Hello").thenAcceptBoth(CompletableFuture.supplyAsync(() -> " World"), (s1, s2) -> logger.info(s1 + s2));
     }
 
     @Test

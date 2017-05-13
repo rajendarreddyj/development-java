@@ -7,6 +7,7 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.function.BiConsumer;
+import java.util.logging.Logger;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -17,7 +18,7 @@ import org.junit.Test;
  */
 @Ignore
 public class MapPerformanceTest {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     static volatile int heartBeat = 0;
     // otherwise use forEach()
     static final boolean USE_ITERATION = false;
@@ -25,7 +26,7 @@ public class MapPerformanceTest {
 
     @Test
     public void testMapForPerformance() {
-        System.out.println((USE_ITERATION ? "Iterator" : USE_LAMBDA ? " forEach(lambda)" : "ForEach()") + " performance test");
+        logger.info((USE_ITERATION ? "Iterator" : USE_LAMBDA ? " forEach(lambda)" : "ForEach()") + " performance test");
 
         TestMap tests[] = { new TestMap(new HashMap<Integer, Integer>()), new TestMap(new TreeMap<Integer, Integer>()),
                 new TestMap(new ConcurrentHashMap<Integer, Integer>()), new TestMap(new ConcurrentSkipListMap<Integer, Integer>()),
@@ -84,7 +85,7 @@ public class MapPerformanceTest {
             }
             for (TestMap test : tests) {
                 test.printResult();
-                // System.out.println("---------------");
+                // logger.info("---------------");
             }
         }
 

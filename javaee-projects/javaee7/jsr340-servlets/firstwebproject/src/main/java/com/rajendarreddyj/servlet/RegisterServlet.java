@@ -2,6 +2,7 @@ package com.rajendarreddyj.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     @Override
     public void init(final ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
@@ -47,11 +48,11 @@ public class RegisterServlet extends HttpServlet {
         String gender = request.getParameter("gender");
         String city = request.getParameter("city");
         String commode = request.getParameter("commode");
-        System.out.println("FIRSTNAME :" + firstname);
-        System.out.println("LASTNAME :" + lastname);
-        System.out.println("GENDER :" + gender);
-        System.out.println("CITY :" + city);
-        System.out.println("COMMUNICATION MODE :" + commode);
+        logger.info("FIRSTNAME :" + firstname);
+        logger.info("LASTNAME :" + lastname);
+        logger.info("GENDER :" + gender);
+        logger.info("CITY :" + city);
+        logger.info("COMMUNICATION MODE :" + commode);
 
         PrintWriter out = response.getWriter();
         out.println("<html><body><center>");

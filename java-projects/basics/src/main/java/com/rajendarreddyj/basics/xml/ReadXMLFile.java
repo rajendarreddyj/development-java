@@ -1,6 +1,7 @@
 package com.rajendarreddyj.basics.xml;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,6 +23,7 @@ import org.w3c.dom.NodeList;
  * contains a lot of data. Please consider SAX parser as solution for it, SAX is faster than DOM and use less memory.
  */
 public class ReadXMLFile {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String argv[]) {
         try {
             File fXmlFile = new File("/home/rajendarreddy/test/file.xml");
@@ -29,17 +31,17 @@ public class ReadXMLFile {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
             doc.getDocumentElement().normalize();
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            logger.info("Root element :" + doc.getDocumentElement().getNodeName());
             NodeList nList = doc.getElementsByTagName("staff");
-            System.out.println("-----------------------");
+            logger.info("-----------------------");
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
-                    System.out.println("First Name : " + getTagValue("firstname", eElement));
-                    System.out.println("Last Name : " + getTagValue("lastname", eElement));
-                    System.out.println("Nick Name : " + getTagValue("nickname", eElement));
-                    System.out.println("Salary : " + getTagValue("salary", eElement));
+                    logger.info("First Name : " + getTagValue("firstname", eElement));
+                    logger.info("Last Name : " + getTagValue("lastname", eElement));
+                    logger.info("Nick Name : " + getTagValue("nickname", eElement));
+                    logger.info("Salary : " + getTagValue("salary", eElement));
                 }
             }
         } catch (Exception e) {

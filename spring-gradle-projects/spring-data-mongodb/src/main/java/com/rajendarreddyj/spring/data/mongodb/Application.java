@@ -1,5 +1,7 @@
 package com.rajendarreddyj.spring.data.mongodb;
 
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +19,7 @@ import com.rajendarreddyj.spring.data.mongodb.repository.CustomerRepository;
  */
 @SpringBootApplication
 public class Application implements CommandLineRunner {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     @Autowired
     private CustomerRepository repository;
 
@@ -35,22 +37,21 @@ public class Application implements CommandLineRunner {
         this.repository.save(new Customer("Rajendar1", "Jagapathi1"));
         this.repository.save(new Customer("Rajendar2", "Jagapathi3"));
         // fetch all customers
-        System.out.println("Customers found with findAll():");
-        System.out.println("-------------------------------");
+        logger.info("Customers found with findAll():");
+        logger.info("-------------------------------");
         for (Customer customer : this.repository.findAll()) {
-            System.out.println(customer);
+            logger.info(customer.toString());
         }
-        System.out.println();
 
         // fetch an individual customer
-        System.out.println("Customer found with findByFirstName('Rajendar'):");
-        System.out.println("--------------------------------");
-        System.out.println(this.repository.findByFirstName("Rajendar"));
+        logger.info("Customer found with findByFirstName('Rajendar'):");
+        logger.info("--------------------------------");
+        logger.info(this.repository.findByFirstName("Rajendar").toString());
 
-        System.out.println("Customers found with findByLastName('Jagapathi'):");
-        System.out.println("--------------------------------");
+        logger.info("Customers found with findByLastName('Jagapathi'):");
+        logger.info("--------------------------------");
         for (Customer customer : this.repository.findByLastName("Jagapathi")) {
-            System.out.println(customer);
+            logger.info(customer.toString());
         }
 
     }

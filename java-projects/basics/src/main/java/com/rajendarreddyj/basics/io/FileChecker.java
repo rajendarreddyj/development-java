@@ -2,6 +2,7 @@ package com.rajendarreddyj.basics.io;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.logging.Logger;
 
 /*
  * In Java, you can implements the FilenameFilter, override the accept(File dir, String name) method, to perform the
@@ -9,6 +10,7 @@ import java.io.FilenameFilter;
  * with “.txt” extension in folder “/apps“, and then delete it.
  */
 public class FileChecker {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final String FILE_DIR = ".";
     private static final String FILE_TEXT_EXT = ".txt";
 
@@ -29,7 +31,7 @@ public class FileChecker {
             String temp = new StringBuffer(FILE_DIR).append(File.separator).append(file).toString();
             fileDelete = new File(temp);
             boolean isdeleted = fileDelete.delete();
-            System.out.println("file : " + temp + " is deleted : " + isdeleted);
+            logger.info("file : " + temp + " is deleted : " + isdeleted);
         }
     }
 

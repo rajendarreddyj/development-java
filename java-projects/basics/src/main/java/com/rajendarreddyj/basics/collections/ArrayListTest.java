@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @author rajendarreddy
  *
  */
 public class ArrayListTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         String[] str = { "raj", "raj2", "raj3", "raj4" };
         List<String> list1 = new ArrayList<>();
@@ -29,7 +31,7 @@ public class ArrayListTest {
             System.out.printf("%s\t", list2.get(i));
         }
         editlist(list1, list2);
-        System.out.println("\nedited list");
+        logger.info("\nedited list");
         for (int i = 0; i < list1.size(); i++) {
             System.out.printf("%s\n", list1.get(i));
         }

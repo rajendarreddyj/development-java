@@ -3,6 +3,7 @@ package com.rajendarreddyj.basics.smtp;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -21,6 +22,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class EmailWithPdf {
+    private static final Logger logger = Logger.getAnonymousLogger();
     /**
      * Sends an email with a PDF attachment.
      */
@@ -65,7 +67,7 @@ public class EmailWithPdf {
             mimeMessage.setContent(mimeMultipart);
             // send off the email
             Transport.send(mimeMessage);
-            System.out.println("sent from " + sender + ", to " + recipient + "; server = " + smtpHost + ", port = " + smtpPort);
+            logger.info("sent from " + sender + ", to " + recipient + "; server = " + smtpHost + ", port = " + smtpPort);
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {

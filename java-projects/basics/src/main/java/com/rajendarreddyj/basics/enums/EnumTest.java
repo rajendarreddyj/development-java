@@ -1,6 +1,7 @@
 package com.rajendarreddyj.basics.enums;
 
 import java.util.Iterator;
+import java.util.logging.Logger;
 
 /**
  * EnumTest
@@ -11,6 +12,7 @@ import java.util.Iterator;
  * 
  */
 public class EnumTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     static class Fruit extends TypeSafeEnum {
         public Fruit(final String name) {
             super(name, Fruit.class);
@@ -32,15 +34,15 @@ public class EnumTest {
     }
 
     public static void main(final String[] args) {
-        System.out.println("Animal:");
+        logger.info("Animal:");
         for (Iterator<?> i = TypeSafeEnum.enumValues(Animal.class); i.hasNext();) {
             TypeSafeEnum e = (TypeSafeEnum) i.next();
-            System.out.println("enumVal = " + e.getValue() + ", name = " + e.getName());
+            logger.info("enumVal = " + e.getValue() + ", name = " + e.getName());
         }
-        System.out.println("Fruit:");
+        logger.info("Fruit:");
         for (Iterator<?> i = TypeSafeEnum.enumValues(Fruit.class); i.hasNext();) {
             TypeSafeEnum e = (TypeSafeEnum) i.next();
-            System.out.println("enumVal = " + e.getValue() + ", name = " + e.getName());
+            logger.info("enumVal = " + e.getValue() + ", name = " + e.getName());
         }
     }
 }

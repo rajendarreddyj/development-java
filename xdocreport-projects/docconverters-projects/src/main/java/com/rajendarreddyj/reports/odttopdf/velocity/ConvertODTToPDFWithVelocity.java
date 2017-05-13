@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.rajendarreddyj.model.project.Developer;
 import com.rajendarreddyj.model.project.Project;
@@ -28,6 +29,7 @@ import fr.opensagres.xdocreport.template.formatter.FieldsMetadata;
  *
  */
 public class ConvertODTToPDFWithVelocity {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         generatePDFFromODTVelocity("src/main/resources/ODTToPDFWithVelocity.odt", "target/ODTToPDFWithVelocity.pdf");
     }
@@ -82,7 +84,7 @@ public class ConvertODTToPDFWithVelocity {
         } catch (XDocReportException e) {
             e.printStackTrace();
         }
-        System.out.println("Generate " + targetFilePath + " with " + (System.currentTimeMillis() - startTime) + " ms.");
+        logger.info("Generate " + targetFilePath + " with " + (System.currentTimeMillis() - startTime) + " ms.");
 
     }
 }

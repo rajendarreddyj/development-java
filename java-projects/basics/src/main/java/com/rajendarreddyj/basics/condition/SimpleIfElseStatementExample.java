@@ -1,12 +1,15 @@
 package com.rajendarreddyj.basics.condition;
 
+import java.util.logging.Logger;
+
 public class SimpleIfElseStatementExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         boolean b = false;
         if (b) {
-            System.out.println("Variable value is true");
+            logger.info("Variable value is true");
         } else {
-            System.out.println("Variable value is NOT true");
+            logger.info("Variable value is NOT true");
         }
     }
 }

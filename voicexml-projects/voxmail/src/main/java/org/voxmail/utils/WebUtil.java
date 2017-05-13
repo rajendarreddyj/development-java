@@ -19,12 +19,13 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.logging.Logger;
 
 /**
  * @author James
  */
 public class WebUtil {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     /** Creates a new instance of WebUtil */
     public WebUtil() {
     }
@@ -67,7 +68,7 @@ public class WebUtil {
 
             String str;
             while (null != ((str = input.readLine()))) {
-                System.out.println(str);
+                logger.info(str);
             }
             input.close();
         } catch (Exception e) {

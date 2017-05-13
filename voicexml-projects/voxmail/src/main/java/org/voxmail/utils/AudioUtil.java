@@ -11,6 +11,7 @@ package org.voxmail.utils;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.logging.Logger;
 
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -26,7 +27,7 @@ import org.voxmail.mail.MailConnection;
  * @author James
  */
 public class AudioUtil {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     /** Creates a new instance of AudioUtil */
     public AudioUtil() {
     }
@@ -36,13 +37,13 @@ public class AudioUtil {
 
         try {
             String msgindex = request.getParameter("msgindex");
-            System.out.println("Msg index: " + msgindex);
+            logger.info("Msg index: " + msgindex);
 
             MailConnection mail = (MailConnection) httpSession.getAttribute("MailConnection");
             if (mail == null) {
-                System.out.println("MailConnection is null");
+                logger.info("MailConnection is null");
             } else {
-                System.out.println("Got mail connection");
+                logger.info("Got mail connection");
             }
 
             Folder inbox = mail.getInbox();
@@ -56,12 +57,12 @@ public class AudioUtil {
                 Part p2 = multipart.getBodyPart(i);
 
                 if (p2.isMimeType("text/plain")) {
-                    System.out.println("MimeType: text/plain");
+                    logger.info("MimeType: text/plain");
                     break;
                 } else {
                     response.setContentType("audio/wav");
                     if (p2.getFileName() != null) {
-                        System.out.println("Setting content disposition");
+                        logger.info("Setting content disposition");
                         // response.setHeader("Content-Disposition", "attachment; filename=\"" + p2.getFileName() +
                         // "\"");
                         OutputStream out = response.getOutputStream();
@@ -72,7 +73,7 @@ public class AudioUtil {
                             c = in.read();
                         }
                     } else {
-                        System.out.println("Filename is null");
+                        logger.info("Filename is null");
                     }
                 }
             }

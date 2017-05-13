@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 import org.apache.xerces.parsers.DOMParser;
 import org.w3c.dom.Document;
@@ -52,6 +53,7 @@ import com.rajendarreddyj.basics.enums.TokenType;
  * 
  */
 public class EvalXML {
+    private static final Logger logger = Logger.getAnonymousLogger();
     /**
      * The symbol table consists of a set of String, Integer pairs, where the String object is the key.
      */
@@ -104,7 +106,7 @@ public class EvalXML {
         if (i != null) {
             symVal = i.intValue();
         } else {
-            System.out.println("No symbol found for " + name);
+            logger.info("No symbol found for " + name);
         }
         return symVal;
     } // symbolLookup
@@ -178,14 +180,14 @@ public class EvalXML {
                         try {
                             rslt = Integer.parseInt(textData);
                         } catch (NumberFormatException e) {
-                            System.out.println("factor: bad format for number \"" + textData + "\"");
+                            logger.info("factor: bad format for number \"" + textData + "\"");
                         }
                     }
                 } else {
-                    System.out.println("factor: unexpected node type = " + this.nodeTypeToString(child.getNodeType()));
+                    logger.info("factor: unexpected node type = " + this.nodeTypeToString(child.getNodeType()));
                 }
             } else {
-                System.out.println("factor: 1 child expected for " + tagName + ", got " + children.getLength() + " children");
+                logger.info("factor: 1 child expected for " + tagName + ", got " + children.getLength() + " children");
             }
         } // root is not an IDENT or an INT, so it should be an expression
         else if (tagName.equals(TokenType.PAREN.toString())) {
@@ -194,10 +196,10 @@ public class EvalXML {
                 Node expr = children.get(0);
                 rslt = this.addExp(expr);
             } else {
-                System.out.println("factor: extra children of PAREN");
+                logger.info("factor: extra children of PAREN");
             }
         } else {
-            System.out.println("factor: Unexpected tag = " + tagName);
+            logger.info("factor: Unexpected tag = " + tagName);
         }
         return rslt;
     } // factor
@@ -218,7 +220,7 @@ public class EvalXML {
                 unaryMinus = true;
                 root = children.get(0);
             } else {
-                System.out.println("unaryExp: more than one child found for UMINUS");
+                logger.info("unaryExp: more than one child found for UMINUS");
             }
         }
         rslt = this.factor(root);
@@ -316,7 +318,7 @@ public class EvalXML {
                 lhs = children.get(0);
                 expr = children.get(1);
             } else {
-                System.out.println("statement: two children expected, got " + len + " instead");
+                logger.info("statement: two children expected, got " + len + " instead");
             }
         } else {
             expr = root;
@@ -351,7 +353,7 @@ public class EvalXML {
                 root = children.get(0);
                 result = this.statement(root);
             } else {
-                System.out.println("eval: EXPRESSION XML Document expected");
+                logger.info("eval: EXPRESSION XML Document expected");
             }
         } catch (SAXException e) {
             String msg = null;
@@ -363,9 +365,9 @@ public class EvalXML {
             } else {
                 msg = "TestXerces.bytesToDocument: SAX Exception = " + e;
             }
-            System.out.println(msg);
+            logger.info(msg);
         } catch (IOException e) {
-            System.out.println("TestXerces.bytesToDocument: IOException = " + e);
+            logger.info("TestXerces.bytesToDocument: IOException = " + e);
         }
         return result;
     } // eval

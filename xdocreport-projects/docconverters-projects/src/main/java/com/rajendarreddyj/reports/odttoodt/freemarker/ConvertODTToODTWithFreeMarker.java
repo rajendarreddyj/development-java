@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.logging.Logger;
 
 import fr.opensagres.xdocreport.core.XDocReportException;
 import fr.opensagres.xdocreport.document.IXDocReport;
@@ -17,6 +18,7 @@ import fr.opensagres.xdocreport.template.TemplateEngineKind;
  *
  */
 public class ConvertODTToODTWithFreeMarker {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         generateODTFromODTFreeMarker("src/main/resources/ODTToODTWithFreeMarker.odt", "target/ODTToODTWithFreeMarker.odt");
     }
@@ -44,6 +46,6 @@ public class ConvertODTToODTWithFreeMarker {
         } catch (XDocReportException e) {
             e.printStackTrace();
         }
-        System.out.println("Generate " + targetFilePath + " with " + (System.currentTimeMillis() - startTime) + " ms.");
+        logger.info("Generate " + targetFilePath + " with " + (System.currentTimeMillis() - startTime) + " ms.");
     }
 }

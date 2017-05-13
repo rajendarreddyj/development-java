@@ -1,6 +1,9 @@
 package com.rajendarreddyj.basics.collections;
 
+import java.util.logging.Logger;
+
 public class MyKey {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private String name;
     private int id;
 
@@ -27,7 +30,7 @@ public class MyKey {
 
     @Override
     public int hashCode() {
-        System.out.println("Calling hashCode()");
+        logger.info("Calling hashCode()");
         return this.id;
     }
 
@@ -38,7 +41,7 @@ public class MyKey {
 
     @Override
     public boolean equals(final Object obj) {
-        System.out.println("Calling equals() for key: " + obj);
+        logger.info("Calling equals() for key: " + obj);
         if (this == obj) {
             return true;
         }

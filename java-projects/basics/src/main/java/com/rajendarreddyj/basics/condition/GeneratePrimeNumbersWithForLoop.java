@@ -1,9 +1,12 @@
 package com.rajendarreddyj.basics.condition;
 
+import java.util.logging.Logger;
+
 public class GeneratePrimeNumbersWithForLoop {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         int max = 100;
-        System.out.println("Generate Prime numbers between 1 and " + max);
+        logger.info("Generate Prime numbers between 1 and " + max);
         // loop through the numbers one by one
         for (int i = 1; i < max; i++) {
             boolean isPrimeNumber = true;

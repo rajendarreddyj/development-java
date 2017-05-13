@@ -1,5 +1,7 @@
 package com.rajendarreddyj.springbatchlistener.listener;
 
+import java.util.logging.Logger;
+
 import org.springframework.batch.core.ItemReadListener;
 
 import com.rajendarreddyj.springbatchlistener.model.User;
@@ -9,7 +11,7 @@ import com.rajendarreddyj.springbatchlistener.model.User;
  *
  */
 public class ReadListener implements ItemReadListener<User> {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     /*
      * (non-Javadoc)
      * 
@@ -19,7 +21,7 @@ public class ReadListener implements ItemReadListener<User> {
      */
     @Override
     public void afterRead(final User user) {
-        System.out.println("After reading an item: " + user.toString());
+        logger.info("After reading an item: " + user.toString());
 
     }
 
@@ -30,7 +32,7 @@ public class ReadListener implements ItemReadListener<User> {
      */
     @Override
     public void beforeRead() {
-        System.out.println("Before reading an item");
+        logger.info("Before reading an item");
 
     }
 
@@ -43,7 +45,7 @@ public class ReadListener implements ItemReadListener<User> {
      */
     @Override
     public void onReadError(final Exception ex) {
-        System.out.println("Error occurred while reading an item!");
+        logger.info("Error occurred while reading an item!");
 
     }
 

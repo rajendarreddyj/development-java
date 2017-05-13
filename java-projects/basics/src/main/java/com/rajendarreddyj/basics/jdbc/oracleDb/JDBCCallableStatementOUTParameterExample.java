@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 /*
  * For stored procedure returns OUT parameters, it must be
@@ -26,6 +27,7 @@ import java.sql.SQLException;
  * CallableStatement JDBC example to call a stored procedure via CallableStatement.
  */
 public class JDBCCallableStatementOUTParameterExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -35,7 +37,7 @@ public class JDBCCallableStatementOUTParameterExample {
         try {
             callOracleStoredProcOUTParameter();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
     }
 
@@ -55,11 +57,11 @@ public class JDBCCallableStatementOUTParameterExample {
             String userName = callableStatement.getString(2);
             String createdBy = callableStatement.getString(3);
             Date createdDate = callableStatement.getDate(4);
-            System.out.println("UserName : " + userName);
-            System.out.println("CreatedBy : " + createdBy);
-            System.out.println("CreatedDate : " + createdDate);
+            logger.info("UserName : " + userName);
+            logger.info("CreatedBy : " + createdBy);
+            logger.info("CreatedDate : " + createdDate);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         } finally {
             if (callableStatement != null) {
                 callableStatement.close();
@@ -75,13 +77,13 @@ public class JDBCCallableStatementOUTParameterExample {
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         try {
             dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
             return dbConnection;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         return dbConnection;
     }

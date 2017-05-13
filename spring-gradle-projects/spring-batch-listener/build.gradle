@@ -12,4 +12,5 @@ dependencies {
     compile("org.springframework.batch:spring-batch-core:${springBatchVersion}")
     compile("commons-dbcp:commons-dbcp:${commonsdbcpVersion}")
     compile("hsqldb:hsqldb:${hsqldbVersion}")
+    testCompile("junit:junit:${junitVersion}")
 }

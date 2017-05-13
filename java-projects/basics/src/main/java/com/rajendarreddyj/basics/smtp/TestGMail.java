@@ -2,6 +2,7 @@ package com.rajendarreddyj.basics.smtp;
 
 import java.util.Date;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.Session;
@@ -11,6 +12,7 @@ import javax.mail.internet.MimeMessage;
 import com.sun.mail.smtp.SMTPTransport;
 
 public class TestGMail {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         Properties props = System.getProperties();
         props.put("mail.smtps.host", "smtp.gmail.com");
@@ -28,7 +30,7 @@ public class TestGMail {
             t.connect("smtp.gmail.com", "test@gmail.com", "password");
             t.sendMessage(msg, msg.getAllRecipients());
             t.close();
-            System.out.println("Response: " + t.getLastServerResponse());
+            logger.info("Response: " + t.getLastServerResponse());
         } catch (Exception e) {
             e.printStackTrace();
         }

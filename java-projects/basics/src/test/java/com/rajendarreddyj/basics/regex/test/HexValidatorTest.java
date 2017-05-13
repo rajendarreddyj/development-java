@@ -1,5 +1,7 @@
 package com.rajendarreddyj.basics.regex.test;
 
+import java.util.logging.Logger;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -8,6 +10,7 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.HexValidator;
 
 public class HexValidatorTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private HexValidator hexValidator;
 
     @BeforeClass
@@ -29,7 +32,7 @@ public class HexValidatorTest {
     public void ValidHexTest(final String[] hex) {
         for (String temp : hex) {
             boolean valid = this.hexValidator.validate(temp);
-            System.out.println("Hex is valid : " + temp + " , " + valid);
+            logger.info("Hex is valid : " + temp + " , " + valid);
             Assert.assertEquals(true, valid);
         }
     }
@@ -38,7 +41,7 @@ public class HexValidatorTest {
     public void InValidHexTest(final String[] hex) {
         for (String temp : hex) {
             boolean valid = this.hexValidator.validate(temp);
-            System.out.println("Hex is valid : " + temp + " , " + valid);
+            logger.info("Hex is valid : " + temp + " , " + valid);
             Assert.assertEquals(false, valid);
         }
     }

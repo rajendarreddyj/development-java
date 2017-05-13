@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.logging.Logger;
 
 /*
  * Java didn’t comes with any ready make file copy function, you have to manual create the file copy process. To copy
@@ -14,6 +15,7 @@ import java.io.OutputStream;
  * into the java.io.File class.
  */
 public class CopyFileExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         InputStream inStream = null;
         OutputStream outStream = null;
@@ -30,7 +32,7 @@ public class CopyFileExample {
             }
             inStream.close();
             outStream.close();
-            System.out.println("File is copied successful!");
+            logger.info("File is copied successful!");
         } catch (IOException e) {
             e.printStackTrace();
         }

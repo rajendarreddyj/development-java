@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +28,7 @@ import org.voxmail.model.Mailbox;
 import org.voxmail.utils.WebUtil;
 
 public class LoginAction extends Action {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     static DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
 
     /**
@@ -52,7 +53,7 @@ public class LoginAction extends Action {
         String phone = request.getParameter("phone");
         String pin = request.getParameter("pin");
 
-        System.out.println(df.format(new Date()) + ": LoginAction mailboxId is " + mailboxId + ", cmd: " + cmd);
+        logger.info(df.format(new Date()) + ": LoginAction mailboxId is " + mailboxId + ", cmd: " + cmd);
 
         if (WebUtil.isEmpty(mailboxId) && WebUtil.isEmpty(cmd)) {
             return mapping.findForward("login");
@@ -64,9 +65,9 @@ public class LoginAction extends Action {
                 mailbox = Voxmail.getInstance().getVoxmailService().retrieveMailbox(mailboxId);
 
                 if (mailbox != null) {
-                    System.out.println("LoginAction mailbox found for mailboxId: " + mailboxId);
+                    logger.info("LoginAction mailbox found for mailboxId: " + mailboxId);
                 } else {
-                    System.out.println("LoginAction mailbox not found for mailboxId: " + mailboxId);
+                    logger.info("LoginAction mailbox not found for mailboxId: " + mailboxId);
                 }
                 request.getSession().setAttribute("mailbox", mailbox);
 
@@ -84,7 +85,7 @@ public class LoginAction extends Action {
             Mailbox mailbox = null;
 
             if (!WebUtil.isEmpty(phone)) {
-                System.out.println("LoginAction retrieving mailbox by phone number: " + phone);
+                logger.info("LoginAction retrieving mailbox by phone number: " + phone);
                 List<Mailbox> mailboxes = null;
                 try {
                     mailboxes = Voxmail.getInstance().getVoxmailService().retrieveMailboxByPhoneNumber(phone);
@@ -94,10 +95,10 @@ public class LoginAction extends Action {
 
                 if (mailboxes == null) {
                     // do nothing
-                    System.out.println("No mailboxes for phone number: " + phone);
+                    logger.info("No mailboxes for phone number: " + phone);
                 } else {
                     if (mailboxes.size() > 1) {
-                        System.out.println("More than one mailbox retrieved for phone number: " + phone);
+                        logger.info("More than one mailbox retrieved for phone number: " + phone);
                     }
                     Iterator<Mailbox> it = mailboxes.iterator();
                     while (it.hasNext()) {
@@ -114,23 +115,23 @@ public class LoginAction extends Action {
             }
 
             if (mailbox == null) {
-                System.out.println("LoginAction: on login, mailbox not found in session.");
+                logger.info("LoginAction: on login, mailbox not found in session.");
                 return mapping.findForward("invalidLogin");
             }
             if (mailbox.getPin().equals(pin)) {
-                System.out.println("LoginAction: valid login");
-                System.out.println("isFirstTime: " + mailbox.isFirstTime());
+                logger.info("LoginAction: valid login");
+                logger.info("isFirstTime: " + mailbox.isFirstTime());
 
                 request.getSession().setAttribute("mailbox", mailbox);
 
                 if (mailbox.isFirstTime()) {
-                    System.out.println("LoginAction: isFirst time - forward to greeting setup");
+                    logger.info("LoginAction: isFirst time - forward to greeting setup");
                     return mapping.findForward("firstVisit");
                 } else {
                     return mapping.findForward("mainMenu");
                 }
             } else {
-                System.out.println("LoginAction: invalid login");
+                logger.info("LoginAction: invalid login");
                 return mapping.findForward("invalidLogin");
             }
         }

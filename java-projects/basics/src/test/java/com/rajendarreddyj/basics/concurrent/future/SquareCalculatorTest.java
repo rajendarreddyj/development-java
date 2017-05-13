@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Logger;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -19,6 +20,7 @@ import org.junit.rules.TestName;
  *
  */
 public class SquareCalculatorTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     @Rule
     public TestName name = new TestName();
     private long start;
@@ -30,7 +32,7 @@ public class SquareCalculatorTest {
         Future<Integer> result1 = this.squareCalculator.calculate(4);
         Future<Integer> result2 = this.squareCalculator.calculate(1000);
         while (!result1.isDone() || !result2.isDone()) {
-            System.out.println(String.format("Task 1 is %s and Task 2 is %s.", result1.isDone() ? "done" : "not done", result2.isDone() ? "done" : "not done"));
+            logger.info(String.format("Task 1 is %s and Task 2 is %s.", result1.isDone() ? "done" : "not done", result2.isDone() ? "done" : "not done"));
             Thread.sleep(300);
         }
         Assert.assertEquals(16, result1.get().intValue());
@@ -50,7 +52,7 @@ public class SquareCalculatorTest {
         Future<Integer> result1 = this.squareCalculator.calculate(4);
         Future<Integer> result2 = this.squareCalculator.calculate(1000);
         while (!result1.isDone() || !result2.isDone()) {
-            System.out.println(String.format("Task 1 is %s and Task 2 is %s.", result1.isDone() ? "done" : "not done", result2.isDone() ? "done" : "not done"));
+            logger.info(String.format("Task 1 is %s and Task 2 is %s.", result1.isDone() ? "done" : "not done", result2.isDone() ? "done" : "not done"));
             Thread.sleep(300);
         }
         Assert.assertEquals(16, result1.get().intValue());
@@ -74,6 +76,6 @@ public class SquareCalculatorTest {
 
     @After
     public void end() {
-        System.out.println(String.format("Test %s took %s ms \n", this.name.getMethodName(), System.currentTimeMillis() - this.start));
+        logger.info(String.format("Test %s took %s ms \n", this.name.getMethodName(), System.currentTimeMillis() - this.start));
     }
 }

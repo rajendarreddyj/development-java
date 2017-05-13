@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 /*
  * The “PreparedStatement” interface is extended “Statement”, with extra feature to send a pre-compiled SQL statement
@@ -18,6 +19,7 @@ import java.sql.SQLException;
  * username = rs.getString("USERNAME"); }
  */
 public class JDBCPreparedStatementSelectExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -27,7 +29,7 @@ public class JDBCPreparedStatementSelectExample {
         try {
             selectRecordsFromTable();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
     }
 
@@ -44,11 +46,11 @@ public class JDBCPreparedStatementSelectExample {
             while (rs.next()) {
                 String userid = rs.getString("USER_ID");
                 String username = rs.getString("USERNAME");
-                System.out.println("userid : " + userid);
-                System.out.println("username : " + username);
+                logger.info("userid : " + userid);
+                logger.info("username : " + username);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();
@@ -64,13 +66,13 @@ public class JDBCPreparedStatementSelectExample {
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         try {
             dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
             return dbConnection;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         return dbConnection;
     }

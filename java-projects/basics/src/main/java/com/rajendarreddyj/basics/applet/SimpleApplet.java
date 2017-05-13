@@ -3,8 +3,10 @@ package com.rajendarreddyj.basics.applet;
 import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.logging.Logger;
 
 public class SimpleApplet extends Applet {
+    private static final Logger logger = Logger.getAnonymousLogger();
     /**
      * 
      */
@@ -19,22 +21,22 @@ public class SimpleApplet extends Applet {
 
     @Override
     public void start() {
-        System.out.println("starting...");
+        logger.info("starting...");
     }
 
     @Override
     public void stop() {
-        System.out.println("stopping...");
+        logger.info("stopping...");
     }
 
     @Override
     public void destroy() {
-        System.out.println("preparing to unload...");
+        logger.info("preparing to unload...");
     }
 
     @Override
     public void paint(final Graphics g) {
-        System.out.println("Paint");
+        logger.info("Paint");
         g.setColor(Color.green);
         g.drawRect(0, 0, this.getSize().width - 1, this.getSize().height - 1);
         g.setColor(Color.red);

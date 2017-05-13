@@ -13,6 +13,7 @@ package org.voxmail.mail;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -37,7 +38,7 @@ import org.voxmail.model.Mailbox;
  * @author Rick
  */
 public class MailSender {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     /** Creates a new instance of VM_Create */
     public MailSender() {
     }
@@ -49,7 +50,7 @@ public class MailSender {
     public boolean sendMail(final String mailurl, final String filePath, String callerId, final Mailbox mailbox, final String smtpHost,
             final String smtpUserAccount) {
 
-        System.out.println("sendMail() filePath=" + filePath);
+        logger.info("sendMail() filePath=" + filePath);
         String useImap = Voxmail.getProps().getProperty("useImap");
         boolean isImap = false;
         if ((useImap != null) && useImap.equals("true")) {
@@ -90,7 +91,7 @@ public class MailSender {
             MimeMessage message = new MimeMessage(s);
 
             message.setFrom(new InternetAddress(mailbox.getEmail(), "Voice Mail"));
-            System.out.println("Forwarding message to: " + mailbox.getEmail());
+            logger.info("Forwarding message to: " + mailbox.getEmail());
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(mailbox.getEmail(), mailbox.getEmail()));
 
             if (callerId == null) {
@@ -134,7 +135,7 @@ public class MailSender {
 
             // SEND MESSAGE..........
             if (isSMTP && !isImap) {
-                System.out.println("Sending message via SMTP");
+                logger.info("Sending message via SMTP");
                 Transport trans = s.getTransport("smtp");
                 message.setFrom(new InternetAddress(smtpUserAccount, "Voice Mail"));
 
@@ -142,7 +143,7 @@ public class MailSender {
                     trans.connect();
                     Transport.send(message);
                 } catch (Exception e) {
-                    System.out.println("MailSender::sendMail() - failed to send via SMTP: " + e.getMessage());
+                    logger.info("MailSender::sendMail() - failed to send via SMTP: " + e.getMessage());
                     e.printStackTrace();
                 } finally {
                     trans.close();

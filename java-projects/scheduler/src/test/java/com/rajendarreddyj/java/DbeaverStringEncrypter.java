@@ -6,19 +6,21 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 /**
  * @author rajendarreddy
  *
  */
 public class DbeaverStringEncrypter {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final byte[] PASSWORD_ENCRYPTION_KEY = "sdf@!#$verf^wv%6Fwe%$$#FFGwfsdefwfe135s$^H)dg".getBytes();
 
     public static void main(final String[] args) throws Exception {
         DbeaverStringEncrypter simpleStringEncrypter = new DbeaverStringEncrypter();
-        System.out.println(simpleStringEncrypter.encrypt("selfqa"));
+        logger.info(simpleStringEncrypter.encrypt("selfqa"));
         // Replace this string with whatever you find it in .dbeaver-data-sources.xml
-        System.out.println(simpleStringEncrypter.decrypt("AAEKJlBCJPc="));
+        logger.info(simpleStringEncrypter.decrypt("AAEKJlBCJPc="));
     }
 
     public DbeaverStringEncrypter() {

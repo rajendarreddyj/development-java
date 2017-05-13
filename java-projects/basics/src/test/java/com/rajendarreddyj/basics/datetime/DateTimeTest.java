@@ -13,6 +13,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.logging.Logger;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Assert;
@@ -23,6 +24,7 @@ import org.junit.Test;
  *
  */
 public class DateTimeTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     UseLocalDateTime useLocalDateTime = new UseLocalDateTime();
     UseLocalDate useLocalDate = new UseLocalDate();
     UseLocalTime useLocalTime = new UseLocalTime();
@@ -32,14 +34,14 @@ public class DateTimeTest {
     @Test
     public void currentTime() {
         final LocalDate now = LocalDate.now();
-        System.out.println(now);
+        logger.info(now.toString());
         // there is not much to test here
     }
 
     @Test
     public void specificTime() {
         LocalDate birthDay = LocalDate.of(1987, Month.MARCH, 17);
-        System.out.println(birthDay);
+        logger.info(birthDay.toString());
         // there is not much to test here
     }
 

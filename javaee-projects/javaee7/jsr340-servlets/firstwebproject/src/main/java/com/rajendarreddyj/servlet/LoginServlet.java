@@ -2,6 +2,7 @@ package com.rajendarreddyj.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     public LoginServlet() {
         super();
     }
@@ -41,7 +42,7 @@ public class LoginServlet extends HttpServlet {
             this.servletcontext.setAttribute("user", user);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("DetailServlet");
             requestDispatcher.forward(request, response);
-            System.out.println("Username :" + user + " login successful");
+            logger.info("Username :" + user + " login successful");
         } else {
             PrintWriter out = response.getWriter();
             out.print("<html><body><center>");
@@ -49,7 +50,7 @@ public class LoginServlet extends HttpServlet {
             out.print("<h2>We do not recognize your username and/or password.</h2><br>");
             out.print("<a href=" + "login.html" + ">Please try again</a>");
             out.print("</center></body></html>");
-            System.out.println("Username :" + user + " login unsuccessful");
+            logger.info("Username :" + user + " login unsuccessful");
         }
     }
 }

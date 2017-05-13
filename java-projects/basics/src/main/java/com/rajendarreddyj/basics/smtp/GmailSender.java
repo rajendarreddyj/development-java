@@ -1,6 +1,7 @@
 package com.rajendarreddyj.basics.smtp;
 
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -9,6 +10,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 
 public class GmailSender {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static String HOST = "gmail-smtp-msa.l.google.com";
     private static String USER = "test@gmail.com";
     private static String PASSWORD = "";
@@ -57,6 +59,6 @@ public class GmailSender {
 
     public static void main(final String[] args) {
         GmailSender.send();
-        System.out.println("Mail sent successfully!");
+        logger.info("Mail sent successfully!");
     }
 }

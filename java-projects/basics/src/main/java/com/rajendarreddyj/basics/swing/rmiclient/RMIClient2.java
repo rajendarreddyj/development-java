@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,6 +25,7 @@ public class RMIClient2 extends JFrame implements ActionListener {
      * 
      */
     private static final long serialVersionUID = 1L;
+    private static final Logger logger = Logger.getAnonymousLogger();
     JLabel text, clicked;
     JButton button;
     JPanel panel;
@@ -54,7 +56,7 @@ public class RMIClient2 extends JFrame implements ActionListener {
                 String text = send.getData();
                 this.textArea.append(text);
             } catch (java.rmi.RemoteException e) {
-                System.out.println("Cannot access data in server");
+                logger.info("Cannot access data in server");
             }
         }
     }
@@ -78,11 +80,11 @@ public class RMIClient2 extends JFrame implements ActionListener {
             String name = "//" + args[0] + "/Send";
             send = ((Send) Naming.lookup(name));
         } catch (java.rmi.NotBoundException e) {
-            System.out.println("Cannot access data in server");
+            logger.info("Cannot access data in server");
         } catch (java.rmi.RemoteException e) {
-            System.out.println("Cannot access data in server");
+            logger.info("Cannot access data in server");
         } catch (java.net.MalformedURLException e) {
-            System.out.println("Cannot access data in server");
+            logger.info("Cannot access data in server");
         }
     }
 }

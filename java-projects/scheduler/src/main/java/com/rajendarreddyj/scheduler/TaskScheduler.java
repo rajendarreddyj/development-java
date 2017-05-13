@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
 import java.util.TimerTask;
+import java.util.logging.Logger;
 
 import com.rajendarreddyj.scheduler.bean.ServerVariables;
 
@@ -22,7 +23,7 @@ import com.rajendarreddyj.scheduler.bean.ServerVariables;
  * @author rajendarreddy
  */
 public class TaskScheduler extends TimerTask {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     private final String filePath;
     private final String fileExtension;
     private final String archiveFileExtension;
@@ -49,7 +50,7 @@ public class TaskScheduler extends TimerTask {
      */
     @Override
     public void run() {
-        System.out.println("Scheduler started @ " + new Date());
+        logger.info("Scheduler started @ " + new Date());
         // Read File
         File[] listOfFiles = this.finder(this.filePath, this.fileExtension);
         if (listOfFiles != null) {
@@ -62,7 +63,7 @@ public class TaskScheduler extends TimerTask {
 
             }
         } else {
-            System.out.println("Correct File Path in properties");
+            logger.info("Correct File Path in properties");
         }
     }
 
@@ -76,7 +77,7 @@ public class TaskScheduler extends TimerTask {
         int retry = 3;
         // Retry 3 times for Failure for Each Record Insertion
         for (int i = 0; i < retry; i++) {
-            System.out.println("Trying " + i);
+            logger.info("Trying " + i);
             try {
                 URL obj = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -98,8 +99,8 @@ public class TaskScheduler extends TimerTask {
                 if (responseCode == 200) {
                     break;
                 }
-                System.out.println("\nSending 'GET' request to URL : " + url);
-                System.out.println("Response Code : " + responseCode);
+                logger.info("\nSending 'GET' request to URL : " + url);
+                logger.info("Response Code : " + responseCode);
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 String inputLine;
@@ -109,7 +110,7 @@ public class TaskScheduler extends TimerTask {
                     response.append(inputLine);
                 }
                 in.close();
-                System.out.println(response.toString());
+                logger.info(response.toString());
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -127,7 +128,7 @@ public class TaskScheduler extends TimerTask {
         File file2 = new File(file.getAbsoluteFile() + this.archiveFileExtension);
         boolean success = file.renameTo(file2);
         if (success) {
-            System.out.println("Processing File Renamed");
+            logger.info("Processing File Renamed");
         }
     }
 
@@ -182,8 +183,8 @@ public class TaskScheduler extends TimerTask {
                 if (values.length > 7) {
                     serverVariables.setServerSoftware(values[7]);
                 }
-                System.out.println("Call WS");
-                System.out.println(serverVariables);
+                logger.info("Call WS");
+                logger.info(serverVariables.toString());
                 try {
                     // WS Call
                     this.sendPost(this.webServiceUrl, serverVariables);
@@ -220,7 +221,7 @@ public class TaskScheduler extends TimerTask {
         String lineSplitBy = "\\|";
         long len = file.length();
 
-        System.out.println("seeking position " + this.filePointer);
+        logger.info("seeking position " + this.filePointer);
         try {
             // To Save and Retrieve pointer temp file is used.
             RandomAccessFile raf = new RandomAccessFile(file, "r");
@@ -258,8 +259,8 @@ public class TaskScheduler extends TimerTask {
                 if (values.length > 7) {
                     serverVariables.setServerSoftware(values[7]);
                 }
-                System.out.println("Call WS ");
-                System.out.println(serverVariables);
+                logger.info("Call WS ");
+                logger.info(serverVariables.toString());
                 try {
                     // WS Call
                     this.sendPost(this.webServiceUrl, serverVariables);
@@ -268,7 +269,7 @@ public class TaskScheduler extends TimerTask {
                     e.printStackTrace();
                 }
                 this.filePointer = raf.getFilePointer();
-                System.out.println("Set Pointer " + raf.getFilePointer());
+                logger.info("Set Pointer " + raf.getFilePointer());
                 this.createTempFileForPointer(raf.getFilePointer());
             }
             raf.close();
@@ -351,7 +352,7 @@ public class TaskScheduler extends TimerTask {
         File file = new File(tempFilePath + ".tmp");
         boolean success = file.delete();
         if (success) {
-            System.out.println("Temp File Deleted");
+            logger.info("Temp File Deleted");
         }
     }
 }

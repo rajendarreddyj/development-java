@@ -1,6 +1,7 @@
 package com.rajendarreddyj.basics.smtp;
 
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.Session;
@@ -9,6 +10,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class TestYahooMail {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         String smtpHost = "smtp.mail.yahoo.com";
         String from = "username";
@@ -30,7 +32,7 @@ public class TestYahooMail {
             for (int i = 0; i < to.length; i++) {
                 toAddress[i] = new InternetAddress(to[i]);
             }
-            System.out.println(Message.RecipientType.TO);
+            logger.info(Message.RecipientType.TO.toString());
             for (int i = 0; i < toAddress.length; i++) {
                 message.addRecipient(Message.RecipientType.TO, toAddress[i]);
             }

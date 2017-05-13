@@ -13,8 +13,10 @@ import java.text.SimpleDateFormat;
  * method like this : Statement statement = dbConnection.createStatement(); // execute the insert SQL stetement
  * statement.executeUpdate(insertTableSQL);
  */
+import java.util.logging.Logger;
 
 public class JDBCStatementInsertExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -25,7 +27,7 @@ public class JDBCStatementInsertExample {
         try {
             insertRecordIntoDbUserTable();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
     }
 
@@ -37,12 +39,12 @@ public class JDBCStatementInsertExample {
         try {
             dbConnection = getDBConnection();
             statement = dbConnection.createStatement();
-            System.out.println(insertTableSQL);
+            logger.info(insertTableSQL);
             // execute insert SQL stetement
             statement.executeUpdate(insertTableSQL);
-            System.out.println("Record is inserted into DBUSER table!");
+            logger.info("Record is inserted into DBUSER table!");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         } finally {
             if (statement != null) {
                 statement.close();
@@ -58,13 +60,13 @@ public class JDBCStatementInsertExample {
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         try {
             dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
             return dbConnection;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         return dbConnection;
     }

@@ -3,6 +3,7 @@ package com.rajendarreddyj.basics.jdbc.oracleDb;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 /*
  * how to connect to Oracle database via JDBC driver. 1. Download MySQL JDBC Driver
@@ -15,28 +16,29 @@ import java.sql.SQLException;
  * DriverManager.getConnection( "jdbc:oracle:thin:@localhost:1521:test","username","password"); connection.close();
  */
 public class JDBCConnectivity {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] argv) {
-        System.out.println("-------- Oracle JDBC Connection Testing ------");
+        logger.info("-------- Oracle JDBC Connection Testing ------");
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (ClassNotFoundException e) {
-            System.out.println("Where is your Oracle JDBC Driver?");
+            logger.info("Where is your Oracle JDBC Driver?");
             e.printStackTrace();
             return;
         }
-        System.out.println("Oracle JDBC Driver Registered!");
+        logger.info("Oracle JDBC Driver Registered!");
         Connection connection = null;
         try {
             connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521", "rajendar", "rajendar");
         } catch (SQLException e) {
-            System.out.println("Connection Failed! Check output console");
+            logger.info("Connection Failed! Check output console");
             e.printStackTrace();
             return;
         }
         if (connection != null) {
-            System.out.println("You made it, take control your database now!");
+            logger.info("You made it, take control your database now!");
         } else {
-            System.out.println("Failed to make connection!");
+            logger.info("Failed to make connection!");
         }
     }
 }

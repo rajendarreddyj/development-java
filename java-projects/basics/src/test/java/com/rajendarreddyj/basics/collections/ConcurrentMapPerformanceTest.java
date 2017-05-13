@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,6 +19,7 @@ import org.junit.Test;
  *
  */
 public class ConcurrentMapPerformanceTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     @Test
     public void givenMaps_whenGetPut500KTimes_thenConcurrentMapFaster() throws Exception {
         Map<String, Object> hashtable = new Hashtable<>();
@@ -26,7 +28,7 @@ public class ConcurrentMapPerformanceTest {
         long hashtableAvgRuntime = this.timeElapseForGetPut(hashtable);
         long syncHashMapAvgRuntime = this.timeElapseForGetPut(synchronizedHashMap);
         long concurrentHashMapAvgRuntime = this.timeElapseForGetPut(concurrentHashMap);
-        System.out.println(String.format("Hashtable: %s, syncHashMap: %s, ConcurrentHashMap: %s", hashtableAvgRuntime, syncHashMapAvgRuntime,
+        logger.info(String.format("Hashtable: %s, syncHashMap: %s, ConcurrentHashMap: %s", hashtableAvgRuntime, syncHashMapAvgRuntime,
                 concurrentHashMapAvgRuntime));
         Assert.assertTrue(hashtableAvgRuntime > concurrentHashMapAvgRuntime);
         Assert.assertTrue(syncHashMapAvgRuntime > concurrentHashMapAvgRuntime);
@@ -87,7 +89,7 @@ public class ConcurrentMapPerformanceTest {
         long mapOfDefaultHashDuration = System.currentTimeMillis() - defaultHashStartTime;
         Assert.assertEquals(executeTimes * 2, mapOfDefaultHash.size());
         Assert.assertEquals(executeTimes * 2, mapOfSameHash.size());
-        System.out.println(String.format("same-hash: %s, default-hash: %s", mapOfSameHashDuration, mapOfDefaultHashDuration));
+        logger.info(String.format("same-hash: %s, default-hash: %s", mapOfSameHashDuration, mapOfDefaultHashDuration));
         Assert.assertTrue("same hashCode() should greatly degrade performance", mapOfSameHashDuration > (mapOfDefaultHashDuration * 10));
     }
 }

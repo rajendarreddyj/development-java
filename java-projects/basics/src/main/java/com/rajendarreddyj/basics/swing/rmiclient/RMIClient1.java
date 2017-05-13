@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,6 +25,7 @@ public class RMIClient1 extends JFrame implements ActionListener {
      * 
      */
     private static final long serialVersionUID = 1L;
+    private static final Logger logger = Logger.getAnonymousLogger();
     JLabel text, clicked;
     JButton button;
     JPanel panel;
@@ -55,7 +57,7 @@ public class RMIClient1 extends JFrame implements ActionListener {
             try {
                 send.sendData(text);
             } catch (java.rmi.RemoteException e) {
-                System.out.println("Cannot send data to server");
+                logger.info("Cannot send data to server");
             }
             this.textField.setText(new String(""));
         }
@@ -80,11 +82,11 @@ public class RMIClient1 extends JFrame implements ActionListener {
             String name = "//" + args[0] + "/Send";
             send = ((Send) Naming.lookup(name));
         } catch (java.rmi.NotBoundException e) {
-            System.out.println("Cannot look up remote server object");
+            logger.info("Cannot look up remote server object");
         } catch (java.rmi.RemoteException e) {
-            System.out.println("Cannot look up remote server object");
+            logger.info("Cannot look up remote server object");
         } catch (java.net.MalformedURLException e) {
-            System.out.println("Cannot look up remote server object");
+            logger.info("Cannot look up remote server object");
         }
     }
 }

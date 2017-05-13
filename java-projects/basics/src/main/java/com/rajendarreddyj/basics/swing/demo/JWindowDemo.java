@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.logging.Logger;
 
 import javax.swing.JWindow;
 
@@ -15,6 +16,7 @@ import javax.swing.JWindow;
 public class JWindowDemo extends JWindow {
 
     private static final long serialVersionUID = 1L;
+    private static final Logger logger = Logger.getAnonymousLogger();
     private int X = 0;
     private int Y = 0;
 
@@ -34,7 +36,7 @@ public class JWindowDemo extends JWindow {
             public void mousePressed(final MouseEvent e) {
                 JWindowDemo.this.X = e.getX();
                 JWindowDemo.this.Y = e.getY();
-                System.out.println("The (X,Y) coordinate of window is (" + JWindowDemo.this.X + "," + JWindowDemo.this.Y + ")");
+                logger.info("The (X,Y) coordinate of window is (" + JWindowDemo.this.X + "," + JWindowDemo.this.Y + ")");
             }
         });
         this.addMouseMotionListener(new MouseMotionAdapter() {

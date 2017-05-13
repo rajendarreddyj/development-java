@@ -1,5 +1,7 @@
 package com.rajendarreddyj.scheduler.listener;
 
+import java.util.logging.Logger;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -19,6 +21,7 @@ import com.rajendarreddyj.scheduler.QuartzJob;
  *
  */
 public class QuartzListener implements ServletContextListener {
+    private static final Logger logger = Logger.getAnonymousLogger();
     Scheduler scheduler = null;
 
     /* (non-Javadoc)
@@ -26,7 +29,7 @@ public class QuartzListener implements ServletContextListener {
      */
     @Override
     public void contextDestroyed(final ServletContextEvent arg0) {
-        System.out.println("Context Destroyed");
+        logger.info("Context Destroyed");
         try {
             this.scheduler.shutdown();
         } catch (SchedulerException e) {
@@ -40,7 +43,7 @@ public class QuartzListener implements ServletContextListener {
      */
     @Override
     public void contextInitialized(final ServletContextEvent arg0) {
-        System.out.println("Context Initialized");
+        logger.info("Context Initialized");
 
         try {
             // Setup the Job class and the Job group

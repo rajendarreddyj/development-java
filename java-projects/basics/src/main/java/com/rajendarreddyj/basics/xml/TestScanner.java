@@ -1,5 +1,7 @@
 package com.rajendarreddyj.basics.xml;
 
+import java.util.logging.Logger;
+
 import com.rajendarreddyj.basics.enums.Token;
 import com.rajendarreddyj.basics.enums.TokenType;
 
@@ -14,16 +16,17 @@ import com.rajendarreddyj.basics.enums.TokenType;
  * 
  */
 public class TestScanner {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private void test(final String argv[]) {
         if (argv.length == 1) {
             String expr = argv[0];
-            System.out.println("expr = " + expr);
+            logger.info("expr = " + expr);
             Scanner scan = new Scanner(expr);
             for (Token tok = scan.getToken(); tok.getType() != TokenType.EOL; tok = scan.getToken()) {
-                System.out.println("token = " + tok);
+                logger.info("token = " + tok);
             }
         } else {
-            System.out.println("test expression on the command line expected");
+            logger.info("test expression on the command line expected");
         }
     }
 

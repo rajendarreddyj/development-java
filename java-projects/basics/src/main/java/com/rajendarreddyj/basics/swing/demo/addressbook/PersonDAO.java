@@ -7,13 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * @author rajendarreddy
  *
  */
 public class PersonDAO {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     private ArrayList<PersonInfo> personsList;
     private String userid = "ra";
     private String password = "";
@@ -54,7 +55,7 @@ public class PersonDAO {
             PreparedStatement ps = this.con.prepareStatement(sql);
             ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            logger.info(e.toString());
         }
     }
 
@@ -86,7 +87,7 @@ public class PersonDAO {
                 this.personsList.add(person);
             }
         } catch (Exception e) {
-            System.out.println(e);
+            logger.info(e.toString());
         }
 
         return this.personsList;
@@ -107,7 +108,7 @@ public class PersonDAO {
 
             ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            logger.info(e.toString());
         }
     }
 
@@ -126,7 +127,7 @@ public class PersonDAO {
 
             ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            logger.info(e.toString());
         }
     }
 
@@ -139,7 +140,7 @@ public class PersonDAO {
             ps.setString(1, name);
             no = ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            logger.info(e.toString());
         }
         return no;
     }

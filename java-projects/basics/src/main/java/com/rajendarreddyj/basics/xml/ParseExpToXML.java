@@ -2,6 +2,7 @@ package com.rajendarreddyj.basics.xml;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.logging.Logger;
 
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
@@ -39,6 +40,7 @@ import com.rajendarreddyj.basics.enums.TokenType;
  */
 @SuppressWarnings("deprecation")
 public class ParseExpToXML {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private Document mDoc = null;
     private Scanner mScan = null;
     private String mNameSpace = null;
@@ -79,7 +81,7 @@ public class ParseExpToXML {
             Element rootElement = doc.getDocumentElement();
             serializer.serialize(rootElement);
         } catch (IOException e) {
-            System.out.println("ParseExpToXML::documentToString: IOException = " + e);
+            logger.info("ParseExpToXML::documentToString: IOException = " + e);
         }
         return writer.toString();
     } // documentToString

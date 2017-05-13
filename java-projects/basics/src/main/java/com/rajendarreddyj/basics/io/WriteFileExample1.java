@@ -3,12 +3,14 @@ package com.rajendarreddyj.basics.io;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /*
  * In Java, FileOutputStream is a bytes stream class that’s used to handle raw binary data. To write the data to file,
  * you have to convert the data into bytes and save it to file.
  */
 public class WriteFileExample1 {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         FileOutputStream fop = null;
         File file;
@@ -25,7 +27,7 @@ public class WriteFileExample1 {
             fop.write(contentInBytes);
             fop.flush();
             fop.close();
-            System.out.println("Done");
+            logger.info("Done");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ import javax.swing.SwingUtilities;
  */
 public class JFramePopupMenu extends JFrame {
     private static final long serialVersionUID = 1L;
+    private static final Logger logger = Logger.getAnonymousLogger();
     private JPanel jContentPane = null;
     private JButton jbnPopup = null;
     private JTextField jtfNumOfMenus = null;
@@ -39,7 +41,7 @@ public class JFramePopupMenu extends JFrame {
                 xx.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(final ActionEvent e) {
-                        System.out.println(e);
+                        logger.info(e.toString());
                         JFramePopupMenu.this.scrollablePopupMenu.hidemenu();
                     }
 

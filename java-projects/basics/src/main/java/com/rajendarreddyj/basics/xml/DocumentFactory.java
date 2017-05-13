@@ -1,5 +1,7 @@
 package com.rajendarreddyj.basics.xml;
 
+import java.util.logging.Logger;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,6 +15,7 @@ import org.w3c.dom.Element;
  * document.
  */
 public class DocumentFactory {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static Document getNewDocument(String topTag, final String prefix, final String nameSpace) {
         Document newDoc = null;
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -24,7 +27,7 @@ public class DocumentFactory {
             }
             newDoc = docImp.createDocument(nameSpace, topTag, null);
         } catch (ParserConfigurationException builderExcept) {
-            System.out.println("ParserConfigurationException: " + builderExcept);
+            logger.info("ParserConfigurationException: " + builderExcept);
         }
         return newDoc;
     } // getNewDocument

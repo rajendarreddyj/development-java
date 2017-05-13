@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.logging.Logger;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
@@ -15,6 +16,7 @@ import fr.opensagres.poi.xwpf.converter.pdf.PdfOptions;
  *
  */
 public class ConvertDOCXToPDF {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         generatePDF("src/main/resources/DOCXToPDF.docx", "target/DOCXToPDF.pdf");
     }
@@ -36,6 +38,6 @@ public class ConvertDOCXToPDF {
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        System.out.println("Generate " + targetFilePath + " with " + (System.currentTimeMillis() - startTime) + " ms.");
+        logger.info("Generate " + targetFilePath + " with " + (System.currentTimeMillis() - startTime) + " ms.");
     }
 }

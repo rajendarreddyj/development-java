@@ -1,5 +1,7 @@
 package com.rajendarreddyj.basics.regex.test;
 
+import java.util.logging.Logger;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -8,6 +10,7 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.DateValidator;
 
 public class DateValidatorTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private DateValidator dateValidator;
 
     @BeforeClass
@@ -38,14 +41,14 @@ public class DateValidatorTest {
     @Test(dataProvider = "ValidDateProvider")
     public void ValidDateTest(final String date) {
         boolean valid = this.dateValidator.validate(date);
-        System.out.println("Date is valid : " + date + " , " + valid);
+        logger.info("Date is valid : " + date + " , " + valid);
         Assert.assertEquals(true, valid);
     }
 
     @Test(dataProvider = "InvalidDateProvider", dependsOnMethods = "ValidDateTest")
     public void InValidDateTest(final String date) {
         boolean valid = this.dateValidator.validate(date);
-        System.out.println("Date is valid : " + date + " , " + valid);
+        logger.info("Date is valid : " + date + " , " + valid);
         Assert.assertEquals(false, valid);
     }
 }

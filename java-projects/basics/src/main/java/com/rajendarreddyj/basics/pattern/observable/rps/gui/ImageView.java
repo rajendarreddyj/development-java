@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.net.URL;
 import java.util.Observable;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,6 +17,7 @@ import com.rajendarreddyj.basics.pattern.observable.rps.model.Game;
  * @author rajendarreddy
  */
 public class ImageView extends View {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final long serialVersionUID = 1L;
     private JButton move1;
     private JButton move2;
@@ -72,12 +74,12 @@ public class ImageView extends View {
 
     private ImageIcon getIcon(final String filename) {
         URL url = RockPaperScissorsGui.class.getResource(filename);
-        System.out.println(url);
         if (url == null) {
-            System.out.println("using file");
+            logger.info("using file");
             return new ImageIcon(filename);
         } else {
-            System.out.println("using URL / JAR");
+            logger.info(url.toString());
+            logger.info("using URL / JAR");
             return new ImageIcon(url);
         }
     }

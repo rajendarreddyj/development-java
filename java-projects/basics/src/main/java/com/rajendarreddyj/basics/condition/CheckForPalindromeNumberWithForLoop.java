@@ -1,6 +1,9 @@
 package com.rajendarreddyj.basics.condition;
 
+import java.util.logging.Logger;
+
 public class CheckForPalindromeNumberWithForLoop {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         // numbers to check
         int numbers[] = new int[] { 252, 54, 99, 1233, 66, 9876 };
@@ -18,9 +21,9 @@ public class CheckForPalindromeNumberWithForLoop {
                 numberInReverse = (numberInReverse * 10) + temp;
             }
             if (numbers[i] == numberInReverse) {
-                System.out.println(numbers[i] + " is a palindrome");
+                logger.info(numbers[i] + " is a palindrome");
             } else {
-                System.out.println(numbers[i] + " is NOT a palindrome");
+                logger.info(numbers[i] + " is NOT a palindrome");
             }
         }
     }

@@ -2,12 +2,14 @@ package com.rajendarreddyj.basics.concurrent.countdownlatch;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.logging.Logger;
 
 /**
  * @author rajendarreddy
  *
  */
 public class BrokerWorker implements Runnable {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private final List<String> outputScraper;
     private final CountDownLatch countDownLatch;
 
@@ -22,7 +24,7 @@ public class BrokerWorker implements Runnable {
     @Override
     public void run() {
         // Do some work
-        System.out.println("Doing some logic");
+        logger.info("Doing some logic");
         this.outputScraper.add("Counted down");
         this.countDownLatch.countDown();
     }

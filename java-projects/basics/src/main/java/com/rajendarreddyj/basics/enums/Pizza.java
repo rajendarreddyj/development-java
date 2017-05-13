@@ -3,6 +3,7 @@ package com.rajendarreddyj.basics.enums;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
  *
  */
 public class Pizza {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static EnumSet<PizzaStatusEnum> deliveredPizzaStatuses = EnumSet.of(PizzaStatusEnum.DELIVERED);
     private PizzaStatusEnum status;
 
@@ -68,7 +70,7 @@ public class Pizza {
     }
 
     public void printTimeToDeliver() {
-        System.out.println("Time to delivery is " + this.getStatus().getTimeToDelivery() + " days");
+        logger.info("Time to delivery is " + this.getStatus().getTimeToDelivery() + " days");
     }
 
     public static List<Pizza> getAllUndeliveredPizzas(final List<Pizza> input) {

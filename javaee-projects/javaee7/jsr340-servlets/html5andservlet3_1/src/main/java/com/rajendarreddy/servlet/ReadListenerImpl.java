@@ -3,6 +3,7 @@ package com.rajendarreddy.servlet;
 import java.io.IOException;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.logging.Logger;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.ReadListener;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 public class ReadListenerImpl implements ReadListener {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private ServletInputStream input = null;
     private HttpServletResponse res = null;
     private AsyncContext ac = null;
@@ -32,7 +34,7 @@ public class ReadListenerImpl implements ReadListener {
      */
     @Override
     public void onAllDataRead() throws IOException {
-        System.out.println("Data is all read");
+        logger.info("Data is all read");
 
         // now all data are read, set up a WriteListener to write
         ServletOutputStream output = this.res.getOutputStream();
@@ -46,7 +48,7 @@ public class ReadListenerImpl implements ReadListener {
      */
     @Override
     public void onDataAvailable() throws IOException {
-        System.out.println("Data is available");
+        logger.info("Data is available");
 
         StringBuilder sb = new StringBuilder();
         int len = -1;

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 import oracle.jdbc.OracleTypes;
 
@@ -24,6 +25,7 @@ import oracle.jdbc.OracleTypes;
  * cast the returned CURSOR to ResultSet and loop through the records sequentially.
  */
 public class JDBCCallableStatementCURSORExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -33,7 +35,7 @@ public class JDBCCallableStatementCURSORExample {
         try {
             callOracleStoredProcCURSORParameter();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
     }
 
@@ -56,13 +58,13 @@ public class JDBCCallableStatementCURSORExample {
                 String userName = rs.getString("USERNAME");
                 String createdBy = rs.getString("CREATED_BY");
                 String createdDate = rs.getString("CREATED_DATE");
-                System.out.println("UserName : " + userid);
-                System.out.println("UserName : " + userName);
-                System.out.println("CreatedBy : " + createdBy);
-                System.out.println("CreatedDate : " + createdDate);
+                logger.info("UserName : " + userid);
+                logger.info("UserName : " + userName);
+                logger.info("CreatedBy : " + createdBy);
+                logger.info("CreatedDate : " + createdDate);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         } finally {
             if (rs != null) {
                 rs.close();
@@ -81,13 +83,13 @@ public class JDBCCallableStatementCURSORExample {
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         try {
             dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
             return dbConnection;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         return dbConnection;
     }

@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 import org.apache.xerces.parsers.DOMParser;
 import org.w3c.dom.Document;
@@ -23,9 +24,10 @@ import org.xml.sax.SAXParseException;
  * 
  */
 public class TestXerces {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private void usage() {
         String name = this.getClass().getName();
-        System.out.println("usage: " + name + "<XML fileName>");
+        logger.info("usage: " + name + "<XML fileName>");
     }
 
     private byte[] fileToBytes(final String xmlFileName) {
@@ -36,9 +38,9 @@ public class TestXerces {
             in.read(bytes);
             in.close();
         } catch (FileNotFoundException e) {
-            System.out.println("fileToBytes: could not find file " + xmlFileName);
+            logger.info("fileToBytes: could not find file " + xmlFileName);
         } catch (IOException e) {
-            System.out.println("fileToBytes: error reading file " + xmlFileName);
+            logger.info("fileToBytes: error reading file " + xmlFileName);
         }
         return bytes;
     } // fileToBytes
@@ -69,9 +71,9 @@ public class TestXerces {
             } else {
                 msg = "TestXerces.bytesToDocument: SAX Exception = " + e;
             }
-            System.out.println(msg);
+            logger.info(msg);
         } catch (IOException e) {
-            System.out.println("TestXerces.bytesToDocument: IOException = " + e);
+            logger.info("TestXerces.bytesToDocument: IOException = " + e);
         }
         return doc;
     } // bytesToDocument
@@ -79,13 +81,13 @@ public class TestXerces {
     private TestXerces(final String[] args) {
         if (args.length == 1) {
             String xmlFileName = args[0];
-            System.out.println("Validating XML file " + xmlFileName);
+            logger.info("Validating XML file " + xmlFileName);
             byte[] xmlBytes = this.fileToBytes(xmlFileName);
             Document doc = this.bytesToDocument(xmlFileName, xmlBytes, true);
             if (doc != null) {
-                System.out.println("Validation OK, DOM object created");
+                logger.info("Validation OK, DOM object created");
             } else {
-                System.out.println("Validation failed");
+                logger.info("Validation failed");
             }
         } // args.length == 1
         else {

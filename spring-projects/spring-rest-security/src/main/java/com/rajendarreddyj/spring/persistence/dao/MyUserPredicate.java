@@ -1,5 +1,7 @@
 package com.rajendarreddyj.spring.persistence.dao;
 
+import java.util.logging.Logger;
+
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.core.types.dsl.PathBuilder;
@@ -8,7 +10,7 @@ import com.rajendarreddyj.spring.persistence.model.MyUser;
 import com.rajendarreddyj.spring.web.util.SearchCriteria;
 
 public class MyUserPredicate {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     private SearchCriteria criteria;
 
     public MyUserPredicate() {
@@ -23,7 +25,7 @@ public class MyUserPredicate {
         final PathBuilder<MyUser> entityPath = new PathBuilder<>(MyUser.class, "myUser");
 
         if (isNumeric(this.criteria.getValue().toString())) {
-            System.out.println("Nuumber");
+            logger.info("Nuumber");
             final NumberPath<Integer> path = entityPath.getNumber(this.criteria.getKey(), Integer.class);
             final int value = Integer.parseInt(this.criteria.getValue().toString());
             if (this.criteria.getOperation().equalsIgnoreCase(":")) {

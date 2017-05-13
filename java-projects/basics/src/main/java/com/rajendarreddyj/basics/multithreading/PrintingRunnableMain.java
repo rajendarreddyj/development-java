@@ -1,18 +1,20 @@
 package com.rajendarreddyj.basics.multithreading;
 
+import java.util.logging.Logger;
+
 /**
  * @author rajendarreddy
  *
  */
 public class PrintingRunnableMain {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) throws InterruptedException {
-        System.out.println("main() started");
+        logger.info("main() started");
         Thread thread = new Thread(new PrintingRunnable(1));
         thread.start();
-        System.out.println("main() is waiting");
+        logger.info("main() is waiting");
         thread.join();
-        System.out.println("main() finished");
+        logger.info("main() finished");
 
     }
 }

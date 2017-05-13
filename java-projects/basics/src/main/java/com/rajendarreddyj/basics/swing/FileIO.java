@@ -10,6 +10,7 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +23,7 @@ public class FileIO extends JFrame implements ActionListener {
      * 
      */
     private static final long serialVersionUID = 1L;
+    private static final Logger logger = Logger.getAnonymousLogger();
     JLabel text;
     JButton button;
     JPanel panel;
@@ -60,7 +62,7 @@ public class FileIO extends JFrame implements ActionListener {
                     out.write(b);
                     out.close();
                 } catch (java.io.IOException e) {
-                    System.out.println("Cannot write to text.txt");
+                    logger.info("Cannot write to text.txt");
                 }
                 // Read from file
                 try {
@@ -73,7 +75,7 @@ public class FileIO extends JFrame implements ActionListener {
                     s = new String(bt);
                     in.close();
                 } catch (java.io.IOException e) {
-                    System.out.println("Cannot read from text.txt");
+                    logger.info("Cannot read from text.txt");
                 }
                 // Clear text field
                 this.textField.setText("");

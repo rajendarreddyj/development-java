@@ -1,6 +1,7 @@
 package com.rajendarreddyj.springbatchlistener.listener;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
@@ -14,7 +15,7 @@ import com.rajendarreddyj.springbatchlistener.model.User;
  *
  */
 public class WriteListener implements ItemWriteListener<User> {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     private String INSERT_QUERY = "insert into user_stats(firstName,lastName,city,id) values (?,?,?,?)";
     private DataSource dataSource;
 
@@ -28,7 +29,7 @@ public class WriteListener implements ItemWriteListener<User> {
 
     @Override
     public void afterWrite(final List<? extends User> items) {
-        System.out.println("Feeding the stats table");
+        logger.info("Feeding the stats table");
         int result = 0;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(this.getDataSource());
 
@@ -37,19 +38,19 @@ public class WriteListener implements ItemWriteListener<User> {
             result += jdbcTemplate.update(this.INSERT_QUERY, params);
 
         }
-        System.out.println("Number of rows inserted: " + result);
+        logger.info("Number of rows inserted: " + result);
 
     }
 
     @Override
     public void beforeWrite(final List<? extends User> items) {
-        System.out.println("Going to write following items: " + items.toString());
+        logger.info("Going to write following items: " + items.toString());
 
     }
 
     @Override
     public void onWriteError(final Exception arg0, final List<? extends User> arg1) {
-        System.out.println("Error occurred when writing items!");
+        logger.info("Error occurred when writing items!");
 
     }
 

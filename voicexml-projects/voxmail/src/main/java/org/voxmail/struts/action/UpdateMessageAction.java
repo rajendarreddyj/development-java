@@ -10,6 +10,7 @@
 package org.voxmail.struts.action;
 
 import java.text.DateFormat;
+import java.util.logging.Logger;
 
 import javax.mail.Flags;
 import javax.mail.Folder;
@@ -29,7 +30,7 @@ import org.voxmail.mail.MailConnection;
  * @struts.action validate="true"
  */
 public class UpdateMessageAction extends Action {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     static DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
 
     /**
@@ -47,12 +48,12 @@ public class UpdateMessageAction extends Action {
         // Http Session Context
         String cmd = request.getParameter("cmd");
         String msgNum = request.getParameter("msgNum");
-        System.out.println("UpdateMessageAction: cmd: " + cmd + ", msgNum: " + msgNum);
+        logger.info("UpdateMessageAction: cmd: " + cmd + ", msgNum: " + msgNum);
 
         MailConnection mailConnection = (MailConnection) request.getSession().getAttribute("MailConnection");
         this.setMessageStatus(cmd, msgNum, mailConnection);
 
-        System.out.println("UpdateMessageAction: forwarding to updateMessage.jsp");
+        logger.info("UpdateMessageAction: forwarding to updateMessage.jsp");
         return mapping.findForward("updateMessage");
     }
 
@@ -62,7 +63,7 @@ public class UpdateMessageAction extends Action {
             Folder inbox = mailConnection.getInbox();
             Message message = inbox.getMessage(Integer.parseInt(msgNum));
 
-            // System.out.println("SETTING FLAG................................");
+            // logger.info("SETTING FLAG................................");
 
             // remove existing flags
             // message.setFlag(Flags.Flag.SEEN, false);
@@ -72,19 +73,19 @@ public class UpdateMessageAction extends Action {
             new Flags();
 
             if ("save".equals(cmd)) {
-                System.out.println("UpdateMessageAction: Setting message to saved by setting SEEN");
+                logger.info("UpdateMessageAction: Setting message to saved by setting SEEN");
                 message.setFlag(Flags.Flag.SEEN, true);
                 message.setFlag(Flags.Flag.FLAGGED, false);
 
             } else if ("delete".equals(cmd)) {
-                System.out.println("UpdateMessageAction: Setting message to deleted by setting DELETED");
+                logger.info("UpdateMessageAction: Setting message to deleted by setting DELETED");
                 // flag = Flags.Flag.DELETED;
                 // f.add(flag);
                 // message.setFlags(f,true);
                 message.setFlag(Flags.Flag.DELETED, true);
 
             } else { // Skipped
-                System.out.println("UpdateMessageAction: Setting message to skipped by setting SKIPPED");
+                logger.info("UpdateMessageAction: Setting message to skipped by setting SKIPPED");
                 message.setFlag(Flags.Flag.SEEN, false);
                 message.setFlag(Flags.Flag.FLAGGED, true);
             }

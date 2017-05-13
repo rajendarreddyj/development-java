@@ -1,6 +1,9 @@
 package com.rajendarreddyj.basics.exceptions;
 
+import java.util.logging.Logger;
+
 public class CatchMultipleExceptions {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         // We demonstrate with a short password
         try {
@@ -10,7 +13,7 @@ public class CatchMultipleExceptions {
         } catch (ShortPassException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("Finally block is always executed");
+            logger.info("Finally block is always executed");
         }
         // We demonstrate with no password
         try {
@@ -20,18 +23,18 @@ public class CatchMultipleExceptions {
         } catch (ShortPassException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("Finally block is always executed");
+            logger.info("Finally block is always executed");
         }
         // We demonstrate with valid password
         try {
             CatchMultipleExceptions.checkPass("123456");
-            System.out.println("Password check : OK");
+            logger.info("Password check : OK");
         } catch (NoPassException e) {
             e.printStackTrace();
         } catch (ShortPassException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("Finally block is always executed");
+            logger.info("Finally block is always executed");
         }
     }
 

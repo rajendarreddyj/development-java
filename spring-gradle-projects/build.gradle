@@ -43,6 +43,7 @@ allprojects {
 	    hsqldbVersion="1.8.0.7"
 	    tomcatVersion = "7.0.59"
 	    tomcatPluginVersion="2.2.5"
+	    junitVersion="4.12"
 	}
 }
 

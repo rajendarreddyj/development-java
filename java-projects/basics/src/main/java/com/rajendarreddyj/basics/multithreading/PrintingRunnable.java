@@ -1,10 +1,13 @@
 package com.rajendarreddyj.basics.multithreading;
 
+import java.util.logging.Logger;
+
 /**
  * @author rajendarreddy
  *
  */
 public class PrintingRunnable implements Runnable {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private final int id;
 
     public PrintingRunnable(final int id) {
@@ -19,12 +22,12 @@ public class PrintingRunnable implements Runnable {
         try {
             // Print a message five times
             for (int i = 0; i < 3; i++) {
-                System.out.println("Message " + i + " from Thread " + this.id);
+                logger.info("Message " + i + " from Thread " + this.id);
                 // Wait for half a second (500ms)
                 Thread.sleep(500);
             }
         } catch (InterruptedException ex) {
-            System.out.println("Thread was interrupted");
+            logger.info("Thread was interrupted");
         }
 
     }

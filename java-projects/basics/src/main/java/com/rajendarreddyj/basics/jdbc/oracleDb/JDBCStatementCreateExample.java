@@ -11,8 +11,10 @@ import java.sql.Statement;
  * this : Statement statement = dbConnection.createStatement(); // execute create SQL stetement
  * statement.execute(createTableSQL);
  */
+import java.util.logging.Logger;
 
 public class JDBCStatementCreateExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -22,7 +24,7 @@ public class JDBCStatementCreateExample {
         try {
             createDbUserTable();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
     }
 
@@ -34,12 +36,12 @@ public class JDBCStatementCreateExample {
         try {
             dbConnection = getDBConnection();
             statement = dbConnection.createStatement();
-            System.out.println(createTableSQL);
+            logger.info(createTableSQL);
             // execute the SQL stetement
             statement.execute(createTableSQL);
-            System.out.println("Table \"dbuser\" is created!");
+            logger.info("Table \"dbuser\" is created!");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         } finally {
             if (statement != null) {
                 statement.close();
@@ -55,13 +57,13 @@ public class JDBCStatementCreateExample {
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         try {
             dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
             return dbConnection;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         return dbConnection;
     }

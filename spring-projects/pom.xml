@@ -12,5 +12,6 @@
   <name>Spring projects</name>
   <modules>
     <module>spring-rest-security</module>
+    <module>spring-properties</module>
   </modules>
 </project>

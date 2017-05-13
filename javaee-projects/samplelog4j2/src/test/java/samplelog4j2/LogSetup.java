@@ -59,7 +59,7 @@ public class LogSetup {
     }
 
     private static void print(final Object object) {
-        System.out.println(object);
+        log.info(object);
     }
 
 }

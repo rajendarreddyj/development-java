@@ -1,6 +1,7 @@
 package com.rajendarreddyj.basics.regex.test;
 
 import java.util.Vector;
+import java.util.logging.Logger;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -11,6 +12,7 @@ import com.rajendarreddyj.basics.regex.HTMLLinkExtrator;
 import com.rajendarreddyj.basics.regex.HTMLLinkExtrator.HtmlLink;
 
 public class HTMLLinkExtratorTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private HTMLLinkExtrator htmlLinkExtrator;
 
     @BeforeClass
@@ -35,7 +37,7 @@ public class HTMLLinkExtratorTest {
         Assert.assertTrue(links.size() != 0);
         for (int i = 0; i < links.size(); i++) {
             HtmlLink htmlLinks = links.get(i);
-            System.out.println(htmlLinks);
+            logger.info(htmlLinks.toString());
         }
     }
 }

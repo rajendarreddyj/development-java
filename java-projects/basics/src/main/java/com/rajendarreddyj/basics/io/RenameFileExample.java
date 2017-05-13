@@ -1,6 +1,7 @@
 package com.rajendarreddyj.basics.io;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 /*
  * Java comes with renameTo() method to rename a file. However , this method is really platform-dependent: you may
@@ -8,13 +9,14 @@ import java.io.File;
  * false if failed) should always be checked to make sure the file is rename successful.
  */
 public class RenameFileExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         File oldfile = new File("oldfile.txt");
         File newfile = new File("newfile.txt");
         if (oldfile.renameTo(newfile)) {
-            System.out.println("Rename succesful");
+            logger.info("Rename succesful");
         } else {
-            System.out.println("Rename failed");
+            logger.info("Rename failed");
         }
     }
 }

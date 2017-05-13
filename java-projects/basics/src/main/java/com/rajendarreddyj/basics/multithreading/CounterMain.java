@@ -2,6 +2,7 @@ package com.rajendarreddyj.basics.multithreading;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * This class has a main method that creates many threads to modify a shared counter. If there are enough threads
@@ -12,6 +13,7 @@ import java.util.List;
  *
  */
 public class CounterMain {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final int NUM_THREADS = 400;
     private static final int MUTATIONS_PER_THREAD = 100;
 
@@ -29,8 +31,8 @@ public class CounterMain {
             } catch (InterruptedException ie) {
             }
         }
-        System.out.println("After " + NUM_THREADS + " each performed " + MUTATIONS_PER_THREAD + " mutations:");
-        System.out.println("Counter's value is " + counter.value());
+        logger.info("After " + NUM_THREADS + " each performed " + MUTATIONS_PER_THREAD + " mutations:");
+        logger.info("Counter's value is " + counter.value());
     }
 
     private static boolean anyThreadAlive(final List<Thread> list) {

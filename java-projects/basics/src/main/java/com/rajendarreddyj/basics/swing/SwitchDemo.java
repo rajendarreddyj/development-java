@@ -1,55 +1,58 @@
 package com.rajendarreddyj.basics.swing;
 
+import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 
 public class SwitchDemo {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         String month = JOptionPane.showInputDialog("Enter the Month Number");
         int monthNumber = Integer.parseInt(month);
         switch (monthNumber) {
         case 1:
-            System.out.println("JANUARY");
-            System.out.println("Happy New Year");
+            logger.info("JANUARY");
+            logger.info("Happy New Year");
             break;
         case 2:
-            System.out.println("FEBRUARY");
-            System.out.println("The Shortest Month of the Year");
+            logger.info("FEBRUARY");
+            logger.info("The Shortest Month of the Year");
             break;
         case 3:
-            System.out.println("MARCH");
-            System.out.println("A daffodil Month");
+            logger.info("MARCH");
+            logger.info("A daffodil Month");
             break;
         case 4:
-            System.out.println("APRIL");
-            System.out.println("April first is a fools day");
+            logger.info("APRIL");
+            logger.info("April first is a fools day");
             break;
         case 5:
-            System.out.println("MAY");
-            System.out.println("Hottest Month");
+            logger.info("MAY");
+            logger.info("Hottest Month");
             break;
         case 6:
-            System.out.println("JUNE");
+            logger.info("JUNE");
             break;
         case 7:
-            System.out.println("JULY");
+            logger.info("JULY");
             break;
         case 8:
-            System.out.println("AUGUST");
+            logger.info("AUGUST");
             break;
         case 9:
-            System.out.println("SEPTEMBER");
+            logger.info("SEPTEMBER");
             break;
         case 10:
-            System.out.println("OCTOBER");
+            logger.info("OCTOBER");
             break;
         case 11:
-            System.out.println("NOVEMBER");
+            logger.info("NOVEMBER");
             break;
         case 12:
-            System.out.println("DECEMBER");
+            logger.info("DECEMBER");
             break;
         default:
-            System.out.println("The number you have entered does not match with any month");
+            logger.info("The number you have entered does not match with any month");
             break;
         }
     }

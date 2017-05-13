@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 /*
  * JDBC Transaction let you control how and when a transaction should commit into database. //transaction block start
@@ -44,6 +45,7 @@ import java.sql.SQLException;
  * is hits error, and make both insert and update statements rollback together.
  */
 public class JDBCTransactionExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -71,9 +73,9 @@ public class JDBCTransactionExample {
             preparedStatementUpdate.setInt(2, 999);
             preparedStatementUpdate.executeUpdate();
             dbConnection.commit();
-            System.out.println("Done!");
+            logger.info("Done!");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
             dbConnection.rollback();
         } finally {
             if (preparedStatementInsert != null) {
@@ -93,13 +95,13 @@ public class JDBCTransactionExample {
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         try {
             dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
             return dbConnection;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         return dbConnection;
     }

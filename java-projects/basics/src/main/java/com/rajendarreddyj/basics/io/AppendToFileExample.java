@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /*
  * FileWritter, a character stream to write characters to file. By default, it will replace all the existing content
@@ -14,6 +15,7 @@ import java.io.IOException;
  * contains the following content. ABC Hello Append new content with new FileWriter(file,true)
  */
 public class AppendToFileExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         try {
             String data = " This content will append to the end of the file";
@@ -27,7 +29,7 @@ public class AppendToFileExample {
             BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
             bufferWritter.write(data);
             bufferWritter.close();
-            System.out.println("Done");
+            logger.info("Done");
         } catch (IOException e) {
             e.printStackTrace();
         }

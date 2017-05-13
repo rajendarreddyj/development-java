@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Logger;
 
 /*
  * The “Statement” interface is used to execute a simple SQL statement with no parameters. For create, insert, update or
@@ -17,6 +18,7 @@ import java.sql.Statement;
  * String username = rs.getString("USERNAME"); }
  */
 public class JDBCStatementSelectExample {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -26,7 +28,7 @@ public class JDBCStatementSelectExample {
         try {
             selectRecordsFromDbUserTable();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
     }
 
@@ -37,17 +39,17 @@ public class JDBCStatementSelectExample {
         try {
             dbConnection = getDBConnection();
             statement = dbConnection.createStatement();
-            System.out.println(selectTableSQL);
+            logger.info(selectTableSQL);
             // execute select SQL stetement
             ResultSet rs = statement.executeQuery(selectTableSQL);
             while (rs.next()) {
                 String userid = rs.getString("USER_ID");
                 String username = rs.getString("USERNAME");
-                System.out.println("userid : " + userid);
-                System.out.println("username : " + username);
+                logger.info("userid : " + userid);
+                logger.info("username : " + username);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         } finally {
             if (statement != null) {
                 statement.close();
@@ -63,13 +65,13 @@ public class JDBCStatementSelectExample {
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         try {
             dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
             return dbConnection;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         return dbConnection;
     }

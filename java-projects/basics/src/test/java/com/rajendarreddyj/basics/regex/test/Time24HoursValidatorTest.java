@@ -1,5 +1,7 @@
 package com.rajendarreddyj.basics.regex.test;
 
+import java.util.logging.Logger;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -8,6 +10,7 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.Time24HoursValidator;
 
 public class Time24HoursValidatorTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private Time24HoursValidator time24HoursValidator;
 
     @BeforeClass
@@ -30,14 +33,14 @@ public class Time24HoursValidatorTest {
     @Test(dataProvider = "ValidTime24HoursProvider")
     public void ValidTime24HoursTest(final String time) {
         boolean valid = this.time24HoursValidator.validate(time);
-        System.out.println("Time24Hours is valid : " + time + " , " + valid);
+        logger.info("Time24Hours is valid : " + time + " , " + valid);
         Assert.assertEquals(true, valid);
     }
 
     @Test(dataProvider = "InvalidTime24HoursProvider", dependsOnMethods = "ValidTime24HoursTest")
     public void InValidTime24HoursTest(final String time) {
         boolean valid = this.time24HoursValidator.validate(time);
-        System.out.println("Time24Hours is valid : " + time + " , " + valid);
+        logger.info("Time24Hours is valid : " + time + " , " + valid);
         Assert.assertEquals(false, valid);
     }
 }

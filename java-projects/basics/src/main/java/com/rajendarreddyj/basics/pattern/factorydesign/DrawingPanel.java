@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -89,6 +90,7 @@ import javax.swing.filechooser.FileFilter;
  *
  */
 public final class DrawingPanel extends Component implements ActionListener, ImageObserver, MouseMotionListener, Runnable, WindowListener {
+    private static final Logger logger = Logger.getAnonymousLogger();
     // inner class to represent one frame of an animated GIF
     private static class ImageFrame {
         public Image image;
@@ -140,16 +142,16 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 String animationSaveFileName = input.nextLine();
                 input.close();
                 // *** TODO: delete the file
-                System.out.println("***");
-                System.out.println("*** DrawingPanel saving animated GIF: " + new File(animationSaveFileName).getName());
-                System.out.println("***");
+                logger.info("***");
+                logger.info("*** DrawingPanel saving animated GIF: " + new File(animationSaveFileName).getName());
+                logger.info("***");
                 settingsFile.delete();
                 System.setProperty(ANIMATED_PROPERTY, "1");
                 System.setProperty(SAVE_PROPERTY, animationSaveFileName);
             }
         } catch (Exception e) {
             if (DEBUG) {
-                System.out.println("error checking animation settings: " + e);
+                logger.info("error checking animation settings: " + e);
             }
         }
     }
@@ -159,7 +161,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             return System.getProperty(name) != null;
         } catch (SecurityException e) {
             if (DEBUG) {
-                System.out.println("Security exception when trying to read " + name);
+                logger.info("Security exception when trying to read " + name);
             }
             return false;
         }
@@ -171,7 +173,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
             return (prop != null) && (prop.equalsIgnoreCase("true") || prop.equalsIgnoreCase("yes") || prop.equalsIgnoreCase("1"));
         } catch (SecurityException e) {
             if (DEBUG) {
-                System.out.println("Security exception when trying to read " + name);
+                logger.info("Security exception when trying to read " + name);
             }
             return false;
         }
@@ -182,7 +184,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         String prop = System.getProperty(name);
         return prop != null && (prop.equalsIgnoreCase("false") || prop.equalsIgnoreCase("no") || prop.equalsIgnoreCase("0"));
     } catch (SecurityException e) {
-        if (DEBUG) System.out.println("Security exception when trying to read " + name);
+        if (DEBUG) logger.info("Security exception when trying to read " + name);
         return false;
     }
     }
@@ -302,7 +304,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         this.width = width;
         this.height = height;
         if (DEBUG) {
-            System.out.println("w=" + width + ",h=" + height + ",anim=" + this.isAnimated() + ",graph=" + this.isGraphical() + ",save=" + this.shouldSave());
+            logger.info("w=" + width + ",h=" + height + ",anim=" + this.isAnimated() + ",graph=" + this.isGraphical() + ",save=" + this.shouldSave());
         }
         if (this.isAnimated() && this.shouldSave()) {
             // image must be no more than 256 colors
@@ -370,7 +372,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 Runtime.getRuntime().addShutdownHook(new Thread(this));
             } catch (Exception e) {
                 if (DEBUG) {
-                    System.out.println("unable to add shutdown hook: " + e);
+                    logger.info("unable to add shutdown hook: " + e);
                 }
             }
         }
@@ -495,7 +497,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
     // allows the panel to draw images properly; just forwards to panel
     @Override
     public boolean imageUpdate(final Image img, final int arg1, final int arg2, final int arg3, final int arg4, final int arg5) {
-        // System.out.println("imageUpdate");
+        // logger.info("imageUpdate");
         // MediaTracker mt = new MediaTracker(imagePanel);
         // mt.addImage(img, 0);
         // try {
@@ -538,7 +540,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
     @Override
     public void run() {
         if (DEBUG) {
-            System.out.println("Running shutdown hook");
+            logger.info("Running shutdown hook");
         }
         try {
             String filename = System.getProperty(SAVE_PROPERTY);
@@ -575,7 +577,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
     public void saveAnimated(final String filename) throws IOException {
         // add one more final frame
         if (DEBUG) {
-            System.out.println("saveAnimated(" + filename + ")");
+            logger.info("saveAnimated(" + filename + ")");
         }
         this.frames.add(new ImageFrame(this.getImage(), 5000));
         // encoder.continueEncoding(stream, getImage(), 5000);
@@ -590,7 +592,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 this.frames.set(i, null);
             }
         } catch (OutOfMemoryError e) {
-            System.out.println("Out of memory when saving");
+            logger.info("Out of memory when saving");
         }
         // gifenc.setComments(annotation);
         // gifenc.setUniformDelay((int) Math.round(100 / frames_per_second));
@@ -694,7 +696,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                 // reset creation timer so that we won't save/close just yet
                 this.createTime = System.currentTimeMillis();
             } catch (OutOfMemoryError e) {
-                System.out.println("Out of memory after capturing " + this.frames.size() + " frames");
+                logger.info("Out of memory after capturing " + this.frames.size() + " frames");
             }
         }
     }
@@ -843,7 +845,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                     fileURL = lines.get(choice);
                 }
                 if (DEBUG) {
-                    System.out.println(fileURL);
+                    logger.info(fileURL);
                 }
                 new DiffImage(fileURL, tempFile);
             }
@@ -896,7 +898,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         }
         Graphics g = image2.getGraphics();
         if (DEBUG) {
-            System.out.println("getImage setting background to " + this.backgroundColor);
+            logger.info("getImage setting background to " + this.backgroundColor);
         }
         g.setColor(this.backgroundColor);
         g.fillRect(0, 0, this.width, this.height);
@@ -914,7 +916,7 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
         }
         // encoder.startEncoding(stream);
         } catch (IOException e) {
-        System.out.println(e);
+        logger.info(e);
         }
         */
     }
@@ -1960,12 +1962,12 @@ public final class DrawingPanel extends Component implements ActionListener, Ima
                     this.bgIndex = this.colorTable.indexOf(color);
                 } catch (IOException e) {
                     if (DEBUG) {
-                        System.out.println("Error while setting background color: " + e);
+                        logger.info("Error while setting background color: " + e);
                     }
                 }
             }
             if (DEBUG) {
-                System.out.println("Setting bg index to " + this.bgIndex);
+                logger.info("Setting bg index to " + this.bgIndex);
             }
         }
 

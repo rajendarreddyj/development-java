@@ -1,5 +1,7 @@
 package com.rajendarreddyj.basics.regex.test;
 
+import java.util.logging.Logger;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -8,6 +10,7 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.EmailValidator;
 
 public class EmailValidatorTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private EmailValidator emailValidator;
 
     @BeforeClass
@@ -32,7 +35,7 @@ public class EmailValidatorTest {
     public void ValidEmailTest(final String[] Email) {
         for (String temp : Email) {
             boolean valid = this.emailValidator.validate(temp);
-            System.out.println("Email is valid : " + temp + " , " + valid);
+            logger.info("Email is valid : " + temp + " , " + valid);
             Assert.assertEquals(true, valid);
         }
     }
@@ -41,7 +44,7 @@ public class EmailValidatorTest {
     public void InValidEmailTest(final String[] Email) {
         for (String temp : Email) {
             boolean valid = this.emailValidator.validate(temp);
-            System.out.println("Email is valid : " + temp + " , " + valid);
+            logger.info("Email is valid : " + temp + " , " + valid);
             Assert.assertEquals(false, valid);
         }
     }

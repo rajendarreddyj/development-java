@@ -65,7 +65,7 @@ public class Messages {
         Collections.sort(list);
         // Collections.reverse(list);
 
-        // System.out.println("\nAfter Sorting :");
+        // logger.info("\nAfter Sorting :");
 
         for (int i = 0; i < list.size(); i++) {
             list.get(i);

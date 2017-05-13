@@ -3,6 +3,7 @@ package com.rajendarreddyj.basics.concurrent.priorityblockingqueue;
 import java.util.ArrayList;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import com.google.common.collect.Lists;
  *
  */
 public class PriorityBlockingQueueTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     @Test
     public void givenUnorderedValues_whenPolling_thenShouldOrderQueue() throws InterruptedException {
         PriorityBlockingQueue<Integer> queue = new PriorityBlockingQueue<>();
@@ -31,18 +33,18 @@ public class PriorityBlockingQueueTest {
     public void whenPollingEmptyQueue_thenShouldBlockThread() throws InterruptedException {
         PriorityBlockingQueue<Integer> queue = new PriorityBlockingQueue<>();
         final Thread thread = new Thread(() -> {
-            System.out.println("Polling...");
+            logger.info("Polling...");
             while (true) {
                 try {
                     Integer poll = queue.take();
-                    System.out.println("Polled: " + poll);
+                    logger.info("Polled: " + poll);
                 } catch (InterruptedException e) {
                 }
             }
         });
         thread.start();
         Thread.sleep(TimeUnit.SECONDS.toMillis(5));
-        System.out.println("Adding to queue");
+        logger.info("Adding to queue");
         queue.addAll(Lists.newArrayList(1, 5, 6, 1, 2, 6, 7));
         Thread.sleep(TimeUnit.SECONDS.toMillis(1));
     }

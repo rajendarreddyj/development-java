@@ -2,6 +2,7 @@ package com.rajendarreddyj.pdfbox;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -18,6 +19,7 @@ import org.junit.Test;
  *
  */
 public class CreatePdfTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     @Test
     public void createPDF() {
         // Create a new document
@@ -60,10 +62,10 @@ public class CreatePdfTest {
             // Parse the PDF. Unrestricted main memory will be used for buffering PDF
             // streams.
             PDDocument pd = PDDocument.load(pdffile);
-            System.out.println("Number of pages in the document: " + pd.getNumberOfPages());
+            logger.info("Number of pages in the document: " + pd.getNumberOfPages());
             PDFTextStripper stripper = new PDFTextStripper();
             String text = stripper.getText(pd);
-            System.out.println(text);
+            logger.info(text);
             pd.close();
         } catch (IOException e) {
             e.printStackTrace();

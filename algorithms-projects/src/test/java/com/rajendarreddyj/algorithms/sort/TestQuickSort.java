@@ -2,6 +2,7 @@ package com.rajendarreddyj.algorithms.sort;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.junit.Test;
  *
  */
 public class TestQuickSort {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final Random RANDOM = new Random();
     private static final int SIZE = 10000;
 
@@ -41,16 +43,16 @@ public class TestQuickSort {
     public void testQuickSorts() throws Exception {
         // Quicksort
         int[] input = { 23, 31, 1, 21, 36, 72 };
-        System.out.println("Before sorting : " + Arrays.toString(input));
+        logger.info("Before sorting : " + Arrays.toString(input));
         QuickSort.quickSort(input); // sort the integer array using quick sort algorithm
-        System.out.println("After sorting : " + Arrays.toString(input));
+        logger.info("After sorting : " + Arrays.toString(input));
         Assert.assertTrue("Quick sort for simple input=" + print(input), check(input));
         // input with duplicates
         int[] withDuplicates = { 11, 14, 16, 12, 11, 15 };
-        System.out.println("Before sorting : " + Arrays.toString(withDuplicates));
+        logger.info("Before sorting : " + Arrays.toString(withDuplicates));
         QuickSort.quickSort(withDuplicates);
         Assert.assertTrue("Quick sort for simple input with Duplicates=" + print(withDuplicates), check(withDuplicates));
-        System.out.println("After sorting : " + Arrays.toString(withDuplicates));
+        logger.info("After sorting : " + Arrays.toString(withDuplicates));
     }
 
     @Test

@@ -1,6 +1,7 @@
 package com.rajendarreddyj.basics.smtp;
 
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -11,6 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendMailTLS {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] args) {
         final String username = "test@gmail.com";
         final String password = "";
@@ -32,7 +34,7 @@ public class SendMailTLS {
             message.setSubject("Testing JavaMail API");
             message.setText("Dear Mail Crawler," + "\n\n This is a test message from my java application. Just ignore it");
             Transport.send(message);
-            System.out.println("Done");
+            logger.info("Done");
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }

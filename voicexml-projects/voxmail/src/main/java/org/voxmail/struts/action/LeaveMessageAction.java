@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +38,7 @@ import com.oreilly.servlet.multipart.ParamPart;
 import com.oreilly.servlet.multipart.Part;
 
 public class LeaveMessageAction extends Action {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     static DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
     public String filePath_Messages = null; // directory where recorded messages are saved
     public String filePath_Greetings = null; // directory where recorded messages are saved
@@ -82,7 +83,7 @@ public class LeaveMessageAction extends Action {
 
         if (!WebUtil.isEmpty(contactId)) {
 
-            System.out.println(df.format(new Date()) + ": INCOMING contactId is " + contactId);
+            logger.info(df.format(new Date()) + ": INCOMING contactId is " + contactId);
 
             Mailbox mailbox = null;
             try {
@@ -96,7 +97,7 @@ public class LeaveMessageAction extends Action {
             if (mailbox != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("mailbox", mailbox);
-                System.out.println("Mailbox id retrieved for mailbox: " + mailbox.getMailboxId());
+                logger.info("Mailbox id retrieved for mailbox: " + mailbox.getMailboxId());
 
                 String greetingPath = Voxmail.getProps().getProperty("filePath_Greetings");
                 greetingPath = request.getContextPath() + greetingPath;
@@ -104,12 +105,12 @@ public class LeaveMessageAction extends Action {
 
                 return mapping.findForward("leaveMessage");
             } else {
-                System.out.println("Mailbox not found for contact id: " + contactId);
+                logger.info("Mailbox not found for contact id: " + contactId);
                 return mapping.findForward("error");
             }
         } else // Leaving a message
         {
-            System.out.println(df.format(new Date()) + ": Leaving a message.");
+            logger.info(df.format(new Date()) + ": Leaving a message.");
             String forward = "";
             // Send the email
             try {
@@ -145,7 +146,7 @@ public class LeaveMessageAction extends Action {
         // test the directory where we'll be saving recorded messages
         File dir = new File(this.filePath_Messages);
         if (!dir.exists() || !dir.isDirectory()) {
-            // System.out.println("Could not find filePath_Messages: " + filePath_Messages);
+            // logger.info("Could not find filePath_Messages: " + filePath_Messages);
             throw new ServletException("Could not find filePath_Messages: " + this.filePath_Messages);
         } else {
             if (!this.filePath_Messages.endsWith("/") && !this.filePath_Messages.endsWith("\\")) {
@@ -159,7 +160,7 @@ public class LeaveMessageAction extends Action {
         // test the directory where we'll be saving recorded greetings
         File dir2 = new File(this.filePath_Greetings);
         if (!dir2.exists() || !dir2.isDirectory()) {
-            // System.out.println("Could not find filePath_Greetings: " + filePath_Greetings);
+            // logger.info("Could not find filePath_Greetings: " + filePath_Greetings);
             throw new ServletException("Could not find filePath_Greetings: " + this.filePath_Greetings);
         } else {
             if (!this.filePath_Greetings.endsWith("/") && !this.filePath_Greetings.endsWith("\\")) {
@@ -172,8 +173,8 @@ public class LeaveMessageAction extends Action {
 
         this.aaRedirect = Voxmail.getProps().getProperty("autoattendantRedirect");
 
-        System.out.println("LeaveMessageAction filePath_Messages=" + this.filePath_Messages);
-        System.out.println("LeaveMessageAction filePath_Greetings=" + this.filePath_Greetings);
+        logger.info("LeaveMessageAction filePath_Messages=" + this.filePath_Messages);
+        logger.info("LeaveMessageAction filePath_Greetings=" + this.filePath_Greetings);
 
     }
 
@@ -181,7 +182,7 @@ public class LeaveMessageAction extends Action {
     protected void sendMail(final String mailboxId, final String audioPath, final String callerId, final boolean isImap) {
         Mailbox mailbox = null;
         try {
-            System.out.println("LeaveMessageAction.sendMail mailboxId: " + mailboxId);
+            logger.info("LeaveMessageAction.sendMail mailboxId: " + mailboxId);
             mailbox = Voxmail.getInstance().getVoxmailService().retrieveMailbox(mailboxId);
         } catch (VoxmailException e) {
             // this is bad, cover it up! but send email and log.
@@ -218,8 +219,8 @@ public class LeaveMessageAction extends Action {
         String mailboxId = "";
         String cmd = "";
 
-        System.out.println("#---------------------------------------------------#");
-        System.out.println("LeaveMessageAction - Attempting to parse stream...");
+        logger.info("#---------------------------------------------------#");
+        logger.info("LeaveMessageAction - Attempting to parse stream...");
 
         try {
 
@@ -248,14 +249,14 @@ public class LeaveMessageAction extends Action {
                         cmd = value;
                     }
 
-                    System.out.println("name=" + name + ", value=" + value);
+                    logger.info("name=" + name + ", value=" + value);
 
                 } else if (part.isFile()) {
                     // put the file into a ByteArrayOutputStream. We'll save it when we finish parsing
                     filePart = (FilePart) part;
 
                     audioFileName = filePart.getFileName();
-                    System.out.println("filename=" + audioFileName);
+                    logger.info("filename=" + audioFileName);
 
                     bout = new ByteArrayOutputStream();
                     filePart.writeTo(bout);
@@ -266,7 +267,7 @@ public class LeaveMessageAction extends Action {
             if ((filePart != null) && (bout != null)) {
                 try {
                     if (audioFileName != null) { // we really do have a file!
-                        System.out.println("File is not null");
+                        logger.info("File is not null");
 
                         String timeStamp = new SimpleDateFormat("yyyy-MM-dd_kk,mm,S").format(new Date());
                         String realPath = request.getSession().getServletContext().getRealPath(this.filePath_Messages);
@@ -276,7 +277,7 @@ public class LeaveMessageAction extends Action {
                         // test directory
                         File dir = new File(myPath);
                         if (!dir.exists()) {
-                            System.out.println("Directory does not exist: " + myPath);
+                            logger.info("Directory does not exist: " + myPath);
                         }
 
                         File file = new File(myPath + myFileName);
@@ -289,25 +290,25 @@ public class LeaveMessageAction extends Action {
                         if (savedFileSize > 0) {
                             // send to mail
                             this.sendMail(mailboxId, file.getAbsolutePath(), callerId, isImap);
-                            System.out.println("SAVED VM: " + file.getAbsolutePath());
+                            logger.info("SAVED VM: " + file.getAbsolutePath());
                         }
 
                     } else {
-                        System.out.println("LeaveMessageAction - Empty or missing file part");
+                        logger.info("LeaveMessageAction - Empty or missing file part");
                     }
                 } catch (Exception e) {
-                    System.out.println("Unable to save file: " + e.getMessage());
+                    logger.info("Unable to save file: " + e.getMessage());
                 }
             } else {
-                System.out.println("null file");
+                logger.info("null file");
             }
 
-            System.out.println("LeaveMessageAction: mailboxId=" + mailboxId + "*");
+            logger.info("LeaveMessageAction: mailboxId=" + mailboxId + "*");
 
         } catch (Exception e) {
             // try to at least grab the nextpage
-            System.out.println("Parsing failed: " + e.getMessage());
-            System.out.println("We're still going to try and redirect to nextpage.");
+            logger.info("Parsing failed: " + e.getMessage());
+            logger.info("We're still going to try and redirect to nextpage.");
         }
 
         return cmd;

@@ -1,5 +1,7 @@
 package com.rajendarreddyj.basics.regex.test;
 
+import java.util.logging.Logger;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -8,6 +10,7 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.PasswordValidator;
 
 public class PasswordValidatorTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private PasswordValidator passwordValidator;
 
     @BeforeClass
@@ -29,7 +32,7 @@ public class PasswordValidatorTest {
     public void ValidPasswordTest(final String[] password) {
         for (String temp : password) {
             boolean valid = this.passwordValidator.validate(temp);
-            System.out.println("Password is valid : " + temp + " , " + valid);
+            logger.info("Password is valid : " + temp + " , " + valid);
             Assert.assertEquals(true, valid);
         }
     }
@@ -38,7 +41,7 @@ public class PasswordValidatorTest {
     public void InValidPasswordTest(final String[] password) {
         for (String temp : password) {
             boolean valid = this.passwordValidator.validate(temp);
-            System.out.println("Password is valid : " + temp + " , " + valid);
+            logger.info("Password is valid : " + temp + " , " + valid);
             Assert.assertEquals(false, valid);
         }
     }

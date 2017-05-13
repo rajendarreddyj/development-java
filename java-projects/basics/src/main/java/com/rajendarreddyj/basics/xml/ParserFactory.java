@@ -1,5 +1,7 @@
 package com.rajendarreddyj.basics.xml;
 
+import java.util.logging.Logger;
+
 import org.apache.xerces.parsers.DOMParser;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXNotRecognizedException;
@@ -10,6 +12,7 @@ import org.xml.sax.SAXParseException;
  * ParserFactory
  */
 public class ParserFactory {
+    private static final Logger logger = Logger.getAnonymousLogger();
     /** the namespace feature is true by default */
     final static String NAMESPACES_FEATURE_PREFIX = "http://xml.org/sax/features/namespaces";
     final static String VALIDATION_FEATURE = "http://xml.org/sax/features/validation";
@@ -22,7 +25,7 @@ public class ParserFactory {
      */
     private static class LocalErrorHandler implements ErrorHandler {
         private void print(final String kind, final SAXParseException e) {
-            System.out.println("Parse " + kind + ": " + "Exception = " + e);
+            logger.info("Parse " + kind + ": " + "Exception = " + e);
         }
 
         @Override
@@ -50,9 +53,9 @@ public class ParserFactory {
         try {
             parser.setFeature(featureURI, true);
         } catch (SAXNotSupportedException e) {
-            System.out.println("ParserFactory::initParser: " + featureName + " not supported by parser");
+            logger.info("ParserFactory::initParser: " + featureName + " not supported by parser");
         } catch (SAXNotRecognizedException e) {
-            System.out.println("ParserFactory::initParser: " + featureName + " not recognized by parser");
+            logger.info("ParserFactory::initParser: " + featureName + " not recognized by parser");
         }
     } // setFeature
 

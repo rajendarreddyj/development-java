@@ -11,6 +11,7 @@ package org.voxmail.struts.action;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.mail.Flags;
 import javax.mail.Folder;
@@ -33,7 +34,7 @@ import org.voxmail.model.MessageWrapper;
 import org.voxmail.model.Messages;
 
 public class MainMenuAction extends Action {
-
+    private static final Logger logger = Logger.getAnonymousLogger();
     static DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
 
     /**
@@ -53,7 +54,7 @@ public class MainMenuAction extends Action {
         response.setHeader("Pragma", "no-cache"); // HTTP 1.0
         response.setDateHeader("Expires", 0); // prevents caching at the proxy server
 
-        System.out.println(df.format(new Date()) + ": MainMenuAction ");
+        logger.info(df.format(new Date()) + ": MainMenuAction ");
 
         String cmd = request.getParameter("cmd");
 
@@ -95,10 +96,10 @@ public class MainMenuAction extends Action {
             Message[] messageArray = inbox.search(st);
 
             boolean supportUser = inbox.getPermanentFlags().contains(Flags.Flag.USER);
-            System.out.println("Support for user flags: " + supportUser);
+            logger.info("Support for user flags: " + supportUser);
 
             for (int i = 0; i < messageArray.length; i++) {
-                System.out.println("Getting message i: " + i);
+                logger.info("Getting message i: " + i);
                 MessageWrapper mw = new MessageWrapper(messageArray[i]);
                 messages.addMessage(mw);
             }
@@ -106,7 +107,7 @@ public class MainMenuAction extends Action {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("MainMenuAction set messages count: " + messages.getMessageCount());
+        logger.info("MainMenuAction set messages count: " + messages.getMessageCount());
         request.setAttribute("messages", messages);
 
         return mapping.findForward("messages");
@@ -134,7 +135,7 @@ public class MainMenuAction extends Action {
 
             if (mailConnection != null) {
                 // close old connection first
-                System.out.println("Closing inbox and message store");
+                logger.info("Closing inbox and message store");
                 mailConnection.closeInbox();
                 httpSession.removeAttribute("MailConnection");
             }
@@ -143,7 +144,7 @@ public class MainMenuAction extends Action {
         String mailurl = mailbox.getMailUrl(); // get the appropriate mailurl from the contact object
 
         // logger.debug("GETTING NEW MAIL CONNECTION...");
-        System.out.println("MailURL: " + mailurl);
+        logger.info("MailURL: " + mailurl);
 
         try {
             mailConnection = new MailConnection(mailbox);
@@ -167,8 +168,8 @@ public class MainMenuAction extends Action {
             Message message = inbox.getMessage(Integer.parseInt(request.getParameter("msgindex")));
             String folder = request.getParameter("newfolder");
 
-            // System.out.println("SETTING FLAG................................");
-            // System.out.println("folder=" + folder);
+            // logger.info("SETTING FLAG................................");
+            // logger.info("folder=" + folder);
 
             // remove existing flags
             message.setFlag(Flags.Flag.SEEN, false);
@@ -205,7 +206,7 @@ public class MainMenuAction extends Action {
 
         try {
 
-            System.out.println("SETTING FLAG for message: " + message.getMessageNumber());
+            logger.info("SETTING FLAG for message: " + message.getMessageNumber());
 
             // remove existing flags
             // Flags flags = new Flags();

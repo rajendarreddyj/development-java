@@ -13,30 +13,32 @@ import java.sql.SQLException;
  * Class.forName("com.mysql.jdbc.Driver"); Connection connection = null; connection = DriverManager.getConnection(
  * "jdbc:mysql://hostname:port/dbname","username", "password"); connection.close();
  */
+import java.util.logging.Logger;
 
 public class JDBCConnectivity {
+    private static final Logger logger = Logger.getAnonymousLogger();
     public static void main(final String[] argv) {
-        System.out.println("-------- MySQL JDBC Connection Testing ------------");
+        logger.info("-------- MySQL JDBC Connection Testing ------------");
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            System.out.println("Where is your MySQL JDBC Driver?");
+            logger.info("Where is your MySQL JDBC Driver?");
             e.printStackTrace();
             return;
         }
-        System.out.println("MySQL JDBC Driver Registered!");
+        logger.info("MySQL JDBC Driver Registered!");
         Connection connection = null;
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/table", "root", "toor");
         } catch (SQLException e) {
-            System.out.println("Connection Failed! Check output console");
+            logger.info("Connection Failed! Check output console");
             e.printStackTrace();
             return;
         }
         if (connection != null) {
-            System.out.println("You made it, take control your database now!");
+            logger.info("You made it, take control your database now!");
         } else {
-            System.out.println("Failed to make connection!");
+            logger.info("Failed to make connection!");
         }
     }
 }

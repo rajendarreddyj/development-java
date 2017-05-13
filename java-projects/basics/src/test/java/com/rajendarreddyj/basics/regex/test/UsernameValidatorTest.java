@@ -1,5 +1,7 @@
 package com.rajendarreddyj.basics.regex.test;
 
+import java.util.logging.Logger;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -8,6 +10,7 @@ import org.testng.annotations.Test;
 import com.rajendarreddyj.basics.regex.UsernameValidator;
 
 public class UsernameValidatorTest {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private UsernameValidator usernameValidator;
 
     @BeforeClass
@@ -30,7 +33,7 @@ public class UsernameValidatorTest {
     public void ValidUsernameTest(final String[] Username) {
         for (String temp : Username) {
             boolean valid = this.usernameValidator.validate(temp);
-            System.out.println("Username is valid : " + temp + " , " + valid);
+            logger.info("Username is valid : " + temp + " , " + valid);
             Assert.assertEquals(true, valid);
         }
     }
@@ -39,7 +42,7 @@ public class UsernameValidatorTest {
     public void InValidUsernameTest(final String[] Username) {
         for (String temp : Username) {
             boolean valid = this.usernameValidator.validate(temp);
-            System.out.println("username is valid : " + temp + " , " + valid);
+            logger.info("username is valid : " + temp + " , " + valid);
             Assert.assertEquals(false, valid);
         }
     }

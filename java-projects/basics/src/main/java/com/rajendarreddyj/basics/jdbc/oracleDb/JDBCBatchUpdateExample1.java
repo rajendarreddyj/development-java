@@ -17,8 +17,10 @@ import java.text.SimpleDateFormat;
  * statement.executeUpdate(insertTableSQL2); statement.executeUpdate(insertTableSQL3); But batch update has performance
  * benefit if you want to insert many records, because executeBatch() reduces the number of JDBC calls to database.
  */
+import java.util.logging.Logger;
 
 public class JDBCBatchUpdateExample1 {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521";
     private static final String DB_USER = "rajendar";
@@ -29,7 +31,7 @@ public class JDBCBatchUpdateExample1 {
         try {
             batchInsertRecordsIntoTable();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
     }
 
@@ -51,9 +53,9 @@ public class JDBCBatchUpdateExample1 {
             statement.addBatch(insertTableSQL3);
             statement.executeBatch();
             dbConnection.commit();
-            System.out.println("Records are inserted into DBUSER table!");
+            logger.info("Records are inserted into DBUSER table!");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         } finally {
             if (statement != null) {
                 statement.close();
@@ -69,13 +71,13 @@ public class JDBCBatchUpdateExample1 {
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         try {
             dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
             return dbConnection;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
         return dbConnection;
     }
