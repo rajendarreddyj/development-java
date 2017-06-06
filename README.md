@@ -22,6 +22,14 @@ This mojo is used to view the dependency hierarchy of the project currently bein
 
 `mvn dependency:tree`
 
+This mojo will set New version for parent pom.
+
+`mvn versions:set -DnewVersion=1.0`
+
+This mojo will update version in child modules.
+
+`mvn versions:update-child-modules`
+
 This mojo displays all dependencies that have newer versions available.
  
 `mvn versions:display-dependency-updates`
