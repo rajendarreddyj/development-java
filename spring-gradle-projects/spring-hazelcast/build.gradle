@@ -1,0 +1,17 @@
+apply plugin: "war"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework:spring-web:$springFrameworkVersion")
+    compile("org.springframework.security:spring-security-config:$springSecurityVersion")
+    compile("org.springframework.security:spring-security-web:$springSecurityVersion")
+    compile("org.springframework.session:spring-session:$springSessionVersion")
+    compile("com.hazelcast:hazelcast:$hazelcastVersion")
+
+    providedCompile("javax.servlet:javax.servlet-api:${javaxServletVersion}")
+}

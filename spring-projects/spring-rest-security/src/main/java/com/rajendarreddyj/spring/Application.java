@@ -44,4 +44,5 @@ public class Application extends SpringBootServletInitializer {
     public ShallowEtagHeaderFilter shallowEtagHeaderFilter() {
         return new ShallowEtagHeaderFilter();
     }
+     
 }

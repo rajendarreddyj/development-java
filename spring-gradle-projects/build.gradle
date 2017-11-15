@@ -20,12 +20,15 @@ allprojects {
 	//Instructions for all projects
 	ext {
 		// compile/runtime dependency versions
+		javaVersion="1.8"
 		javaeeVersion = "7.0"
 		javaxServletVersion = "3.1.0"
 		springFrameworkVersion = "4.3.5.RELEASE"
 	    springBatchVersion="3.0.7.RELEASE"
 		springSecurityVersion = "4.2.1.RELEASE"
 		springBootVersion = "1.4.3.RELEASE"
+		springSessionVersion="1.3.1.RELEASE"
+		hazelcastVersion = "3.8.2"
 		commonsdbcpVersion="1.4"
 		logbackVersion = "1.1.8"
 	    aspectjVersion="1.8.10"
@@ -56,8 +59,8 @@ subprojects {
 	apply plugin: 'maven'
 	group = rootProject.group
 	version = rootProject.version
-	sourceCompatibility = 1.8
-	targetCompatibility = 1.8
+	sourceCompatibility = "${javaVersion}"
+	targetCompatibility = "${javaVersion}"
 	tasks.withType(JavaCompile) {
 		options.encoding = 'UTF-8'
 	}
