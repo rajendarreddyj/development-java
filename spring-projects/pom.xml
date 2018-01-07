@@ -13,5 +13,6 @@
   <modules>
     <module>spring-rest-security</module>
     <module>spring-properties</module>
+    <module>spring-batch</module>
   </modules>
 </project>

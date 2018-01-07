@@ -137,6 +137,7 @@
     <rule groupId="org.slf4j">
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*alpha(?:-?\d+)?</ignoreVersion>
+        <ignoreVersion type="regex">(?i).*beta(?:-?\d+)?</ignoreVersion>
       </ignoreVersions>
     </rule>
   </rules>
