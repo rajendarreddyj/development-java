@@ -1,0 +1,3 @@
+rootProject.name = 'rxjava-projects'
+include 'rxjava-basics'
+
