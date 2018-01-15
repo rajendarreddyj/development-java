@@ -20,7 +20,7 @@
   <!-- Create meta-tables. Here we are also invoking the initial-query.sql script -->
   <jdbc:initialize-database data-source="dataSource">
     <jdbc:script location="classpath:hsqldb/initial-query.sql" />
-    <jdbc:script location="org/springframework/batch/core/schema-drop-hsqldb.sql" />
-    <jdbc:script location="org/springframework/batch/core/schema-hsqldb.sql" />
+    <jdbc:script location="hsqldb/schema-drop-hsqldb.sql" />
+    <jdbc:script location="hsqldb/schema-hsqldb.sql" />
   </jdbc:initialize-database>
 </beans>
