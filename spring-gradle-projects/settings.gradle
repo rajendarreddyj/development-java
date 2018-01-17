@@ -25,5 +25,3 @@ project(':spring-data-mongodb').projectDir = "$rootDir/spring-data-mongodb" as F
 project(':spring-batch-listener').projectDir = "$rootDir/spring-batch-listener" as File
 project(':spring-aop-logging').projectDir = "$rootDir/spring-aop-logging" as File
 project(':spring-hazelcast').projectDir = "$rootDir/spring-hazelcast" as File
-
-

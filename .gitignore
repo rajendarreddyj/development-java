@@ -5,6 +5,12 @@
 .gradle/
 bin/
 
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
 # Spring
 .springBeans
 

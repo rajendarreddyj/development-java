@@ -14,5 +14,6 @@
     <module>spring-rest-security</module>
     <module>spring-properties</module>
     <module>spring-batch</module>
+    <module>spring-batch-quartz</module>
   </modules>
 </project>
