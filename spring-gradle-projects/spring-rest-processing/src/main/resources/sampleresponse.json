@@ -1,0 +1,177 @@
+{
+   "header":    {
+      "uniqueId": "21f9c504-1827-4256-b407-594da2654e10",
+      "success": true,
+      "messages": [],
+      "date": "Sat, 27 Jan 2018 19:49:14 CST",
+      "redirectURL": "",
+      "referralURL": ""
+   },
+   "data":    {
+      "filePath": "/apps/sourceCode/git/development-java/spring-gradle-projects/spring-rest-processing/src/main/resources/sample-data.csv",
+      "successfulList":       [
+                  {
+            "lastName": "Doe",
+            "firstName": "Joe"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Justin"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jane"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "John"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Joe"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Justin"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jane"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "John"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Joe"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Justin"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jane"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "John"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Joe"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Justin"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jane"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "John"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Joe"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Justin"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jane"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "John"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Joe"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Justin"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jane"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "John"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Joe"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Justin"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jane"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "John"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Joe"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Justin"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jane"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "John"
+         }
+      ],
+      "failureList":       [
+                  {
+            "lastName": "Doe",
+            "firstName": "Jill"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jill"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jill"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jill"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jill"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jill"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jill"
+         },
+                  {
+            "lastName": "Doe",
+            "firstName": "Jill"
+         }
+      ]
+   }
+}

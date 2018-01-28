@@ -28,6 +28,7 @@
     <spring.data.version>1.13.3.RELEASE</spring.data.version>
     <spring.data.jpa.version>1.11.3.RELEASE</spring.data.jpa.version>
     <spring.batch.version>4.0.0.RELEASE</spring.batch.version>
+    <spring.cloud.version>1.2.2.RELEASE</spring.cloud.version>
     <aopalliance.version>1.0</aopalliance.version>
     <!-- AspectJ Version -->
     <aspectj.version>1.8.10</aspectj.version>
@@ -472,6 +473,16 @@
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-test</artifactId>
         <version>${spring.security.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-task</artifactId>
+        <version>${spring.cloud.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-stream-redis</artifactId>
+        <version>1.0.0.RELEASE</version>
       </dependency>
       <!-- Spring dependencies end -->
       <!-- Aspectj dependencies start -->

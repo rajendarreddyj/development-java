@@ -33,7 +33,10 @@ allprojects {
 		logbackVersion = "1.1.8"
 	    aspectjVersion="1.8.10"
 		toolingApiVersion = "3.3"
-		guavaVersion = "20.0"
+		guavaVersion = "23.0"
+		commonsLang3Version="3.7"
+		commonsIOVersion="2.6"
+		jacksonVersion="2.9.4"
 		gsonVersion = "2.2.4"
 		slf4jVersion = "1.7.2"
 		groovyVersion = "2.4.5"
@@ -46,7 +49,6 @@ allprojects {
 	    hsqldbVersion="1.8.0.7"
 	    tomcatVersion = "7.0.59"
 	    tomcatPluginVersion="2.2.5"
-	    junitVersion="4.12"
 	}
 }
 

@@ -20,8 +20,11 @@ include ':spring-data-mongodb'
 include ':spring-batch-listener'
 include ':spring-aop-logging'
 include 'spring-hazelcast'
+include 'spring-rest-processing'
 
 project(':spring-data-mongodb').projectDir = "$rootDir/spring-data-mongodb" as File
 project(':spring-batch-listener').projectDir = "$rootDir/spring-batch-listener" as File
 project(':spring-aop-logging').projectDir = "$rootDir/spring-aop-logging" as File
 project(':spring-hazelcast').projectDir = "$rootDir/spring-hazelcast" as File
+project(':spring-rest-processing').projectDir = "$rootDir/spring-rest-processing" as File
+
