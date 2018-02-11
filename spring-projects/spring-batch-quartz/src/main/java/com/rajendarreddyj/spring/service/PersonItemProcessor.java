@@ -14,6 +14,16 @@ public class PersonItemProcessor implements ItemProcessor<Person, Person> {
 
     private static final Logger log = LoggerFactory.getLogger(PersonItemProcessor.class);
 
+/*    @BeforeStep
+    public void beforeStep(final StepExecution stepExecution) {
+        new FlatFileItemReader<>();
+        File[] files = new File("/home/rajendarreddy/test").listFiles();
+        if (files.length < 1) {
+            stepExecution.setExitStatus(ExitStatus.COMPLETED);
+            stepExecution.setStatus(BatchStatus.COMPLETED);
+        }
+    }*/
+
     @Override
     public Person process(final Person person) throws Exception {
         final String firstName = person.getFirstName().toUpperCase();
