@@ -931,6 +931,16 @@
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-java</artifactId>
         <version>${selenium.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>com.beust</groupId>
+            <artifactId>jcommander</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
@@ -956,6 +966,12 @@
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-server</artifactId>
         <version>${selenium.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>com.beust</groupId>
+            <artifactId>jcommander</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
@@ -1874,5 +1890,6 @@
     <module>xdocreport-projects</module>
     <module>pdfbox-projects</module>
     <module>poi-projects</module>
+    <module>weld-cdi-projects</module>
   </modules>
 </project>
