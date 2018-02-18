@@ -3,20 +3,15 @@ language: java
 sudo: required
 
 # required for oraclejdk9
-dist: trusty
+dist: xenial
 
 jdk:
   - oraclejdk8
-  - oraclejdk9
 
 addons:
   apt:
     packages:
       - oracle-java8-installer
-
-matrix:
-  allow_failures:
-    - jdk: oraclejdk9
 
 env:
   global:
