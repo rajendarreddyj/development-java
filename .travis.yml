@@ -2,8 +2,7 @@ language: java
 
 sudo: required
 
-# required for oraclejdk9
-dist: xenial
+dist: trusty
 
 jdk:
   - oraclejdk8
