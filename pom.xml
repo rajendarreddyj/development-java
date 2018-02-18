@@ -1859,7 +1859,6 @@
     <module>common-pojos</module>
     <module>java-projects</module>
     <module>java8-projects</module>
-    <module>java9-projects</module>
     <module>javaee-projects</module>
     <module>algorithms-projects</module>
     <module>spring-projects</module>
