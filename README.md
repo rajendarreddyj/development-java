@@ -42,6 +42,14 @@ This mojo displays properties that are linked to artifact versions and have upda
 
 `mvn versions:display-property-updates`
 
+This mojo will update your dependencies to the latest available versions
+
+`mvn versions:use-latest-versions`
+
+This mojo will update your dependecies specified in property values
+
+`mvn versions:update-properties`
+
 To create PMD report
 
 `mvn -Dmaven.test.failure.ignore=true pmd:pmd`
