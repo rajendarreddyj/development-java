@@ -2,15 +2,21 @@ language: java
 
 sudo: required
 
+# required for oraclejdk9
 dist: trusty
 
 jdk:
   - oraclejdk8
+  - oraclejdk9
 
 addons:
   apt:
     packages:
       - oracle-java8-installer
+
+matrix:
+  allow_failures:
+    - jdk: oraclejdk9
 
 env:
   global:
@@ -30,8 +36,8 @@ script:
    # Run Build when not on coverity branch.
   - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then
       ./mvnw clean install -Dmaven.test.skip=true;
-       #cd spring-gradle-projects && ./gradlew build;
-       #cd ..;
+       cd spring-gradle-projects && ./gradlew build;
+       cd ..;
     fi
 
 after_success:
