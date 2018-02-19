@@ -30,8 +30,8 @@ script:
    # Run Build when not on coverity branch.
   - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then
       ./mvnw clean install -Dmaven.test.skip=true;
-       cd spring-gradle-projects && ./gradlew build;
-       cd ..;
+       #cd spring-gradle-projects && ./gradlew build;
+       #cd ..;
     fi
 
 after_success:
