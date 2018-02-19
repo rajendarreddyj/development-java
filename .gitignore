@@ -42,3 +42,6 @@ nb-configuration.xml
 # Android
 /build
 google-services.json
+
+# versions plugin
+pom.xml.versionsBackup
