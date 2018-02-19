@@ -19,6 +19,7 @@
       <ignoreVersions>
         <ignoreVersion type="regex">(?i).*-rc(?:-?\d+)?-android</ignoreVersion>
         <ignoreVersion type="regex">(?i).*-rc(?:-?\d+)?</ignoreVersion>
+        <ignoreVersion type="regex">(?i).*-android</ignoreVersion>
       </ignoreVersions>
     </rule>
     <rule groupId="com.sun.mail">
@@ -29,6 +30,11 @@
     <rule groupId="commons-discovery">
       <ignoreVersions>
         <ignoreVersion type="regex">.*-dev</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+    <rule groupId="org.codehaus.groovy">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.*-alpha*</ignoreVersion>
       </ignoreVersions>
     </rule>
     <rule groupId="commons-collections">
