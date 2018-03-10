@@ -73,3 +73,11 @@ To generate checkstyle report as standalone
 To run cobertura code coverage analysis to report to coveralls -- requires coveralls token
 
 `mvn -Dmaven.test.failure.ignore=true clean test cobertura:cobertura coveralls:report`
+
+To create a maven wrapper go in the main folder of the project and run this command:
+
+`mvn -N io.takari:maven:wrapper`
+
+To create a maven wrapper with specific the version of Maven:
+
+`mvn -N io.takari:maven:wrapper -Dmaven=3.5.2`
