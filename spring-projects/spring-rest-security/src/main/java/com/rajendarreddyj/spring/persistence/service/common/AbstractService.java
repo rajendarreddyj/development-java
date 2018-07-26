@@ -2,6 +2,7 @@ package com.rajendarreddyj.spring.persistence.service.common;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,10 +17,9 @@ public abstract class AbstractService<T extends Serializable> implements IOperat
 
     // read - one
 
-    @Override
     @Transactional(readOnly = true)
     public T findOne(final long id) {
-        return this.getDao().findOne(id);
+        return this.getDao().findById(id).get();
     }
 
     // read - all
@@ -54,7 +54,7 @@ public abstract class AbstractService<T extends Serializable> implements IOperat
 
     @Override
     public void deleteById(final long entityId) {
-        this.getDao().delete(entityId);
+        this.getDao().deleteById(entityId);
     }
 
     protected abstract PagingAndSortingRepository<T, Long> getDao();
