@@ -15,5 +15,6 @@
     <module>spring-properties</module>
     <module>spring-batch</module>
     <module>spring-batch-quartz</module>
+    <module>spring-batch-quartz-cluster</module>
   </modules>
 </project>
