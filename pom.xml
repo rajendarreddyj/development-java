@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.rajendarreddyj</groupId>
+    <artifactId>development-pom</artifactId>
+    <version>1.0</version>
+  </parent>
   <artifactId>development-java</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Java Development Projects</name>
   <description>Java Development Projects</description>
-  <parent>
-        <groupId>com.rajendarreddyj</groupId>
-        <artifactId>development-pom</artifactId>
-        <version>1.0</version>
-    </parent>
   <properties>
   </properties>
   <!-- add GitHub rajendarreddyj maven-repo to repositories -->
@@ -79,9 +79,7 @@
     <module>java8-projects</module>
     <module>javaee-projects</module>
     <module>algorithms-projects</module>
-    <module>spring-projects</module>
     <module>struts2-projects</module>
-    <module>hibernate-projects</module>
     <module>voicexml-projects</module>
     <module>webservices-projects</module>
     <module>quartz-projects</module>
