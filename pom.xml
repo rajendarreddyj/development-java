@@ -12,6 +12,9 @@
   <name>Java Development Projects</name>
   <description>Java Development Projects</description>
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
   </properties>
   <!-- add GitHub rajendarreddyj maven-repo to repositories -->
   <repositories>
@@ -80,7 +83,6 @@
     <module>algorithms-projects</module>
     <module>struts2-projects</module>
     <module>voicexml-projects</module>
-    <module>webservices-projects</module>
     <module>quartz-projects</module>
     <module>guava-projects</module>
     <module>velocity-projects</module>
