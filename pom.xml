@@ -79,9 +79,7 @@
   <modules>
     <module>java-projects</module>
     <module>java8-projects</module>
-    <module>javaee-projects</module>
     <module>algorithms-projects</module>
-    <module>struts2-projects</module>
     <module>voicexml-projects</module>
     <module>quartz-projects</module>
     <module>guava-projects</module>
