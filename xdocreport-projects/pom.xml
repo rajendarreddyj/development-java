@@ -14,10 +14,6 @@
   </modules>
   <dependencies>
     <dependency>
-      <groupId>com.rajendarreddyj</groupId>
-      <artifactId>common-pojos</artifactId>
-    </dependency>
-    <dependency>
       <groupId>fr.opensagres.xdocreport</groupId>
       <artifactId>fr.opensagres.xdocreport.document</artifactId>
     </dependency>

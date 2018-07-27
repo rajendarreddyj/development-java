@@ -3,8 +3,11 @@ package com.rajendarreddyj.google.common.collect;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Ordering;
 
 /**
@@ -28,4 +31,18 @@ public class OrderingTest {
         numbers.add(new Integer(16));
     }
     
+    @Test
+    public void testAllEqual() {
+        Ordering<Object> comparator = Ordering.allEqual();
+        Assert.assertSame(comparator, comparator.reverse());
+
+        Assert.assertEquals(0, comparator.compare(null, null));
+        Assert.assertEquals(0, comparator.compare(new Object(), new Object()));
+        Assert.assertEquals(0, comparator.compare("apples", "oranges"));
+        Assert.assertEquals("Ordering.allEqual()", comparator.toString());
+
+        List<String> strings = ImmutableList.of("b", "a", "d", "c");
+        Assert.assertEquals(strings, comparator.sortedCopy(strings));
+        Assert.assertEquals(strings, comparator.immutableSortedCopy(strings));
+      }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <definitions name="urn:AddressFetcher" targetNamespace="urn:AddressFetcher2" xmlns:tns="urn:AddressFetcher2"
-  xmlns:typens="urn:AddressFetcher2" xmlns:xsd="http://www.w3.org/1999/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-  xmlns="http://schemas.xmlsoap.org/wsdl/">
+  xmlns:typens="urn:AddressFetcher2" xmlns:xsd="http://www.w3.org/1999/XMLSchema"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <!-- type defs -->
   <types>
     <xsd:schema targetNamespace="urn:AddressFetcher2" xmlns:xsd="http://www.w3.org/1999/XMLSchema">
@@ -109,19 +109,23 @@
     <operation name="addEntry">
       <soap:operation soapAction="" />
       <input>
-        <soap:body use="encoded" namespace="urn:AddressFetcher2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="urn:AddressFetcher2"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </input>
       <output>
-        <soap:body use="encoded" namespace="urn:AddressFetcher2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="urn:AddressFetcher2"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </output>
     </operation>
     <operation name="getAddressFromName">
       <soap:operation soapAction="" />
       <input>
-        <soap:body use="encoded" namespace="urn:AddressFetcher2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="urn:AddressFetcher2"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </input>
       <output>
-        <soap:body use="encoded" namespace="urn:AddressFetcher2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="urn:AddressFetcher2"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </output>
     </operation>
   </binding>

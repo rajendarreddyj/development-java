@@ -74,7 +74,6 @@
     </plugins>
   </build>
   <modules>
-    <module>common-pojos</module>
     <module>java-projects</module>
     <module>java8-projects</module>
     <module>javaee-projects</module>

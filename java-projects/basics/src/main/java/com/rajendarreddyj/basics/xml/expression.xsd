@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!-- An XML Schema for assignment statements and expressions. For example: x = 3 y = 4 x = x + y * 6 Exprssions may existing 
-  by themselves (without the assignment): x -3 * y This schema is designed so that it can be used with a namespace (note the 
-  attributes for the schema tag). An example of an XML "document" that would be processed by this schema is shown below: <ex:EXPRESSION 
-  xmlns="http://www.bearcave.com/expression" xmlns:ex="http://www.test.com/expression" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xsi:schemaLocation="http://www.test.com/expression expression.xsd"> <ex:EQUAL> <ex:IDENT>x</ex:IDENT> <ex:PLUS> <ex:IDENT>a</ex:IDENT> 
-  <ex:TIMES> <ex:INT>4</ex:INT> <ex:PAREN> <ex:PLUS> <ex:IDENT>b</ex:IDENT> <ex:UMINUS> <ex:IDENT>c</ex:IDENT> </ex:UMINUS> 
+<!-- An XML Schema for assignment statements and expressions. For example: x = 3 y = 4 x = x + y * 6 Exprssions may existing
+  by themselves (without the assignment): x -3 * y This schema is designed so that it can be used with a namespace (note 
+  the
+  attributes for the schema tag). An example of an XML "document" that would be processed by this schema is shown below: 
+  <ex:EXPRESSION
+  xmlns="http://www.bearcave.com/expression" xmlns:ex="http://www.test.com/expression" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.test.com/expression expression.xsd"> <ex:EQUAL> <ex:IDENT>x</ex:IDENT> <ex:PLUS> <ex:IDENT>a</ex:IDENT>
+  <ex:TIMES> <ex:INT>4</ex:INT> <ex:PAREN> <ex:PLUS> <ex:IDENT>b</ex:IDENT> <ex:UMINUS> <ex:IDENT>c</ex:IDENT> </ex:UMINUS>
   </ex:PLUS> </ex:PAREN> </ex:TIMES> </ex:PLUS> </ex:EQUAL> </ex:EXPRESSION> -->
-<xs:schema targetNamespace="http://www.test.com/expression" xmlns="http://www.test.com/expression" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  elementFormDefault="qualified" attributeFormDefault="unqualified" blockDefault="extension" finalDefault="restriction"
-  version="1.0">
+<xs:schema targetNamespace="http://www.test.com/expression" xmlns="http://www.test.com/expression"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+  blockDefault="extension" finalDefault="restriction" version="1.0">
   <!-- -->
   <xs:element name="EXPRESSION">
     <xs:complexType>

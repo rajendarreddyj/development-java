@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
-<definitions name="urn:GetQuote" targetNamespace="urn:xmltoday-delayed-quotes" xmlns:tns="urn:xmltoday-delayed-quotes"
-  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<definitions name="urn:GetQuote" targetNamespace="urn:xmltoday-delayed-quotes"
+  xmlns:tns="urn:xmltoday-delayed-quotes" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <!-- message declns -->
   <message name="testRequest" />
   <message name="testResponse">
@@ -29,19 +30,23 @@
     <operation name="getQuote">
       <soap:operation soapAction="getQuote" />
       <input>
-        <soap:body use="encoded" namespace="urn:xmltoday-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="urn:xmltoday-delayed-quotes"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </input>
       <output>
-        <soap:body use="encoded" namespace="urn:xmltoday-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="urn:xmltoday-delayed-quotes"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </output>
     </operation>
     <operation name="test">
       <soap:operation soapAction="test" />
       <input>
-        <soap:body use="encoded" namespace="urn:xmltoday-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="urn:xmltoday-delayed-quotes"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </input>
       <output>
-        <soap:body use="encoded" namespace="urn:xmltoday-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="urn:xmltoday-delayed-quotes"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </output>
     </operation>
   </binding>

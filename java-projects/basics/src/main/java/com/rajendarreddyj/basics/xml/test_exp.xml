@@ -1,4 +1,5 @@
-﻿<ex:EXPRESSION xmlns:ex="http://www.test.com/expression" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+﻿<ex:EXPRESSION xmlns:ex="http://www.test.com/expression"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.test.com/expression xmlexpr/expression.xsd">
   <ex:EQUAL>
     <ex:IDENT>x</ex:IDENT>
