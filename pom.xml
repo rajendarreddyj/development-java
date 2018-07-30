@@ -77,19 +77,9 @@
     </plugins>
   </build>
   <modules>
-    <module>java-projects</module>
-    <module>java8-projects</module>
     <module>algorithms-projects</module>
-    <module>voicexml-projects</module>
-    <module>quartz-projects</module>
-    <module>guava-projects</module>
-    <module>velocity-projects</module>
-    <module>selenium-projects</module>
     <module>codejam-projects</module>
-    <module>xdocreport-projects</module>
-    <module>pdfbox-projects</module>
-    <module>poi-projects</module>
-    <module>weld-cdi-projects</module>
+    <module>java-projects</module>
   </modules>
   <organization>
     <url>https://rajendarreddyj.github.io/</url>
