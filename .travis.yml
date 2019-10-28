@@ -1,12 +1,9 @@
 language: java
 
-sudo: required
-
-# required for oraclejdk9
-dist: xenial
+sudo: false
 
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 addons:
   apt:
